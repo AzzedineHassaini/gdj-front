@@ -1,0 +1,23 @@
+{
+
+    "profilTitle": "Profil",
+    "profil": {
+        "name" : "Nom",
+        "firstName": "Prénom",
+        "nationalRegister": "Registre national",
+        "birthdate": "Date de naissance",
+        "deathdate": "Date décès",
+        "gender": "Votre genre : ",
+        "male": "Homme",
+        "female": "Femme",
+        "other": "Autres",
+        "phoneNumber": "Numéro de téléphone",
+        "street": "Rue",
+        "number": "Numéro",
+        "city": "Ville",
+        "postcode": "Code postal",
+        "country": "Pays",
+        "imageProfil": "Image de profil",
+        "imageImprint": "Image d'empreinte"
+    }
+}

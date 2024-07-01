@@ -9,6 +9,7 @@ import { HomeComponent } from './layout/home/home.component';
 import {MenubarModule} from "primeng/menubar";
 import {DropdownModule} from "primeng/dropdown";
 import {FormsModule} from "@angular/forms";
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {FormsModule} from "@angular/forms";
     CoreRoutingModule,
     MenubarModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
+    TranslateModule
   ]
 })
 export class CoreModule { }
