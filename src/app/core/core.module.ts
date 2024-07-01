@@ -6,6 +6,9 @@ import { CoreComponent } from './containers/core/core.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './layout/home/home.component';
+import {MenubarModule} from "primeng/menubar";
+import {DropdownModule} from "primeng/dropdown";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { HomeComponent } from './layout/home/home.component';
   ],
   imports: [
     CommonModule,
-    CoreRoutingModule
+    CoreRoutingModule,
+    MenubarModule,
+    DropdownModule,
+    FormsModule
   ]
 })
 export class CoreModule { }
