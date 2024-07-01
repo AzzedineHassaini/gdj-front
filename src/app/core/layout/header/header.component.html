@@ -1,1 +1,12 @@
-<p>header works!</p>
+<header>
+  <p-menubar [model]="menuItems">
+
+    <ng-template pTemplate="end">
+      <div class="flex">
+        <p-dropdown [options]="dropdownOptions"
+                    [(ngModel)]="selectedOption"
+        ></p-dropdown>
+      </div>
+    </ng-template>
+  </p-menubar>
+</header>
