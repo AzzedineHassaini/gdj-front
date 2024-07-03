@@ -19,7 +19,8 @@
         "postcode": "Postcode : ",
         "country": "Country : ",
         "imgProfile": "Image profile : ",
-        "imprint": "Imprint : "
+        "imprint": "Imprint : ",
+        "submit": "Submit"
     },
     "header" : {
       "home" : "Home",
