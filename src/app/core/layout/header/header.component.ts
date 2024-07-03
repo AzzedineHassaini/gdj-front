@@ -1,5 +1,6 @@
 import {Component, effect, inject, signal} from '@angular/core';
 import {TranslateService } from "@ngx-translate/core";
+import {MenuItem} from "primeng/api";
 
 @Component({
   selector: 'app-header',
@@ -10,12 +11,21 @@ export class HeaderComponent {
 
   private readonly $translate = inject(TranslateService)
 
-  menuItems = [
-    {
-      label: 'home',
-      routerLink: '/home'
-    }
-  ]
+  menuItems: MenuItem[] = []
+
+  constructor() {
+
+    this.$translate.onLangChange.subscribe(() => {
+      this.menuItems = [{
+        label: this.$translate.instant('header.home'),
+        routerLink : '/home'
+        },
+        {
+         label: this.$translate.instant('header.complaints'),
+          routerLink : '/complaints'
+        }]
+    })
+  }
 
   selectedOption = signal<'fr' | 'en'>('fr')
 

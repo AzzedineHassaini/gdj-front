@@ -1,5 +1,4 @@
 {
-
     "profilTitle": "Profil",
     "profil": {
         "name" : "Nom : ",
@@ -20,6 +19,10 @@
         "postcode": "Code postal : ",
         "country": "Pays : ",
         "imgProfile": "Image de profil : ",
-        "imprint": "Image d'empreinte : "
+        "imageImprint": "Image d'empreinte : "
+    },
+    "header" : {
+        "home" : "Acceuil",
+        "complaints" : "Plaintes"
     }
 }
