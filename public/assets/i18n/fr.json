@@ -25,9 +25,11 @@
         "home" : "Acceuil",
         "complaints" : "Plaintes"
     },
-  "auth": {
-    "email": "Mail",
-    "password": "Mot de passe",
-    "login": "Se connecter"
-  }
+    "auth": {
+      "email": "Mail",
+      "password": "Mot de passe",
+      "login": "Se connecter",
+      "logout": "Se déconnecter",
+      "register": "S'enregistrer"
+    }
 }

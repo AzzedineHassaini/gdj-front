@@ -10,6 +10,7 @@ import {MenubarModule} from "primeng/menubar";
 import {DropdownModule} from "primeng/dropdown";
 import {FormsModule} from "@angular/forms";
 import { TranslateModule } from '@ngx-translate/core';
+import {ButtonDirective} from "primeng/button";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MenubarModule,
     DropdownModule,
     FormsModule,
-    TranslateModule
+    TranslateModule,
+    ButtonDirective
   ]
 })
 export class CoreModule { }

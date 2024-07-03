@@ -1,5 +1,7 @@
 import {Component, effect, inject, signal} from '@angular/core';
 import {TranslateService } from "@ngx-translate/core";
+import {toSignal} from "@angular/core/rxjs-interop";
+import {AuthService} from "../../../shared/services/auth.service";
 import {MenuItem} from "primeng/api";
 
 @Component({
@@ -9,21 +11,20 @@ import {MenuItem} from "primeng/api";
 })
 export class HeaderComponent {
 
+  private readonly $auth = inject(AuthService)
   private readonly $translate = inject(TranslateService)
 
-  menuItems: MenuItem[] = []
+  isConnected = toSignal(this.$auth.isConnected$)
+
+  menuItems : MenuItem[] = []
 
   constructor() {
 
     this.$translate.onLangChange.subscribe(() => {
       this.menuItems = [{
         label: this.$translate.instant('header.home'),
-        routerLink : '/home'
-        },
-        {
-         label: this.$translate.instant('header.complaints'),
-          routerLink : '/complaints'
-        }]
+        routerLink: '/home'
+      }]
     })
   }
 
@@ -34,9 +35,13 @@ export class HeaderComponent {
     'fr'
   ]
 
+  handleLogout(): void {
+    this.$auth.logout()
+  }
+
   selectEffect = effect(() => {
     const selected = this.selectedOption()
-      this.$translate.use(selected)
-    })
+    this.$translate.use(selected)
+  })
 
 }

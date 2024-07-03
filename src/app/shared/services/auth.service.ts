@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {IAuth} from "../../features/auth/models/auth.model";
-import {BehaviorSubject, Observable, tap} from "rxjs";
+import {BehaviorSubject, map, Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {ILoginForm} from "../../features/auth/form/login.form";
@@ -26,6 +26,11 @@ export class AuthService {
     return this._currentUser$.value;
   }
 
+  get isConnected$(): Observable<boolean> {
+    return this.currentUser$.pipe(
+      map( auth => !!auth )
+    )
+  }
 
   constructor(
     private readonly _cookie: CookieService,
