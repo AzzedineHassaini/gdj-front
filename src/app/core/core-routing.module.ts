@@ -15,7 +15,7 @@ const routes: Routes = [
       },
       {
         path: 'profil',
-        component: ProfilDetailComponent,
+        loadChildren: () => import ('../features/profil/profil.module').then(m => m.ProfilModule),
       }
     ]
   }

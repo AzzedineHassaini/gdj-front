@@ -1,11 +1,12 @@
 {
-    "profilTitle": "Profile : ",
+    "profilTitle": "Profile",
     "profil": {
         "name" : "Name : ",
         "firstName": "First name : ",
         "nationalRegister": "National register : ",
         "birthdate": "Birthdate : ",
         "deathdate": "Deathdate : ",
+        "birthplace": "Birthplace : ",
         "gender": "Your gender : ",
         "chooseGender": "Choose your gender",
         "male": "Male : ",
@@ -17,7 +18,11 @@
         "city": "City : ",
         "postcode": "Postcode : ",
         "country": "Country : ",
-        "imageProfil": "Image profile : ",
+        "imgProfile": "Image profile : ",
         "imprint": "Imprint : "
-    }
+    },
+    "header" : {
+      "home" : "Home",
+      "complaints" : "Complaints"
+  }
 }
