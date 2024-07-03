@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './components/login/login.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {Button} from "primeng/button";
+import {TranslateModule} from "@ngx-translate/core";
+import {PasswordModule} from "primeng/password";
+import {InputTextModule} from "primeng/inputtext";
 
 
 @NgModule({
@@ -11,7 +16,12 @@ import { LoginComponent } from './components/login/login.component';
   ],
   imports: [
     CommonModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    ReactiveFormsModule,
+    Button,
+    TranslateModule,
+    PasswordModule,
+    InputTextModule
   ]
 })
 export class AuthModule { }

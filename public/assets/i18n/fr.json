@@ -24,5 +24,10 @@
     "header" : {
         "home" : "Acceuil",
         "complaints" : "Plaintes"
-    }
+    },
+  "auth": {
+    "email": "Mail",
+    "password": "Mot de passe",
+    "login": "Se connecter"
+  }
 }

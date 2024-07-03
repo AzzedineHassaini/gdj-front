@@ -10,6 +10,7 @@ function httpTranslationLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 import { AppComponent } from './container/app.component';
+import {CookieService} from "ngx-cookie-service";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AppComponent } from './container/app.component';
     }),
   ],
   providers: [
-    provideHttpClient()
+    provideHttpClient(),
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
