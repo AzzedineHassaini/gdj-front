@@ -23,6 +23,7 @@
     },
     "header" : {
       "home" : "Home",
-      "complaints" : "Complaints"
+      "complaints" : "Complaints",
+      "profil" : "Profil"
   }
 }

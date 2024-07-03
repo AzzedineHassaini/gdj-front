@@ -7,7 +7,11 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './layout/home/home.component';
 import {MenubarModule} from "primeng/menubar";
+import { AvatarModule } from 'primeng/avatar';
+import { BadgeModule } from 'primeng/badge';
+import { DialogModule } from 'primeng/dialog';
 import {DropdownModule} from "primeng/dropdown";
+import { ButtonModule } from 'primeng/button';
 import {FormsModule} from "@angular/forms";
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -25,7 +29,11 @@ import { TranslateModule } from '@ngx-translate/core';
     MenubarModule,
     DropdownModule,
     FormsModule,
-    TranslateModule
+    TranslateModule,
+    AvatarModule,
+    BadgeModule,
+    DialogModule,
+    ButtonModule
   ]
 })
 export class CoreModule { }

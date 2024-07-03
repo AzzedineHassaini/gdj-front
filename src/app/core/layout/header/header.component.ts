@@ -2,10 +2,12 @@ import {Component, effect, inject, signal} from '@angular/core';
 import {TranslateService } from "@ngx-translate/core";
 import {MenuItem} from "primeng/api";
 
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
 
@@ -23,7 +25,12 @@ export class HeaderComponent {
         {
          label: this.$translate.instant('header.complaints'),
           routerLink : '/complaints'
-        }]
+        },
+        {
+         label: this.$translate.instant('header.profil'),
+          routerLink : '/profil'
+         },
+        ]
     })
   }
 
@@ -39,4 +46,12 @@ export class HeaderComponent {
       this.$translate.use(selected)
     })
 
+  displayModal: boolean = false;
+
+  showModal() {
+    this.displayModal = true;
+  }
+
 }
+
+

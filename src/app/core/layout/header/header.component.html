@@ -1,13 +1,25 @@
 <header>
   <p-menubar [model]="menuItems">
 
+
     <ng-template pTemplate="end">
-      <div class="flex">
-        <p-dropdown [options]="dropdownOptions"
+      <div class="flex-auto">
+        <div>
+            <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                      (click)="showModal()"
+                      styleClass="flex-auto align-items-center justify-content-centre mr-2"
+                      shape="circle"    
+            />
+          <p-dropdown [options]="dropdownOptions"
                     [(ngModel)]="selectedOption"
-        ></p-dropdown>
+        ></p-dropdown> 
+        </div>    
       </div>
     </ng-template>
 
+    <p-dialog header="Modal header"
+       [(visible)]="displayModal">
+          <P>Coucou petite peruche</P>
+    </p-dialog>
   </p-menubar>
 </header>
