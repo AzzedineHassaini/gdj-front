@@ -1,0 +1,108 @@
+<div style="text-align: center;">
+    <h2>{{'profilTitle' | translate}}</h2>
+
+    <form>
+        <label for="firstName">{{'profil.firstName' | translate}}</label>
+        <input text="text" id="firstName" name="firstName">
+
+        <br>
+        <br>
+
+        <label for="lastName">{{'profil.name' | translate}}</label>
+        <input text="text" id="lastName" name="lastName">
+
+        <br>
+        <br>
+
+        <label for="nationalRegister">{{'profil.nationalRegister' | translate}}</label>
+        <input text="text" id="nationalRegister" name="nationalRegister">
+
+        <br>
+        <br>
+
+        <label for="birthdate">{{'profil.birthdate' | translate}}</label>
+        <input type="date" id="birthdate" name="birthdate" value="2024-07-01" min="01-01-1900" max="2024-07-01"/>
+
+        <br>
+        <br>
+
+        <label for="deathdate">{{'profil.deathdate' | translate}}</label>
+        <input type="date" id="deathdate" name="deathdate" value="2024-07-01" min="01-01-1900" max="2024-07-01"/>
+
+        <br>
+        <br>
+        
+        <label for="birthplace">{{'profil.birthplace' | translate}}</label>
+        <input text="text" id="birthplace" name="birthplace">
+
+        <br>
+        <br>
+
+        <label for="gender-select">{{'profil.gender' | translate}}</label>
+        <select name="gender" id="gender-select">
+            <option value="">{{'profil.chooseGender' | translate}}</option>
+            <option value="male">{{'profil.male' | translate}}</option>
+            <option value="female">{{'profil.female' | translate}}</option>
+            <option value="other">{{'profil.other' | translate}}</option>
+        </select>
+
+        <br>
+        <br>
+
+        <label for="phoneNumber">{{'profil.phoneNumber' | translate}}</label>
+        <input text="text" id="phoneNumber" name="phoneNumber">
+
+        <br>
+        <br>
+
+        <label for="street">{{'profil.street' | translate}}</label>
+        <input text="text" id="street" name="street">
+
+        <br>
+        <br>
+
+        <label for="number">{{'profil.number' | translate}}</label>
+        <input text="text" id="number" name="number">
+
+        <br>
+        <br>
+
+        <label for="city">{{'profil.city' | translate}}</label>
+        <input text="text" id="city" name="city">
+
+        <br>
+        <br>
+
+        <label for="postCode">{{'profil.postcode' | translate}}</label>
+        <input text="text" id="postCode" name="postCode">
+
+        <br>
+        <br>
+
+        <label for="country">{{'profil.country' | translate}}</label>
+        <input text="text" id="country" name="country">
+
+        <br>
+        <br>
+
+        <div>
+            <label for="porfileImage">{{'profil.imgProfile' | translate}}</label>
+            <input type="file" id="profileImage" (change)="onFileSelectedProfil($event)">
+        </div>
+        <div *ngIf="imgPreview">
+            <img [src]="imgPreview" width="200">
+        </div>
+
+        <br>
+        <br>
+
+        <div>
+            <label for="imprint">{{'profil.imprint' | translate}}</label>
+            <input type="file" id="imprint" (change)="onFileSelectedImprint($event)">
+        </div>
+        <div *ngIf="imgPreview">
+            <img [src]="imgPreview" width="200">
+        </div>
+
+    </form>
+</div>

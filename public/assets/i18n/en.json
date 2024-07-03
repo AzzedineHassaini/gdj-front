@@ -1,0 +1,28 @@
+{
+    "profilTitle": "Profile",
+    "profil": {
+        "name" : "Name : ",
+        "firstName": "First name : ",
+        "nationalRegister": "National register : ",
+        "birthdate": "Birthdate : ",
+        "deathdate": "Deathdate : ",
+        "birthplace": "Birthplace : ",
+        "gender": "Your gender : ",
+        "chooseGender": "Choose your gender",
+        "male": "Male : ",
+        "female": "Female : ",
+        "other": "Other : ",
+        "phoneNumber": "Phone number : ",
+        "street": "Street : ",
+        "number": "Number : ",
+        "city": "City : ",
+        "postcode": "Postcode : ",
+        "country": "Country : ",
+        "imgProfile": "Image profile : ",
+        "imprint": "Imprint : "
+    },
+    "header" : {
+      "home" : "Home",
+      "complaints" : "Complaints"
+  }
+}
