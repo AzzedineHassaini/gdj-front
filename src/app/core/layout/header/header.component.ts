@@ -9,7 +9,7 @@ export class HeaderComponent {
 
   menuItems = [
     {
-      label: 'home',
+      label: "{{'header.home' | translate}}",
       routerLink: '/home'
     }
   ]
