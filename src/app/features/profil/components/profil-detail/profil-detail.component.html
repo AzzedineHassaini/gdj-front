@@ -85,12 +85,12 @@
         <br>
         <br>
 
-        <div>
+        <!--<div>
             <label for="porfileImage">{{'profil.imgProfile' | translate}}</label>
-            <input type="file" id="profileImage" (change)="onFileSelectedProfil($event)">
+            <input type="file" id="profileImage" (change)="onProfileImageSelected($event)">
         </div>
-        <div *ngIf="imgPreview">
-            <img [src]="imgPreview" width="200">
+        <div *ngIf="profileImgPreview">
+            <img [src]="profileImgPreview" width="200">
         </div>
 
         <br>
@@ -98,11 +98,11 @@
 
         <div>
             <label for="imprint">{{'profil.imprint' | translate}}</label>
-            <input type="file" id="imprint" (change)="onFileSelectedImprint($event)">
+            <input type="file" id="imprint" (change)="onImprintImageSelected($event)">
         </div>
-        <div *ngIf="imgPreview">
-            <img [src]="imgPreview" width="200">
+        <div *ngIf="imprintImgPreview">
+            <img [src]="imprintImgPreview" width="200">
         </div>
 
     </form>
-</div>
+</div>-->
