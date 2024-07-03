@@ -10,6 +10,8 @@ import {MenubarModule} from "primeng/menubar";
 import {DropdownModule} from "primeng/dropdown";
 import {FormsModule} from "@angular/forms";
 import { TranslateModule } from '@ngx-translate/core';
+import { ProfilModule } from '../features/profil/profil.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
