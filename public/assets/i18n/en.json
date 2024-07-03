@@ -20,5 +20,9 @@
         "country": "Country : ",
         "imgProfile": "Image profile : ",
         "imprint": "Imprint : "
-    }
+    },
+    "header" : {
+      "home" : "Home",
+      "complaints" : "Complaints"
+  }
 }

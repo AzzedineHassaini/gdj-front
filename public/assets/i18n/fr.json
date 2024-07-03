@@ -1,5 +1,4 @@
 {
-
     "profilTitle": "Profil",
     "profil": {
         "name" : "Nom : ",
@@ -21,5 +20,9 @@
         "country": "Pays : ",
         "imgProfile": "Image de profil : ",
         "imageImprint": "Image d'empreinte : "
+    },
+    "header" : {
+        "home" : "Acceuil",
+        "complaints" : "Plaintes"
     }
 }
