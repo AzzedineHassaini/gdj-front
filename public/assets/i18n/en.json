@@ -1,0 +1,23 @@
+{
+    "profilTitle": "Profile : ",
+    "profil": {
+        "name" : "Name : ",
+        "firstName": "First name : ",
+        "nationalRegister": "National register : ",
+        "birthdate": "Birthdate : ",
+        "deathdate": "Deathdate : ",
+        "gender": "Your gender : ",
+        "chooseGender": "Choose your gender",
+        "male": "Male : ",
+        "female": "Female : ",
+        "other": "Other : ",
+        "phoneNumber": "Phone number : ",
+        "street": "Street : ",
+        "number": "Number : ",
+        "city": "City : ",
+        "postcode": "Postcode : ",
+        "country": "Country : ",
+        "imageProfil": "Image profile : ",
+        "imprint": "Imprint : "
+    }
+}
