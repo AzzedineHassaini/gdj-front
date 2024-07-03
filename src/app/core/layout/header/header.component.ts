@@ -1,4 +1,5 @@
-import {Component, signal} from '@angular/core';
+import {Component, effect, inject, signal} from '@angular/core';
+import {TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-header',
@@ -6,6 +7,8 @@ import {Component, signal} from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+
+  private readonly $translate = inject(TranslateService)
 
   menuItems = [
     {
@@ -20,5 +23,10 @@ export class HeaderComponent {
     'en',
     'fr'
   ]
+
+  selectEffect = effect(() => {
+    const selected = this.selectedOption()
+      this.$translate.use(selected)
+    })
 
 }

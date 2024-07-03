@@ -1,5 +1,6 @@
 <div style="text-align: center;">
     <h2>{{'profilTitle' | translate}}</h2>
+
     <form>
         <label for="firstName">{{'profil.firstName' | translate}}</label>
         <input text="text" id="firstName" name="firstName">
@@ -83,6 +84,25 @@
 
         <br>
         <br>
+
+        <div>
+            <label for="porfileImage">{{'profil.imgProfile' | translate}}</label>
+            <input type="file" id="profileImage" (change)="onFileSelectedProfil($event)">
+        </div>
+        <div *ngIf="imgPreview">
+            <img [src]="imgPreview" width="200">
+        </div>
+
+        <br>
+        <br>
+
+        <div>
+            <label for="imprint">{{'profil.imprint' | translate}}</label>
+            <input type="file" id="imprint" (change)="onFileSelectedImprint($event)">
+        </div>
+        <div *ngIf="imgPreview">
+            <img [src]="imgPreview" width="200">
+        </div>
 
     </form>
 </div>

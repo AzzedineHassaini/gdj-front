@@ -2,22 +2,24 @@
 
     "profilTitle": "Profil",
     "profil": {
-        "name" : "Nom",
-        "firstName": "Prénom",
-        "nationalRegister": "Registre national",
-        "birthdate": "Date de naissance",
-        "deathdate": "Date décès",
+        "name" : "Nom : ",
+        "firstName": "Prénom : ",
+        "nationalRegister": "Registre national : ",
+        "birthdate": "Date de naissance : ",
+        "deathdate": "Date décès : ",
+        "birthplace": "Lieu de naissance : ",
         "gender": "Votre genre : ",
+        "chooseGender": "Choissisez votre genre",
         "male": "Homme",
         "female": "Femme",
         "other": "Autres",
-        "phoneNumber": "Numéro de téléphone",
-        "street": "Rue",
-        "number": "Numéro",
-        "city": "Ville",
-        "postcode": "Code postal",
-        "country": "Pays",
-        "imageProfil": "Image de profil",
-        "imageImprint": "Image d'empreinte"
+        "phoneNumber": "Numéro de téléphone : ",
+        "street": "Rue : ",
+        "number": "Numéro : ",
+        "city": "Ville : ",
+        "postcode": "Code postal : ",
+        "country": "Pays : ",
+        "imgProfile": "Image de profil : ",
+        "imageImprint": "Image d'empreinte : "
     }
 }
