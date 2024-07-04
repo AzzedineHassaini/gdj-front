@@ -4,7 +4,8 @@ import {BehaviorSubject, map, Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {ILoginForm} from "../../features/auth/form/login.form";
-import {env} from "../../../env/env";
+import { env } from '../../../env/env';
+
 
 @Injectable({
   providedIn: 'root'

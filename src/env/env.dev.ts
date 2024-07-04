@@ -1,3 +1,3 @@
-export const environment = {
+export const env = {
   baseUrl: 'http://localhost:8080/'
 };
