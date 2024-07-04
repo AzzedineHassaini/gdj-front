@@ -2,18 +2,25 @@ import { Gender } from './gender.enum';
 import { IAddress } from './address.models';
 import { IPhone } from './phone.models';
 
-export interface IPerson {
+export interface IPersonDetails {
     id: number;
-    nationalRegister: string;
-    name: string;
+    lastName: string;
     firstName: string;
+    nationalRegister: string;
     birthdate: Date;
     birthplace: String;
     gender: Gender;
     deathDate?: Date;
     picture?: string;
     imprint?: string;
-    lawyer?: IPerson;
+    lawyer?: IPersonDetails;
     address: IAddress[];
     phones: IPhone[];
+}
+
+export interface IPersonList {
+    id: number;
+    lastName: string;
+    firstName: string;
+    nationalRegister: string;
 }

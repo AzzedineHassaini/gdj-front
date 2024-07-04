@@ -1,5 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { IPersonDetails } from '../../models/person.model';
+import { ProfileService } from '../../services/profile.service';
+import { map, Observable, delay } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-profil-detail',
@@ -7,8 +12,18 @@ import { Component } from '@angular/core';
   styleUrl: './profil-detail.component.scss'
 })
 export class ProfilDetailComponent {
+  private readonly $person = inject( ProfileService )
 
-  selectedFiles: { [key: string]: File | null } = { profile: null, imprint: null };
+  persons = this.$person.getPersonById(1)
+
+
+}
+
+
+
+
+
+  /*selectedFiles: { [key: string]: File | null } = { profile: null, imprint: null };
   imgPreviews: { [key: string]: string | ArrayBuffer | null } = { profile: null, imprint: null };
   uploadedimgUrl: { [key: string]: string | null } = { profile: null, imprint: null };
 
@@ -45,5 +60,4 @@ export class ProfilDetailComponent {
         })
       }
     }
-  }
-}
+  }*/
