@@ -25,5 +25,12 @@
     "header" : {
       "home" : "Home",
       "complaints" : "Complaints"
-  }
+    },
+    "auth": {
+      "email": "Email",
+      "password": "Password",
+      "login": "Login",
+      "logout": "Logout",
+      "register": "Register"
+    }
 }

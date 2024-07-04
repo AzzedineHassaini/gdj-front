@@ -1,0 +1,17 @@
+<div class="flex">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="in-email">{{'auth.email' | translate}}</label>
+      <input type="email" pInputText id="in-email" formControlName="mail">
+    </div>
+    <div>
+      <label for="in-password">{{'auth.password' | translate}}</label>
+      <input type="password" pPassword id="in-password" formControlName="password">
+    </div>
+    <div>
+      <p-button type="submit"  label="{{'auth.login' | translate}}" />
+    </div>
+  </form>
+
+</div>
