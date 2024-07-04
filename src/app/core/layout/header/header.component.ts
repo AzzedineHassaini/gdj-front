@@ -24,6 +24,10 @@ export class HeaderComponent {
       this.menuItems = [{
         label: this.$translate.instant('header.home'),
         routerLink: '/home'
+      },
+      {
+        label: this.$translate.instant('header.profil'),
+        routerLink: '/profil'
       }]
     })
   }

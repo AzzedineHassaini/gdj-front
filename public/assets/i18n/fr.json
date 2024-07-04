@@ -24,7 +24,8 @@
     },
     "header" : {
         "home" : "Acceuil",
-        "complaints" : "Plaintes"
+        "complaints" : "Plaintes",
+        "profil": "Profil"
     },
     "auth": {
       "email": "Mail",
