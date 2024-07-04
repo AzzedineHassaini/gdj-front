@@ -33,6 +33,10 @@ export class AuthService {
     )
   }
 
+  get token(): string | null {
+    return this.currentUser ? this.currentUser.accessToken : null
+  }
+
   constructor(
     private readonly _cookie: CookieService,
     private readonly _client: HttpClient
