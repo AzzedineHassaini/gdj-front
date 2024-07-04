@@ -24,6 +24,7 @@
     "header" : {
         "home" : "Acceuil",
         "complaints" : "Plaintes",
-        "profil" : "Profil"
+        "profil" : "Profil",
+        "close" : "Fermer"
     }
 }

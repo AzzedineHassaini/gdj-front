@@ -1,6 +1,8 @@
 import {Component, effect, inject, signal} from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {TranslateService } from "@ngx-translate/core";
 import {MenuItem} from "primeng/api";
+import { ThemeService } from '../../services/theme.service';
 
 
 
@@ -11,11 +13,13 @@ import {MenuItem} from "primeng/api";
 })
 export class HeaderComponent {
 
-  private readonly $translate = inject(TranslateService)
 
   menuItems: MenuItem[] = []
 
-  constructor() {
+  constructor(
+    private readonly $translate: TranslateService,
+    private readonly $theme: ThemeService,
+  ) {
 
     this.$translate.onLangChange.subscribe(() => {
       this.menuItems = [{
@@ -52,6 +56,19 @@ export class HeaderComponent {
     this.displayModal = true;
   }
 
+  openProfil(){
+    RouterLink: '/profil'
+  }
+
+  toggleDark(){
+    this.$theme.toggleDarkTheme()
+  }
+
+  currentIcon = "pi pi-sun";
+  newIcon ="pi pi-moon";
+
+  toggleIcon(){
+    this.currentIcon = this.currentIcon === "pi pi-sun" ? this.newIcon : "pi pi-sun";
+  }
+
 }
-
-

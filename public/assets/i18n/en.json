@@ -24,6 +24,8 @@
     "header" : {
       "home" : "Home",
       "complaints" : "Complaints",
-      "profil" : "Profil"
+      "profil" : "Profil",
+      "close" : "Close"
+          
   }
 }

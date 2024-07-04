@@ -14,6 +14,7 @@ import {DropdownModule} from "primeng/dropdown";
 import { ButtonModule } from 'primeng/button';
 import {FormsModule} from "@angular/forms";
 import { TranslateModule } from '@ngx-translate/core';
+import { ThemeService } from './services/theme.service';
 
 
 @NgModule({
@@ -34,6 +35,9 @@ import { TranslateModule } from '@ngx-translate/core';
     BadgeModule,
     DialogModule,
     ButtonModule
+  ],
+  providers: [
+    ThemeService
   ]
 })
 export class CoreModule { }

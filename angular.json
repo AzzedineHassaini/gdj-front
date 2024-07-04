@@ -40,7 +40,16 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              {
+                "input": "src/themes/light.scss",
+                "bundleName": "light",
+                "inject": false
+              },
+              {
+                "input": "src/themes/dark.scss",
+                "bundleName": "dark",
+                "inject": false
+              },
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []

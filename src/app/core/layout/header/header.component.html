@@ -1,25 +1,38 @@
 <header>
   <p-menubar [model]="menuItems">
 
-
     <ng-template pTemplate="end">
-      <div class="flex-auto">
-        <div>
-            <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
-                      (click)="showModal()"
-                      styleClass="flex-auto align-items-center justify-content-centre mr-2"
-                      shape="circle"    
-            />
+      <ul>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <li>
+            <p-avatar icon="pi pi-user" (click)="showModal()" size="normal"/>
+          <p-dialog header="Gestion du profil" [(visible)]="displayModal" [modal]="true" [style]="{width: '400px'}">
+              <a routerLink="profil" (click)="displayModal=false">Mettre à jour le profil</a>
+            <ng-template pTemplate="footer">
+              <p-button [rounded]="true" 
+                        [outlined]="true" 
+                        label="{{ 'header.close' | translate }}" size="small"
+                        (click)="displayModal=false">
+              </p-button>
+            </ng-template>
+          </p-dialog>
+        </li>
+        <li>
+          <p-button size="small"
+                    [outlined]="true"
+                    [icon]="currentIcon"
+                    (onClick)="toggleIcon()"
+                    (click)="toggleDark()"
+                    styleClass="smol-btn">
+          </p-button>
+        </li>
+        <li>
           <p-dropdown [options]="dropdownOptions"
-                    [(ngModel)]="selectedOption"
-        ></p-dropdown> 
-        </div>    
+                      [(ngModel)]="selectedOption">
+          </p-dropdown>
+        </li>
       </div>
+    </ul>
     </ng-template>
-
-    <p-dialog header="Modal header"
-       [(visible)]="displayModal">
-          <P>Coucou petite peruche</P>
-    </p-dialog>
   </p-menubar>
 </header>
