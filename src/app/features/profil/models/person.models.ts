@@ -7,15 +7,15 @@ export interface IPersonDetails {
     lastName: string;
     firstName: string;
     nationalRegister: string;
-    birthdate: Date;
-    birthplace: String;
+    birthDate: Date;
+    birthPlace: String;
     gender: Gender;
     deathDate?: Date;
     picture?: string;
     imprint?: string;
     lawyer?: IPersonDetails;
     address: IAddress[];
-    phones: IPhone[];
+    phones: IPhone;
 }
 
 export interface IPersonList {
