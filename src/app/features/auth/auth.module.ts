@@ -8,6 +8,8 @@ import {Button} from "primeng/button";
 import {TranslateModule} from "@ngx-translate/core";
 import {PasswordModule} from "primeng/password";
 import {InputTextModule} from "primeng/inputtext";
+import {InputGroupModule} from "primeng/inputgroup";
+import {InputGroupAddonModule} from "primeng/inputgroupaddon";
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import {InputTextModule} from "primeng/inputtext";
     Button,
     TranslateModule,
     PasswordModule,
-    InputTextModule
+    InputTextModule,
+    InputGroupModule,
+    InputGroupAddonModule
   ]
 })
 export class AuthModule { }

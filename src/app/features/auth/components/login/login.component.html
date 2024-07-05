@@ -1,14 +1,18 @@
-<div class="flex">
+<div class="card flex flex-column md:flex-row gap-3">
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="in-email">{{'auth.email' | translate}}</label>
-      <input type="email" pInputText id="in-email" formControlName="mail">
-    </div>
-    <div>
-      <label for="in-password">{{'auth.password' | translate}}</label>
-      <input type="password" pPassword id="in-password" formControlName="password">
-    </div>
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input pInputText placeholder="{{'auth.email' | translate}}" type="email" id="in-email" formControlName="mail"/>
+    </p-inputGroup>
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-key"></i>
+      </p-inputGroupAddon>
+      <input type="password" pPassword id="in-password" formControlName="password" placeholder="{{'auth.password' | translate}}" [feedback]="false">
+    </p-inputGroup>
     <div>
       <p-button type="submit"  label="{{'auth.login' | translate}}" />
     </div>
