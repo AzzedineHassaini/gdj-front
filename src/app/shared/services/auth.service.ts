@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {IAuth, UserRole} from "../../features/auth/models/auth.model";
+import {IAuth} from "../../features/auth/models/auth.model";
 import {BehaviorSubject, map, Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
@@ -12,9 +12,9 @@ import { env } from '../../../env/env';
 })
 export class AuthService {
 
-  private _currentUser$ = new BehaviorSubject<IAuth | null>(null);
+  private _currentUser$ = new BehaviorSubject<IAuth | undefined>(undefined);
 
-  set currentUser(value: IAuth | null) {
+  set currentUser(value: IAuth | undefined) {
     if (value){
       this._cookie.set("user", btoa(JSON.stringify(value)));
     } else {
@@ -23,19 +23,13 @@ export class AuthService {
     this._currentUser$.next(value);
   }
 
-  get currentUser(): IAuth | null {
+  get currentUser(): IAuth | undefined {
     return this._currentUser$.value;
   }
 
   get isConnected$(): Observable<boolean> {
     return this.currentUser$.pipe(
       map( auth => !!auth )
-    )
-  }
-
-  get role$(): Observable<UserRole | null> {
-    return this.currentUser$.pipe(
-      map( auth => !auth ? null : auth.user.role )
     )
   }
 
@@ -62,11 +56,11 @@ export class AuthService {
 
   // - se déconnecter
   logout(){
-    this.currentUser = null;
+    this.currentUser = undefined;
   }
 
   // - récupérer l'user connecté
-  get currentUser$(): Observable<IAuth | null> {
+  get currentUser$(): Observable<IAuth | undefined> {
     return this._currentUser$.asObservable();
   }
 
