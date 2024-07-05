@@ -1,26 +1,28 @@
-import {HttpHeaders, HttpInterceptorFn} from "@angular/common/http";
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
+} from "@angular/common/http";
 import {AuthService} from "../services/auth.service";
-import {inject} from "@angular/core";
-import {catchError, tap} from "rxjs";
+import {inject, Injectable} from "@angular/core";
+import {Observable} from "rxjs";
 
-export const jwtInterceptor: HttpInterceptorFn = (req, next)  => {
-  const auth = inject(AuthService)
-  const token = auth.token;
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
 
-  if( token ){
-    req = req.clone({
-      headers: new HttpHeaders({
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const auth = inject(AuthService)
+    const token = auth.token;
+    const authReq = req.clone({
+      setHeaders: {
         Authorization: `Bearer ${token}`
-      })
-    })
-  }
-
-  return next(req).pipe(
-    tap(resp => console.log(resp)),
-    catchError(
-      () => {
-        throw 'Interceptor Error'
       }
-    )
-  )
+    });
+
+    console.log("Header intercepted")
+    console.log(req);
+    return next.handle(authReq);
+  }
 }
+

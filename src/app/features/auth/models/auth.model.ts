@@ -9,7 +9,7 @@ export interface IUser {
   role: UserRole
 }
 
-enum UserRole {
+export enum UserRole {
   CITIZEN,
   ADMIN,
   AGENT,

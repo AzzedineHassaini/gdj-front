@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {IAuth} from "../../features/auth/models/auth.model";
+import {IAuth, UserRole} from "../../features/auth/models/auth.model";
 import {BehaviorSubject, map, Observable, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
@@ -33,6 +33,12 @@ export class AuthService {
     )
   }
 
+  get role$(): Observable<UserRole | null> {
+    return this.currentUser$.pipe(
+      map( auth => !auth ? null : auth.user.role )
+    )
+  }
+
   get token(): string | null {
     return this.currentUser ? this.currentUser.accessToken : null
   }
@@ -41,7 +47,7 @@ export class AuthService {
     private readonly _cookie: CookieService,
     private readonly _client: HttpClient
   ) {
-
+    this.loadUser()
   }
 
   // - se connecter
@@ -62,6 +68,13 @@ export class AuthService {
   // - récupérer l'user connecté
   get currentUser$(): Observable<IAuth | null> {
     return this._currentUser$.asObservable();
+  }
+
+  loadUser(){
+    const userCookie = this._cookie.get("user");
+    if( userCookie ){
+      this.currentUser = JSON.parse( atob(userCookie) )
+    }
   }
 
 }
