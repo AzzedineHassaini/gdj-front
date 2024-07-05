@@ -100,7 +100,7 @@ export class HeaderComponent {
       },
       {
         label: this.$translate.instant('header.profile'),
-        routerLink: '/home'
+        routerLink: '/profile'
       },
       {
         label: this.$translate.instant('header.complaints'),
@@ -117,7 +117,7 @@ export class HeaderComponent {
       },
       {
         label: this.$translate.instant('header.profile'),
-        routerLink: '/home'
+        routerLink: '/profile'
       }
     ]
   }
@@ -130,7 +130,7 @@ export class HeaderComponent {
       },
       {
         label: this.$translate.instant('header.profile'),
-        routerLink: '/home'
+        routerLink: '/profile'
       }
     ]
   }
