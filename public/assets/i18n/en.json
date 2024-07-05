@@ -1,7 +1,7 @@
 {
-    "profilTitle": "Profile",
-    "profil": {
-        "name" : "Name : ",
+    "profileTitle": "Profile",
+    "profile": {
+        "lastName" : "Last name : ",
         "firstName": "First name : ",
         "nationalRegister": "National register : ",
         "birthdate": "Birthdate : ",
@@ -30,6 +30,7 @@
     "auth": {
       "email": "Email",
       "password": "Password",
+      "passwordConfirm": "Confirm password",
       "login": "Login",
       "logout": "Logout",
       "register": "Register"

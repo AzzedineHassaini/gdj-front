@@ -10,11 +10,14 @@ import {PasswordModule} from "primeng/password";
 import {InputTextModule} from "primeng/inputtext";
 import {InputGroupModule} from "primeng/inputgroup";
 import {InputGroupAddonModule} from "primeng/inputgroupaddon";
+import { RegisterComponent } from './components/register/register.component';
+import {InputMaskModule} from "primeng/inputmask";
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +28,8 @@ import {InputGroupAddonModule} from "primeng/inputgroupaddon";
     PasswordModule,
     InputTextModule,
     InputGroupModule,
-    InputGroupAddonModule
+    InputGroupAddonModule,
+    InputMaskModule
   ]
 })
 export class AuthModule { }

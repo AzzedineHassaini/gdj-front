@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {ILoginForm} from "../../features/auth/form/login.form";
 import { env } from '../../../env/env';
+import {IRegisterForm} from "../../features/auth/form/register.form";
 
 
 @Injectable({
@@ -51,7 +52,20 @@ export class AuthService {
       tap((auth) =>
       {
         this.currentUser = auth
-      }));
+      })
+    );
+  }
+
+  // - s'enregistrer
+  register(form: IRegisterForm){
+
+    return this._client.post<IAuth>(env.baseUrl + 'auth/register', form).pipe(
+      tap((auth) =>
+      {
+        this.currentUser = auth
+      })
+    )
+
   }
 
   // - se déconnecter
