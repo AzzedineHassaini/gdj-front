@@ -7,6 +7,7 @@ import {TranslateLoader, TranslateModule, TranslateService } from "@ngx-translat
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { ProfilModule } from './features/profil/profil.module';
+import { CookieService } from 'ngx-cookie-service';
 
 function httpTranslationLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
@@ -29,7 +30,8 @@ function httpTranslationLoader(http: HttpClient) {
     }),
   ],
   providers: [
-    provideHttpClient()
+    provideHttpClient(),
+    CookieService,
   ],
   bootstrap: [AppComponent]
 })
