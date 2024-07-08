@@ -12,6 +12,9 @@ body {
     border-color: rgb(17, 3, 20);
     color: white;
 }
+.p-menuitem-content{
+    background-color: rgb(17, 3, 20);
+}
 .p-menuitem-text {
     color: white;
 }
@@ -33,10 +36,12 @@ body {
 }
 .p-dropdown-item {
     color: white;
+    background-color: rgb(17, 3, 20);
 }
 .p-dropdown-item:hover {
     background-color: rgb(84, 43, 94);
     color: white;
+    border-radius: 5px;
 }
 
 .p-dialog-header {
