@@ -14,8 +14,8 @@ export interface IPersonDetails {
     picture?: string;
     imprint?: string;
     lawyer?: IPersonDetails;
-    address: IAddress[];
-    phones: IPhone;
+    addresses: IAddress[];
+    phones: IPhone[];
 }
 
 export interface IPersonList {

@@ -17,6 +17,9 @@
         "city": "City : ",
         "postcode": "Postcode : ",
         "country": "Country : ",
+        "label": "Label : ",
+        "address": "Address ",
+        "phone": "Phone ",
         "imgProfile": "Image profile : ",
         "imprint": "Imprint : ",
         "submit": "Submit"

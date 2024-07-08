@@ -15,8 +15,11 @@
         "street": "Rue : ",
         "number": "Numéro : ",
         "city": "Ville : ",
-        "postcode": "Code postal : ",
+        "postCode": "Code postal : ",
         "country": "Pays : ",
+        "label": "Type : ",
+        "address": "Adresse ",
+        "phone": "Téléphone ",
         "imgProfile": "Image de profil : ",
         "imageImprint": "Image d'empreinte : ",
         "submit": "Envoyer"
