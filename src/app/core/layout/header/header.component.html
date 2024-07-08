@@ -1,9 +1,18 @@
 <header>
-  <p-menubar [model]="menuItems">
-
+  
+  <p-menubar [model]="menuItems" class="p-menubar100">
+    <<ng-template ptemplate="start" >
+      
+    </ng-template>
+    
     <ng-template pTemplate="end">
       <ul>
-      <div style="display: flex; align-items: center; gap: 10px;">
+      <div class="header-right">
+        <li>
+          <p-dropdown [options]="dropdownOptions"
+                      [(ngModel)]="selectedOption">
+          </p-dropdown>
+        </li>
         <li>
             <p-avatar icon="pi pi-user" (click)="showModal()" size="normal"/>
           <p-dialog header="Gestion du profil" [(visible)]="displayModal" [modal]="true" [style]="{width: '400px'}">
@@ -25,11 +34,6 @@
                     (click)="toggleDark()"
                     styleClass="smol-btn">
           </p-button>
-        </li>
-        <li>
-          <p-dropdown [options]="dropdownOptions"
-                      [(ngModel)]="selectedOption">
-          </p-dropdown>
         </li>
       </div>
     </ul>

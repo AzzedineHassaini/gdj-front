@@ -3,7 +3,6 @@
         height: 2rem;
         width: 2rem;
     }
-
     .p-dropdown {
         height: 2rem;
     }
@@ -13,5 +12,18 @@
         text-align: center;
     }
 
-}
+    .header-right{
+        display: flex;
+        align-items: center; 
+        gap: 10px;
+    }
 
+    .p-menubar100{
+        display: flex; 
+        justify-content: center;
+        
+        div{
+            border-radius: 3rem;
+        }
+    }
+}
