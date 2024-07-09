@@ -25,6 +25,7 @@ export class AuthService {
   }
 
   get currentUser(): IAuth | undefined {
+    console.log("CURRENT USER :", this._currentUser$.value?.personId);
     return this._currentUser$.value;
   }
 

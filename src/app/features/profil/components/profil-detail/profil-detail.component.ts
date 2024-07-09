@@ -1,13 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { IPersonDetails } from '../../models/person.models';
 import { ProfileService } from '../../services/profile.service';
 import { map, Observable, delay, first, forkJoin } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { LocalDateTime } from '@js-joda/core';
-import { TranslateService } from '@ngx-translate/core';
 import { IAddress } from '../../models/address.models';
 import { IPhone } from '../../models/phone.models';
 
@@ -24,9 +20,9 @@ export class ProfilDetailComponent implements OnInit {
   person$: Observable<IPersonDetails>
 
   genderOptions = [
-    {value: 'MALE', label: 'profil.male'},
-    {value: 'FEMALE', label: 'profil.female'},
-    {value: 'OTHER', label: 'profil.other'}
+    {value: 'MALE', label: 'profile.male'},
+    {value: 'FEMALE', label: 'profile.female'},
+    {value: 'OTHER', label: 'profile.other'}
   ]
 
   constructor(
@@ -117,6 +113,7 @@ export class ProfilDetailComponent implements OnInit {
   onSubmit() {
     if (this.formPerson.valid) {
       const personData: IPersonDetails = this.formPerson.value;
+      console.log("PERSONDATA : ", personData);
       this.profileService.updateProfile(personData).subscribe({
         next: (response) => {
           console.log('Profil mis à jour avec succès', response);
