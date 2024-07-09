@@ -26,7 +26,9 @@
       "home" : "Home",
       "complaints" : "Complaints",
       "profile": "Profile",
-      "close" : "Close"
+      "close" : "Close",
+      "titlemodalprofil" : " Edit your Profile",
+      "majprofile" : "Update your profile"
     },
     "auth": {
       "email": "Email",

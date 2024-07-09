@@ -1,8 +1,5 @@
 :host ::ng-deep {
-    .smol-btn {
-        height: 2rem;
-        width: 2rem;
-    }
+
     .p-dropdown {
         height: 2rem;
     }
@@ -18,12 +15,30 @@
         gap: 10px;
     }
 
-    .p-menubar100{
+
+    p-menubar{
         display: flex;
         justify-content: center;
+    }
+    .p-menubar{
+        border-radius: 3rem !important;
+        min-width: 900px !important;
+        padding-inline-end: 25px;
+    }
 
-        div{
-            border-radius: 3rem;
+    @media (max-width: 768px) {
+        .p-menubar {
+          width: 100%;
         }
     }
+
+    // .floating-bottom {
+    //     position: fixed;
+    //     bottom: 0;
+    //     left: 50%;
+    //     transform: translateX(-90%);
+    //     z-index: 1000;
+    //     margin-bottom: 25px;
+    //     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    //   }
 }

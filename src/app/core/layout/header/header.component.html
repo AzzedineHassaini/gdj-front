@@ -1,7 +1,7 @@
 <header>
 
-  <p-menubar [model]="menuItems" class="p-menubar100">
-    <<ng-template ptemplate="start" >
+  <p-menubar [model]="menuItems" class="p-menubar100 floating-bottom">
+    <ng-template ptemplate="start" >
 
     </ng-template>
 
@@ -14,26 +14,46 @@
           </p-dropdown>
         </li>
         @if (isConnected()){
+          
+          <div>
+            <p-button (click)="handleLogout()" 
+                      [outlined]="true" 
+                      styleClass="smol-btn2"
+                      label="{{ 'auth.logout' | translate }}"></p-button>
+          </div>
           <li>
-            <p-avatar icon="pi pi-user" (click)="showModal()" size="normal"/>
-            <p-dialog header="Gestion du profil" [(visible)]="displayModal" [modal]="true" [style]="{width: '400px'}">
-              <a routerLink="profil" (click)="displayModal=false">Mettre à jour le profil</a>
+            <p-button icon="pi pi-user" 
+                      [outlined]="true"
+                      (click)="showModal()" 
+                      styleClass="smol-btn2">
+            </p-button>
+            <p-dialog class="modalConnect" 
+                      header="{{'header.titlemodalprofil' | translate }}" 
+                      [(visible)]="displayModal"
+                      [modal]="true" 
+                      [style]="{width: '400px'}">
+              <a routerLink="profil" 
+                (click)="displayModal=false">{{'header.majprofile' | translate}}</a>
               <ng-template pTemplate="footer">
                 <p-button [rounded]="true"
                           [outlined]="true"
-                          label="{{ 'header.close' | translate }}" size="small"
+                          label="{{ 'header.close' | translate }}" 
+                          size="small"
                           (click)="displayModal=false">
                 </p-button>
               </ng-template>
             </p-dialog>
           </li>
-          <div>
-            <p-button (click)="handleLogout()" [link]="true">{{ 'auth.logout' | translate }}</p-button>
-          </div>
         } @else {
           <div>
-            <p-button routerLink="/auth/login" [link]="true">{{ 'auth.login' | translate }}</p-button>
-            <p-button routerLink="/auth/register" [link]="true">{{ 'auth.register' | translate }}</p-button>
+            <p-button routerLink="/auth/login"
+                      [outlined]="true" 
+                      styleClass="smol-btn2"
+                      label="{{ 'auth.login' | translate }}"></p-button>
+            <p-button routerLink="/auth/register"
+                      [outlined]="true"
+                      styleClass="smol-btn2"
+                      label="{{ 'auth.register' | translate }}"></p-button>
           </div>
         }
 

@@ -8,3 +8,50 @@ body {
 .ng-tns-c662934324-0{
     text-decoration: none;
 }
+
+.p-menubar100{
+    background-color: whitesmoke;
+    border-radius: 3rem;
+    padding: 0px;
+}
+p-menubar{
+    padding: 0px;
+    margin: 0px;
+    element{
+        padding: 0px;
+    }
+}
+
+.p-dialog-content {
+    a{
+        color: black;
+        text-decoration: none;
+    }
+}
+
+.smol-btn {
+    height: 2rem;
+    width: 2rem;
+    color: rgb(88, 88, 88);
+    border-color: whitesmoke;
+}
+.smol-btn:hover {
+    background-color: whitesmoke;
+}
+
+.smol-btn2 {
+    height: 2rem;
+    color: #4b5563;
+    margin-right: 5px;
+    border-color: whitesmoke;
+}
+.smol-btn2:hover {
+    background-color: #f1f5f9;
+}
+
+.p-button-label{
+    font-size: medium;
+    font-weight: 400 !important;
+}
+
+
