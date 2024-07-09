@@ -1,17 +1,13 @@
 export interface IAuth {
-  accessToken: string,
-  user: IUser
-}
-
-export interface IUser {
   id: number,
   email: string,
-  role: UserRole
+  role: UserRole,
+  accessToken: string
 }
 
-enum UserRole {
-  CITIZEN,
-  ADMIN,
-  AGENT,
-  LAWYER
+export enum UserRole {
+  CITIZEN = 'CITIZEN',
+  ADMIN = 'ADMIN',
+  AGENT = 'AGENT',
+  LAWYER = 'LAWYER'
 }

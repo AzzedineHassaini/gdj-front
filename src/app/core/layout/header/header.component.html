@@ -8,12 +8,12 @@
         ></p-dropdown>
         @if (isConnected()){
           <div>
-            <button pButton (click)="handleLogout()">{{ 'auth.logout' | translate }}</button>
+            <p-button (click)="handleLogout()" [link]="true">{{ 'auth.logout' | translate }}</p-button>
           </div>
         } @else {
           <div>
-            <button pButton routerLink="/auth/login">{{ 'auth.login' | translate }}</button>
-            <button pButton routerLink="/auth/register">{{ 'auth.register' | translate }}</button>
+            <p-button routerLink="/auth/login" [link]="true">{{ 'auth.login' | translate }}</p-button>
+            <p-button routerLink="/auth/register" [link]="true">{{ 'auth.register' | translate }}</p-button>
           </div>
         }
       </div>

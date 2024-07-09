@@ -1,0 +1,53 @@
+<div class="card flex flex-column md:flex-row gap-3">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input pInputText placeholder="{{'auth.email' | translate}}" type="email" id="in-email" formControlName="mail"/>
+    </p-inputGroup>
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-key"></i>
+      </p-inputGroupAddon>
+      <input type="password" pPassword id="in-password" formControlName="password" placeholder="{{'auth.password' | translate}}">
+    </p-inputGroup>
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-key"></i>
+      </p-inputGroupAddon>
+      <input type="password" pPassword id="in-passwordConfirm" placeholder="{{'auth.passwordConfirm' | translate}}">
+    </p-inputGroup>
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-key"></i>
+      </p-inputGroupAddon>
+      <p-inputMask
+        mask="99.99.99-999.99"
+        formControlName="nationalRegisterNumber"
+        placeholder="{{'profile.nationalRegister' | translate}}" />
+    </p-inputGroup>
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input pInputText placeholder="{{'profile.firstName' | translate}}" type="text" id="in-firstname" formControlName="firstName"/>
+    </p-inputGroup>
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-user"></i>
+      </p-inputGroupAddon>
+      <input pInputText placeholder="{{'profile.lastName' | translate}}" type="text" id="in-lastName" formControlName="lastName"/>
+    </p-inputGroup>
+
+<!--    birthDate: Date,-->
+<!--    birthPlace: string,-->
+<!--    gender: string,-->
+<!--    picture: string-->
+    <div>
+      <p-button type="submit"  label="{{'auth.register' | translate}}" />
+    </div>
+  </form>
+
+</div>

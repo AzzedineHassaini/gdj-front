@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {CoreComponent} from "./containers/core/core.component";
 import {HomeComponent} from "./layout/home/home.component";
+import {CoreComponent} from "./containers/core/core.component";
 
 const routes: Routes = [
   {
@@ -19,6 +19,10 @@ const routes: Routes = [
       {
         path: 'profil',
         loadChildren: () => import ('../features/profil/profil.module').then(m => m.ProfilModule),
+      },
+      {
+        path: 'complaint',
+        loadChildren: () => import ('../features/complaints/complaints.module').then(m => m.ComplaintsModule),
       }
     ]
   }

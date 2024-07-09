@@ -8,11 +8,16 @@ import {Button} from "primeng/button";
 import {TranslateModule} from "@ngx-translate/core";
 import {PasswordModule} from "primeng/password";
 import {InputTextModule} from "primeng/inputtext";
+import {InputGroupModule} from "primeng/inputgroup";
+import {InputGroupAddonModule} from "primeng/inputgroupaddon";
+import { RegisterComponent } from './components/register/register.component';
+import {InputMaskModule} from "primeng/inputmask";
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +26,10 @@ import {InputTextModule} from "primeng/inputtext";
     Button,
     TranslateModule,
     PasswordModule,
-    InputTextModule
+    InputTextModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    InputMaskModule
   ]
 })
 export class AuthModule { }
