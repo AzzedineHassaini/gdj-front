@@ -25,7 +25,6 @@ export class AuthService {
   }
 
   get currentUser(): IAuth | undefined {
-    console.log("CURRENT USER :", this._currentUser$.value?.personId);
     return this._currentUser$.value;
   }
 
@@ -36,7 +35,7 @@ export class AuthService {
   }
 
   get token(): string | null {
-    return this.currentUser ? this.currentUser.accessToken : null
+    return this.currentUser ? this.currentUser.token : null
   }
 
   constructor(

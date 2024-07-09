@@ -24,7 +24,7 @@ export class LoginComponent {
   onSubmit(){
     this._auth.login( this.form.value ).subscribe({
       next: (auth) => {
-        console.log(this._auth.currentUser)
+        // console.log(this._auth.currentUser)
         this._router.navigate(['home']);
       },
       error: (error) => {

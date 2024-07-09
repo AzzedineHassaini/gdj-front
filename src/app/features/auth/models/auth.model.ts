@@ -5,7 +5,7 @@ export interface IAuth {
   email: string,
   role: UserRole,
   personId: number,
-  accessToken: string
+  token: string
 }
 
 export enum UserRole {

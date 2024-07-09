@@ -11,7 +11,7 @@ function httpTranslationLoader(http: HttpClient) {
 }
 import { AppComponent } from './container/app.component';
 import {CookieService} from "ngx-cookie-service";
-import {AuthInterceptor} from "./shared/interceptors/jwt.interceptor";
+import {authInterceptor} from "./shared/interceptors/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -30,12 +30,14 @@ import {AuthInterceptor} from "./shared/interceptors/jwt.interceptor";
     }),
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-    provideHttpClient(),
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true
+    // },
+    provideHttpClient( withInterceptors([
+      authInterceptor
+    ])),
     CookieService
   ],
   bootstrap: [AppComponent]
