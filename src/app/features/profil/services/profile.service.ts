@@ -13,13 +13,17 @@ import { IAddress } from "../models/address.models";
 export class ProfileService {
 
     constructor(private readonly _client: HttpClient) {}
-    
+
     getPersonById(id: number | undefined) {
         if (id === undefined) {
             throw new Error("Id is undefined");
         }
 
         return this._client.get<IPersonDetails>(env.baseUrl + 'person/' + id + '/details')
+    }
+
+    getCurrentPerson(){
+      return this._client.get<IPersonDetails>(env.baseUrl + 'person/details')
     }
 
     updateProfile(profileData: IPersonDetails): Observable<any> {
