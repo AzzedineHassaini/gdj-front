@@ -1,5 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { IPersonDetails } from '../../models/person.model';
+import { ProfileService } from '../../services/profile.service';
+import { map, Observable, delay } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-profil-detail',
@@ -7,48 +12,52 @@ import { Component } from '@angular/core';
   styleUrl: './profil-detail.component.scss'
 })
 export class ProfilDetailComponent {
-  selectedFileImg: File | null = null;
-  selectedFileImprint: File | null = null;
-  imgPreview: string | ArrayBuffer | null = null;
-  imprintPreview: string | ArrayBuffer | null = null;
-  imageUrl: string | null = null;
+  private readonly $person = inject( ProfileService )
 
-  constructor(private http: HttpClient){}
+  persons = this.$person.getPersonById(1)
 
-  onFileSelectedProfil(event: Event): void {
+
+}
+
+
+
+
+
+  /*selectedFiles: { [key: string]: File | null } = { profile: null, imprint: null };
+  imgPreviews: { [key: string]: string | ArrayBuffer | null } = { profile: null, imprint: null };
+  uploadedimgUrl: { [key: string]: string | null } = { profile: null, imprint: null };
+
+  constructor(private http: HttpClient) {}
+
+  onFileSelected(event: Event, type: string): void {
     const fileInput = event.target as HTMLInputElement;
+
     if (fileInput.files && fileInput.files.length > 0) {
-      this.selectedFileImg = fileInput.files[0];
+      this.selectedFiles[type] = fileInput.files[0];
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.imgPreview = reader.result;
+          this.imgPreviews[type] = reader.result;
       };
-      reader.readAsDataURL(this.selectedFileImg);
+
+      const selectedFile = this.selectedFiles[type];
+      if (selectedFile) {
+        reader.readAsDataURL(selectedFile);
+      }
     }
   }
 
-  onFileSelectedImprint(event: Event): void {
-    const fileInput = event.target as HTMLInputElement;
-    if (fileInput.files && fileInput.files.length > 0) {
-      this.selectedFileImprint = fileInput.files[0];
+  onSubmit(): void {
+    for (const type in this.selectedFiles) {
+      const selectedFile = this.selectedFiles[type];
 
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imprintPreview = reader.result;
-      };
-      reader.readAsDataURL(this.selectedFileImprint);
-    }
-  }
+      if (selectedFile) {
+        const formData = new FormData();
+        formData.append('file', selectedFile);
 
-  /*onSubmit(): void {
-    if (this.selectedFile) {
-      const formData = new FormData();
-      formData.append('file', this.selectedFile);
-
-      this.http.post<{imageUrl: string}>('http://localhost:8080/upload', formData).subscribe(response => {
-        this.imageUrl = response.imageUrl;
-      })
+        this.http.post<{imageUrl: string}>('http://localhost:8080/upload', formData).subscribe(response => {
+          this.uploadedimgUrl[type] = response.imageUrl;
+        })
+      }
     }
   }*/
-}

@@ -1,7 +1,7 @@
 {
-    "profilTitle": "Profil",
-    "profil": {
-        "name" : "Nom : ",
+    "profileTitle": "Profil",
+    "profile": {
+        "lastName" : "Nom : ",
         "firstName": "Prénom : ",
         "nationalRegister": "Registre national : ",
         "birthdate": "Date de naissance : ",
@@ -19,12 +19,21 @@
         "postcode": "Code postal : ",
         "country": "Pays : ",
         "imgProfile": "Image de profil : ",
-        "imageImprint": "Image d'empreinte : "
+        "imageImprint": "Image d'empreinte : ",
+        "submit": "Envoyer"
     },
     "header" : {
-        "home" : "Acceuil",
+        "home" : "Accueil",
         "complaints" : "Plaintes",
-        "profil" : "Profil",
+        "profile": "Profil",
         "close" : "Fermer"
+    },
+    "auth": {
+      "email": "Mail",
+      "password": "Mot de passe",
+      "passwordConfirm": "Confirmez le mot de passe",
+      "login": "Se connecter",
+      "logout": "Se déconnecter",
+      "register": "S'enregistrer"
     }
 }

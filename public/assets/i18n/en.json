@@ -1,7 +1,7 @@
 {
-    "profilTitle": "Profile",
-    "profil": {
-        "name" : "Name : ",
+    "profileTitle": "Profile",
+    "profile": {
+        "lastName" : "Last name : ",
         "firstName": "First name : ",
         "nationalRegister": "National register : ",
         "birthdate": "Birthdate : ",
@@ -19,13 +19,21 @@
         "postcode": "Postcode : ",
         "country": "Country : ",
         "imgProfile": "Image profile : ",
-        "imprint": "Imprint : "
+        "imprint": "Imprint : ",
+        "submit": "Submit"
     },
     "header" : {
       "home" : "Home",
       "complaints" : "Complaints",
-      "profil" : "Profil",
+      "profile": "Profile",
       "close" : "Close"
-          
-  }
+    },
+    "auth": {
+      "email": "Email",
+      "password": "Password",
+      "passwordConfirm": "Confirm password",
+      "login": "Login",
+      "logout": "Logout",
+      "register": "Register"
+    }
 }

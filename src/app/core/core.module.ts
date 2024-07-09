@@ -15,6 +15,7 @@ import { ButtonModule } from 'primeng/button';
 import {FormsModule} from "@angular/forms";
 import { TranslateModule } from '@ngx-translate/core';
 import { ThemeService } from './services/theme.service';
+import {Button, ButtonDirective} from "primeng/button";
 
 
 @NgModule({
@@ -34,7 +35,9 @@ import { ThemeService } from './services/theme.service';
     AvatarModule,
     BadgeModule,
     DialogModule,
-    ButtonModule
+    ButtonModule,
+    ButtonDirective,
+    Button
   ],
   providers: [
     ThemeService

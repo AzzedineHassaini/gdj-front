@@ -1,0 +1,40 @@
+<h2> Complaints </h2>
+
+@if( loading() ){
+  <div class="flex m-6 justify-content-center">
+    <div>
+      <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+    </div>
+  </div>
+}
+@else {
+  <div>
+    @if (complaints(); as complaints){
+      <p-table [value]="complaints">
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th>n° dossier</th>
+            <th>status</th>
+            <th>date</th>
+            <th>complainant</th>
+            <th>agent</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-complaint>
+          <tr>
+            <td>{{complaint.fileNumber}}</td>
+            <td>{{complaint.status}}</td>
+            <td>{{complaint.date}}</td>
+            <td>{{complaint.complainant}}</td>
+            <td>{{complaint.agent}}</td>
+          </tr>
+        </ng-template>
+
+      </p-table>
+    }
+  </div>
+}
+
+

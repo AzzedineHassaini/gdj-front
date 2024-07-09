@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, provideHttpClient } from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, provideHttpClient} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import {TranslateLoader, TranslateModule, TranslateService } from "@ngx-translate/core";
+import {TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import { ProfilModule } from './features/profil/profil.module';
-import { CookieService } from 'ngx-cookie-service';
 
 function httpTranslationLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
+import {AppComponent} from './container/app.component';
+import {CookieService} from "ngx-cookie-service";
+import {AuthInterceptor} from "./shared/interceptors/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -30,8 +30,13 @@ function httpTranslationLoader(http: HttpClient) {
     }),
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     provideHttpClient(),
-    CookieService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

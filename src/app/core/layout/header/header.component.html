@@ -1,10 +1,10 @@
 <header>
-  
+
   <p-menubar [model]="menuItems" class="p-menubar100">
     <<ng-template ptemplate="start" >
-      
+
     </ng-template>
-    
+
     <ng-template pTemplate="end">
       <ul>
       <div class="header-right">
@@ -13,19 +13,30 @@
                       [(ngModel)]="selectedOption">
           </p-dropdown>
         </li>
-        <li>
+        @if (isConnected()){
+          <li>
             <p-avatar icon="pi pi-user" (click)="showModal()" size="normal"/>
-          <p-dialog header="Gestion du profil" [(visible)]="displayModal" [modal]="true" [style]="{width: '400px'}">
+            <p-dialog header="Gestion du profil" [(visible)]="displayModal" [modal]="true" [style]="{width: '400px'}">
               <a routerLink="profil" (click)="displayModal=false">Mettre à jour le profil</a>
-            <ng-template pTemplate="footer">
-              <p-button [rounded]="true" 
-                        [outlined]="true" 
-                        label="{{ 'header.close' | translate }}" size="small"
-                        (click)="displayModal=false">
-              </p-button>
-            </ng-template>
-          </p-dialog>
-        </li>
+              <ng-template pTemplate="footer">
+                <p-button [rounded]="true"
+                          [outlined]="true"
+                          label="{{ 'header.close' | translate }}" size="small"
+                          (click)="displayModal=false">
+                </p-button>
+              </ng-template>
+            </p-dialog>
+          </li>
+          <div>
+            <p-button (click)="handleLogout()" [link]="true">{{ 'auth.logout' | translate }}</p-button>
+          </div>
+        } @else {
+          <div>
+            <p-button routerLink="/auth/login" [link]="true">{{ 'auth.login' | translate }}</p-button>
+            <p-button routerLink="/auth/register" [link]="true">{{ 'auth.register' | translate }}</p-button>
+          </div>
+        }
+
         <li>
           <p-button size="small"
                     [outlined]="true"

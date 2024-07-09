@@ -1,4 +1,4 @@
-<div style="text-align: center;">
+<!-- <div style="text-align: center;">
     <h2>{{'profilTitle' | translate}}</h2>
 
     <form>
@@ -87,10 +87,10 @@
 
         <div>
             <label for="porfileImage">{{'profil.imgProfile' | translate}}</label>
-            <input type="file" id="profileImage" (change)="onFileSelectedProfil($event)">
+            <input type="file" id="profileImage" (change)="onFileSelected($event, 'profile')">
         </div>
-        <div *ngIf="imgPreview">
-            <img [src]="imgPreview" width="200">
+        <div *ngIf="imgPreviews['profile']">
+            <img [src]="imgPreviews['profile']" width="200">
         </div>
 
         <br>
@@ -98,11 +98,22 @@
 
         <div>
             <label for="imprint">{{'profil.imprint' | translate}}</label>
-            <input type="file" id="imprint" (change)="onFileSelectedImprint($event)">
+            <input type="file" id="imprint" (change)="onFileSelected($event, 'imprint')">
         </div>
-        <div *ngIf="imgPreview">
-            <img [src]="imgPreview" width="200">
+        <div *ngIf="imgPreviews['imprint']">
+            <img [src]="imgPreviews['imprint']" width="200">
         </div>
 
+        <input type="submit" value="{{'profil.submit' | translate}}">
+
     </form>
-</div>
+</div>-->
+<h2>TEST</h2>
+@if (persons | async; as person) {
+    <div>
+        <p>
+            <span>national register:</span>
+            <span>{{person.nationalRegister}}</span>
+        </p>
+    </div>
+}
