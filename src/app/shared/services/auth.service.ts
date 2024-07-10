@@ -7,11 +7,19 @@ import {ILoginForm} from "../../features/auth/form/login.form";
 import { env } from '../../../env/env';
 import {IRegisterForm} from "../../features/auth/form/register.form";
 
+export enum RegisterRole{
+  CITIZEN='citizen',
+  AGENT='agent',
+  ADMIN='admin',
+  LAWYER='lawyer'
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+
 
   private _currentUser$ = new BehaviorSubject<IAuth | undefined>(undefined);
 
@@ -57,9 +65,9 @@ export class AuthService {
   }
 
   // - s'enregistrer
-  register(form: IRegisterForm){
+  register(form: IRegisterForm, role: RegisterRole){
 
-    return this._client.post<IAuth>(env.baseUrl + 'auth/register', form).pipe(
+    return this._client.post<IAuth>(env.baseUrl + 'auth/register/' + role, form).pipe(
       tap((auth) =>
       {
         this.currentUser = auth

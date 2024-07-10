@@ -27,7 +27,11 @@
     "header" : {
       "home" : "Home",
       "complaints" : "Complaints",
-      "profile": "Profile"
+      "profile": "Profile",
+      "admin": {
+        "registerAgent": "Register an agent",
+        "registerAdmin": "Register an admin"
+      }
     },
     "auth": {
       "email": "Email",

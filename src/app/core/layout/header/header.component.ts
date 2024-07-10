@@ -88,6 +88,14 @@ export class HeaderComponent {
       {
         label: this.$translate.instant('header.home'),
         routerLink: '/home'
+      },
+      {
+        label: this.$translate.instant('header.admin.registerAgent'),
+        routerLink: '/auth/register'
+      },
+      {
+        label: this.$translate.instant('header.admin.registerAdmin'),
+        routerLink: '/auth/register'
       }
     ]
   }

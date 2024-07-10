@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {AuthService} from "../../../../shared/services/auth.service";
+import {AuthService, RegisterRole} from "../../../../shared/services/auth.service";
 import {Router} from "@angular/router";
 import {REGISTER_FORM} from "../../form/register.form";
 
@@ -36,7 +36,7 @@ export class RegisterComponent {
   }
 
   onSubmit(){
-    this._auth.register( this.form.value ).subscribe({
+    this._auth.register( this.form.value, RegisterRole.CITIZEN ).subscribe({
       next: () => {
         console.log(this._auth.currentUser)
         this._router.navigate(['home']);
