@@ -37,6 +37,8 @@
       "login": "Se connecter",
       "logout": "Se déconnecter",
       "register": "S'enregistrer",
+      "titleloggedsuccess": "Authentification réussie",
+      "titleloggederror": "Authentification échouée",
       "successfullylogged": "Connecter avec succès",
       "errorlogged": "Connexion échouée"
     }

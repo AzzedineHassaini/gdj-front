@@ -56,15 +56,15 @@ export class AuthService {
         this.currentUser = auth;
         this._message.add({
           severity: 'success',
-          summary: 'Auth success',
+          summary: this._translate.instant('auth.titleloggedsucces'),
           detail: this._translate.instant('auth.successfullylogged')
         });
       }),
       catchError((error) => {
         this._message.add({
           severity: 'error',
-          summary: 'Auth failed',
-          detail: "{{'auth.errorlogged' | translate }}"
+          summary: this._translate.instant('auth.titleloggederror'),
+          detail: this._translate.instant('auth.errorlogged')
         });
         return of(null);
       })
