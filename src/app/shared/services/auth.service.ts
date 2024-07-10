@@ -7,6 +7,7 @@ import {ILoginForm} from "../../features/auth/form/login.form";
 import { env } from '../../../env/env';
 import {IRegisterForm} from "../../features/auth/form/register.form";
 import {MessageService} from "primeng/api";
+import {TranslateService } from "@ngx-translate/core";
 
 
 @Injectable({
@@ -55,14 +56,14 @@ export class AuthService {
         this._message.add({
           severity: 'success',
           summary: 'Auth success',
-          detail: '{{successfullylogged}}'
+          detail: '{ "auth.successfullylogged" | translate }'
         });
       }),
       catchError((error) => {
         this._message.add({
           severity: 'error',
           summary: 'Auth failed',
-          detail: '{{errorlogged}}'
+          detail: "{{'auth.errorlogged' | translate }}"
         });
         return of(null);
       })
