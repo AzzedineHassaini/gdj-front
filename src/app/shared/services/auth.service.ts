@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import {IAuth} from "../../features/auth/models/auth.model";
-import {BehaviorSubject, catchError, map, Observable, of, tap} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {CookieService} from "ngx-cookie-service";
-import {ILoginForm} from "../../features/auth/form/login.form";
+import { IAuth } from "../../features/auth/models/auth.model";
+import { BehaviorSubject, catchError, map, Observable, of, tap } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { CookieService } from "ngx-cookie-service";
+import { ILoginForm } from "../../features/auth/form/login.form";
 import { env } from '../../../env/env';
-import {IRegisterForm} from "../../features/auth/form/register.form";
-import {MessageService} from "primeng/api";
-import {TranslateService } from "@ngx-translate/core";
+import { IRegisterForm } from "../../features/auth/form/register.form";
+import { MessageService } from "primeng/api";
+import { TranslateService } from "@ngx-translate/core";
 
 export enum RegisterRole{
   CITIZEN='citizen',
@@ -64,15 +64,15 @@ export class AuthService {
         this.currentUser = auth;
         this._message.add({
           severity: 'success',
-          summary: 'Auth success',
+          summary: this._translate.instant('auth.titleloggedsuccess'),
           detail: this._translate.instant('auth.successfullylogged')
         });
       }),
       catchError((error) => {
         this._message.add({
           severity: 'error',
-          summary: 'Auth failed',
-          detail: "{{'auth.errorlogged' | translate }}"
+          summary: this._translate.instant('auth.titleloggederror'),
+          detail: this._translate.instant('auth.errorlogged')
         });
         return of(null);
       })
