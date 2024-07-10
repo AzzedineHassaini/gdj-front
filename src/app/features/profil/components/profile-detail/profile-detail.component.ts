@@ -28,7 +28,7 @@ export class ProfileDetailComponent implements OnInit {
     private fb: FormBuilder,
     private profileService: ProfileService
   ) {
-    
+
     this.person$ = _route.data.pipe( map( resolveList => resolveList[0] ));
 
     this.formPerson = this.fb.group({
@@ -44,6 +44,8 @@ export class ProfileDetailComponent implements OnInit {
       /*deathDate: ['', Validators.required],
       picture: ['', Validators.required],
       imprint: ['', Validators.required],
+      lawyer: ['', Validators.required],
+
       lawyer: ['', Validators.required],*/
     });
   }
@@ -66,10 +68,10 @@ export class ProfileDetailComponent implements OnInit {
     });
     this.setAddresses(person.addresses);
     this.setPhones(person.phones);
-    
+
 
    });
-    
+
   }
 
   get addresses(): FormArray {
@@ -108,7 +110,7 @@ export class ProfileDetailComponent implements OnInit {
   onSubmit() {
     if (this.formPerson.valid) {
       const personData: IPersonDetails = this.formPerson.value;
-      console.log("PERSONDATA : ", personData);
+      // console.log("PERSONDATA : ", personData);
       this.profileService.updateProfile(personData).subscribe({
         next: (response) => {
           console.log('Profil mis à jour avec succès', response);
@@ -139,7 +141,16 @@ export class ProfileDetailComponent implements OnInit {
       })
     }
   }
+
+
 }
+
+
+
+
+
+
+
 
   /*selectedFiles: { [key: string]: File | null } = { profile: null, imprint: null };
   imgPreviews: { [key: string]: string | ArrayBuffer | null } = { profile: null, imprint: null };

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HTTP_INTERCEPTORS, HttpClient, provideHttpClient} from "@angular/common/http";
+import {HttpClient, provideHttpClient, withInterceptors} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import {TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
@@ -11,7 +11,7 @@ function httpTranslationLoader(http: HttpClient) {
 }
 import { AppComponent } from './container/app.component';
 import {CookieService} from "ngx-cookie-service";
-import {AuthInterceptor} from "./shared/interceptors/jwt.interceptor";
+import {authInterceptor} from "./shared/interceptors/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -30,12 +30,9 @@ import {AuthInterceptor} from "./shared/interceptors/jwt.interceptor";
     }),
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-    provideHttpClient(),
+    provideHttpClient( withInterceptors([
+      authInterceptor
+    ])),
     CookieService
   ],
   bootstrap: [AppComponent]
