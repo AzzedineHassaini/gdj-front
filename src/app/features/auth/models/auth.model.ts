@@ -1,8 +1,11 @@
+import { IPersonDetails } from "../../profil/models/person.models"
+
 export interface IAuth {
   id: number,
   email: string,
   role: UserRole,
-  accessToken: string
+  personId: number,
+  token: string
 }
 
 export enum UserRole {

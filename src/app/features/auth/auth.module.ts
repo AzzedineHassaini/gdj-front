@@ -10,7 +10,10 @@ import { InputTextModule } from "primeng/inputtext";
 import { InputGroupModule } from "primeng/inputgroup";
 import { InputGroupAddonModule } from "primeng/inputgroupaddon";
 import { RegisterComponent } from './components/register/register.component';
-import { InputMaskModule } from "primeng/inputmask";
+import {InputMaskModule} from "primeng/inputmask";
+import {CalendarModule} from "primeng/calendar";
+import {DropdownModule} from "primeng/dropdown";
+import {FileUploadModule} from "primeng/fileupload";CommonModule
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
@@ -33,7 +36,11 @@ import { MessageService } from 'primeng/api';
     InputGroupAddonModule,
     InputMaskModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    InputMaskModule,
+    CalendarModule,
+    DropdownModule,
+    FileUploadModule
   ],
   providers: [ MessageService]
 })

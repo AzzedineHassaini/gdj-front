@@ -17,7 +17,7 @@ const routes: Routes = [
         loadChildren: () => import('../features/auth/auth.module').then(m => m.AuthModule),
       },
       {
-        path: 'profil',
+        path: 'profile',
         loadChildren: () => import ('../features/profil/profil.module').then(m => m.ProfilModule),
       },
       {

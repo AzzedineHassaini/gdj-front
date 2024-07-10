@@ -1,23 +1,155 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, inject, signal } from '@angular/core';
-import { IPersonDetails } from '../../models/person.model';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { IPersonDetails } from '../../models/person.models';
 import { ProfileService } from '../../services/profile.service';
-import { map, Observable, delay } from 'rxjs';
+import { map, Observable, delay, first, forkJoin } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IAddress } from '../../models/address.models';
+import { IPhone } from '../../models/phone.models';
+
+
 
 @Component({
   selector: 'app-profil-detail',
   templateUrl: './profil-detail.component.html',
   styleUrl: './profil-detail.component.scss'
 })
-export class ProfilDetailComponent {
-  private readonly $person = inject( ProfileService )
+export class ProfilDetailComponent implements OnInit {
 
-  persons = this.$person.getPersonById(1)
+  formPerson: FormGroup;
+  person$: Observable<IPersonDetails>
+
+  genderOptions = [
+    {value: 'MALE', label: 'profile.male'},
+    {value: 'FEMALE', label: 'profile.female'},
+    {value: 'OTHER', label: 'profile.other'}
+  ]
+
+  constructor(
+    private readonly _route: ActivatedRoute,
+    private fb: FormBuilder,
+    private profileService: ProfileService
+  ) {
+
+    this.person$ = _route.data.pipe( map( resolveList => resolveList[0] ));
+
+    this.formPerson = this.fb.group({
+      id: ['', Validators.required],
+      lastName: ['', Validators.required],
+      firstName: ['', Validators.required],
+      nationalRegister: ['', Validators.required],
+      birthDate: ['', Validators.required],
+      birthPlace: ['', Validators.required],
+      gender: ['', Validators.required],
+      addresses: this.fb.array([]),
+      /*deathDate: ['', Validators.required],
+      picture: ['', Validators.required],
+      imprint: ['', Validators.required],
+      lawyer: ['', Validators.required],
+
+      phones: ['', Validators.required]*/
+    });
+  }
+
+  ngOnInit(): void {
+   this.person$.subscribe((person) => {
+    this.formPerson.patchValue({
+      id: person.id,
+      lastName: person.lastName,
+      firstName: person.firstName,
+      nationalRegister: person.nationalRegister,
+      birthDate: person.birthDate,
+      birthPlace: person.birthPlace,
+      gender: person.gender,
+
+      /*deathDate: person.deathDate,
+      picture: person.picture,
+      imprint: person.imprint,
+      lawyer: person.lawyer*/
+    });
+    this.setAddresses(person.addresses);
+    this.setPhones(person.phones);
+
+
+   });
+
+  }
+
+  get addresses(): FormArray {
+    return this.formPerson.get('addresses') as FormArray;
+  }
+
+  setAddresses(addresses: IAddress[]): void {
+    const addressFGs = addresses.map(address => this.fb.group({
+      id: [address.id, Validators.required],
+      street: [address.street, Validators.required],
+      number: [address.number, Validators.required],
+      city: [address.city, Validators.required],
+      postCode: [address.postCode, Validators.required],
+      country: [address.country, Validators.required],
+      label: [address.label, Validators.required]
+    }));
+
+    const addressFormArray = this.fb.array(addressFGs);
+    this.formPerson.setControl('addresses', addressFormArray);
+  }
+
+  get phones(): FormArray {
+    return this.formPerson.get('phones') as FormArray;
+  }
+
+  setPhones(phones: IPhone[]): void {
+    const phoneFGs = phones.map(phone => this.fb.group({
+      number: [phone.number, Validators.required],
+      label: [phone.label, Validators.required]
+    }));
+
+    const phoneFormArray = this.fb.array(phoneFGs);
+    this.formPerson.setControl('phones', phoneFormArray);
+  }
+
+
+
+  onSubmit() {
+    if (this.formPerson.valid) {
+      const personData: IPersonDetails = this.formPerson.value;
+      // console.log("PERSONDATA : ", personData);
+      this.profileService.updateProfile(personData).subscribe({
+        next: (response) => {
+          console.log('Profil mis à jour avec succès', response);
+
+          const addressData: IAddress[] = personData.addresses;
+          const updateAddressRequest = addressData.map(address => this.profileService.updateAddress(address));
+
+          forkJoin(updateAddressRequest).subscribe({
+            next: (response) => {
+              console.log("Toutes les adresses ont été mises à jour avec succès", response);
+            },
+            error: (error) => {
+              console.log("Erreur lors de la mise à jour des adresses", error);
+            }
+          });
+        },
+        error: (error) => {
+          console.log('Erreur lors de la mise à jour du profil', error);
+        }
+      });
+    } else {
+      console.log('Formulaire invalide');
+      Object.keys(this.formPerson.controls).forEach(key => {
+        const control = this.formPerson.get(key);
+        if (control?.invalid) {
+          console.log(`champ ${key} invalide :`, control.errors);
+        }
+      })
+    }
+  }
 
 
 }
+
+
+
 
 
 

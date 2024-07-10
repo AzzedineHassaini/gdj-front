@@ -3,7 +3,7 @@ export interface IAddress {
     street: String;
     number: String;
     city: String;
-    postcode: String;
+    postCode: String;
     country: String;
     label: String;
 }

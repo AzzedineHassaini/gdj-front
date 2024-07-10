@@ -9,11 +9,19 @@ import {IRegisterForm} from "../../features/auth/form/register.form";
 import {MessageService} from "primeng/api";
 import {TranslateService } from "@ngx-translate/core";
 
+export enum RegisterRole{
+  CITIZEN='citizen',
+  AGENT='agent',
+  ADMIN='admin',
+  LAWYER='lawyer'
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+
 
   private _currentUser$ = new BehaviorSubject<IAuth | undefined>(undefined);
 
@@ -37,7 +45,7 @@ export class AuthService {
   }
 
   get token(): string | null {
-    return this.currentUser ? this.currentUser.accessToken : null
+    return this.currentUser ? this.currentUser.token : null
   }
 
   constructor(
@@ -71,9 +79,9 @@ export class AuthService {
     );
   }
   // - s'enregistrer
-  register(form: IRegisterForm){
+  register(form: IRegisterForm, role: RegisterRole){
 
-    return this._client.post<IAuth>(env.baseUrl + 'auth/register', form).pipe(
+    return this._client.post<IAuth>(env.baseUrl + 'auth/register/' + role, form).pipe(
       tap((auth) =>
       {
         this.currentUser = auth

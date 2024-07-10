@@ -28,7 +28,7 @@ export class LoginComponent {
     this._auth.login( this.form.value ).subscribe({
       next: (auth) => {
         console.log(this._auth.currentUser)
-       
+
         this._router.navigate(['home']),
 
         console.log("test")
