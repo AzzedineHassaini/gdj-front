@@ -6,6 +6,7 @@ import {CookieService} from "ngx-cookie-service";
 import {ILoginForm} from "../../features/auth/form/login.form";
 import { env } from '../../../env/env';
 import {IRegisterForm} from "../../features/auth/form/register.form";
+import {MessageService} from "primeng/api";
 
 
 @Injectable({
@@ -40,7 +41,8 @@ export class AuthService {
 
   constructor(
     private readonly _cookie: CookieService,
-    private readonly _client: HttpClient
+    private readonly _client: HttpClient,
+    private readonly _message: MessageService
   ) {
     this.loadUser()
   }
@@ -52,6 +54,11 @@ export class AuthService {
       tap((auth) =>
       {
         this.currentUser = auth
+        this._message.add({
+          severity: 'success',
+          summary: 'Auth success',
+          detail: 'You are successfully logged in'
+        });
       })
     );
   }

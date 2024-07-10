@@ -16,6 +16,7 @@ import {FormsModule} from "@angular/forms";
 import { TranslateModule } from '@ngx-translate/core';
 import { ThemeService } from './services/theme.service';
 import {Button, ButtonDirective} from "primeng/button";
+import {ToastModule} from "primeng/toast";
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {Button, ButtonDirective} from "primeng/button";
     DialogModule,
     ButtonModule,
     ButtonDirective,
-    Button
+    Button,
+    ToastModule
   ],
   providers: [
     ThemeService

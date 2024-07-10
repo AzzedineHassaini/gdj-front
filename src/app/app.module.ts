@@ -12,6 +12,8 @@ function httpTranslationLoader(http: HttpClient) {
 import {AppComponent} from './container/app.component';
 import {CookieService} from "ngx-cookie-service";
 import {AuthInterceptor} from "./shared/interceptors/jwt.interceptor";
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
 
 @NgModule({
   declarations: [
@@ -28,8 +30,10 @@ import {AuthInterceptor} from "./shared/interceptors/jwt.interceptor";
         deps: [HttpClient]
       }
     }),
+    ToastModule,
   ],
   providers: [
+    MessageService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

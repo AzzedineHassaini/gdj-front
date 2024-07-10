@@ -26,25 +26,19 @@ export class LoginComponent {
 
   onSubmit(){
     this._auth.login( this.form.value ).subscribe({
-      next: (auth) => {
+      next: () => {
         console.log(this._auth.currentUser)
-       
         this._router.navigate(['home'])
-        
-        this._message.add({
-          severity: 'success',
-          summary: 'Auth success',
-          detail: 'You are successfully logged in'
-        })
-        console.log("test")
       },
       error: (error) => {
         console.log(error)
-        this._message.add({
-          severity: 'error',
-          summary: 'Auth failed',
-          detail: error.error
-        })
+        // setTimeout(() => {
+          this._message.add({
+            severity: 'error',
+            summary: 'Auth failed',
+            detail: error.error
+          });
+        // }, 1000);
       },
       complete: () => {
 
