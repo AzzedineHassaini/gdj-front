@@ -1,20 +1,18 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { IPersonDetails } from '../../models/person.models';
+import { Component, OnInit } from '@angular/core';
+import { IPersonDetails } from '../../models/profile.models';
 import { ProfileService } from '../../services/profile.service';
-import { map, Observable, delay, first, forkJoin } from 'rxjs';
+import { map, Observable, forkJoin } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IAddress } from '../../models/address.models';
-import { IPhone } from '../../models/phone.models';
-
-
+import { IAddress } from '../../models/profile.models';
+import { IPhone } from '../../models/profile.models';
 
 @Component({
-  selector: 'app-profil-detail',
-  templateUrl: './profil-detail.component.html',
-  styleUrl: './profil-detail.component.scss'
+  selector: 'app-profile-detail',
+  templateUrl: './profile-detail.component.html',
+  styleUrl: './profile-detail.component.scss'
 })
-export class ProfilDetailComponent implements OnInit {
+export class ProfileDetailComponent implements OnInit {
 
   formPerson: FormGroup;
   person$: Observable<IPersonDetails>
@@ -42,12 +40,11 @@ export class ProfilDetailComponent implements OnInit {
       birthPlace: ['', Validators.required],
       gender: ['', Validators.required],
       addresses: this.fb.array([]),
+      phones: this.fb.array([]),
       /*deathDate: ['', Validators.required],
       picture: ['', Validators.required],
       imprint: ['', Validators.required],
-      lawyer: ['', Validators.required],
-      
-      phones: ['', Validators.required]*/
+      lawyer: ['', Validators.required],*/
     });
   }
 
@@ -108,8 +105,6 @@ export class ProfilDetailComponent implements OnInit {
     this.formPerson.setControl('phones', phoneFormArray);
   }
 
-
-
   onSubmit() {
     if (this.formPerson.valid) {
       const personData: IPersonDetails = this.formPerson.value;
@@ -144,16 +139,7 @@ export class ProfilDetailComponent implements OnInit {
       })
     }
   }
-
- 
 }
-
-
-
-
-
-
-
 
   /*selectedFiles: { [key: string]: File | null } = { profile: null, imprint: null };
   imgPreviews: { [key: string]: string | ArrayBuffer | null } = { profile: null, imprint: null };

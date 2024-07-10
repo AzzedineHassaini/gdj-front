@@ -1,4 +1,4 @@
-import { IPersonList } from "../../profil/models/person.models";
+import { IPersonList } from "../../profil/models/profile.models";
 
 export interface IComplaintDetail {
   fileNumber: string;

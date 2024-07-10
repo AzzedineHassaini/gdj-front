@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ProfilRoutingModule } from './profil-routing.module';
-import { ProfilDetailComponent } from './components/profil-detail/profil-detail.component';
+import { ProfileRoutingModule } from './profile-routing.module';
+import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
   declarations: [
-    ProfilDetailComponent
+    ProfileDetailComponent
   ],
   imports: [
     CommonModule,
-    ProfilRoutingModule,
+    ProfileRoutingModule,
     ReactiveFormsModule,
     TranslateModule
   ]
 })
-export class ProfilModule { }
+export class ProfileModule { }

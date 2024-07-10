@@ -1,14 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { env } from "../../../../env/env";
-import { IPersonDetails } from "../models/person.models";
+import { IPersonDetails } from "../models/profile.models";
 import { HttpClient } from "@angular/common/http";
-import { IAddress } from "../models/address.models";
+import { IAddress } from "../models/profile.models";
 
 @Injectable({
     providedIn: 'root'
 })
-
 
 export class ProfileService {
 
