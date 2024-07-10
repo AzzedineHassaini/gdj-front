@@ -1,0 +1,102 @@
+body {
+  font-family: 'Arial', sans-serif;
+  font-size: 15pt;
+  background-color: #0056b3;
+  margin: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+div[style="text-align: center;"] {
+  background-color: #c6b7ae;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+h2 {
+  color: #4D243D;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555555;
+}
+
+input[type="text"], input[type="date"], select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 5px;
+  grid-column: span 6;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+form > div {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+form h5 {
+  color: #666666;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  grid-column: span 2;
+}
+
+form div[formArrayName="addresses"] div,
+form div[formArrayName="phones"] div {
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  grid-column: span 2;
+}
+
+form div[formArrayName="addresses"] div label,
+form div[formArrayName="phones"] div label {
+  margin-top: 10px;
+}
+
+form div[formArrayName="addresses"] div input,
+form div[formArrayName="phones"] div input {
+  margin-bottom: 10px;
+}
