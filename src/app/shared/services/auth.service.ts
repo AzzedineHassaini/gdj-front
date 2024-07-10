@@ -43,7 +43,8 @@ export class AuthService {
   constructor(
     private readonly _cookie: CookieService,
     private readonly _client: HttpClient,
-    private readonly _message: MessageService
+    private readonly _message: MessageService,
+    private readonly _translate: TranslateService
   ) {
     this.loadUser()
   }
@@ -56,7 +57,7 @@ export class AuthService {
         this._message.add({
           severity: 'success',
           summary: 'Auth success',
-          detail: '{ "auth.successfullylogged" | translate }'
+          detail: this._translate.instant('auth.successfullylogged')
         });
       }),
       catchError((error) => {
