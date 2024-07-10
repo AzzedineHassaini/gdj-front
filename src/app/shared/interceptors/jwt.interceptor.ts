@@ -14,27 +14,9 @@ export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) 
         Authorization: `Bearer ${token}`
       })
     });
-  console.log("Old req : "+req.headers.getAll("Authorization"))
-  console.log("----------------")
-  console.log("New req : "+newReq.headers.getAll("Authorization"))
+  // console.log("Old req : "+req.headers.getAll("Authorization"))
+  // console.log("----------------")
+  // console.log("New req : "+newReq.headers.getAll("Authorization"))
   return next(newReq);
 }
-
-// @Injectable()
-// export class AuthInterceptor implements HttpInterceptor {
-//
-//   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-//     const auth = inject(AuthService)
-//     const token = auth.token;
-//     const authReq = req.clone({
-//       setHeaders: {
-//         Authorization: `Bearer ${token}`
-//       }
-//     });
-//
-//     console.log("Header intercepted")
-//     console.log(req);
-//     return next.handle(authReq);
-//   }
-// }
 
