@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptors} from "@angular/common/http";
+import {HttpClient, provideHttpClient, withInterceptors} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import {TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
@@ -30,11 +30,6 @@ import {authInterceptor} from "./shared/interceptors/jwt.interceptor";
     }),
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptor,
-    //   multi: true
-    // },
     provideHttpClient( withInterceptors([
       authInterceptor
     ])),

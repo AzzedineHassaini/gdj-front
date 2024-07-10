@@ -4,6 +4,11 @@ import {AuthService} from "../../../../shared/services/auth.service";
 import {Router} from "@angular/router";
 import {REGISTER_FORM} from "../../form/register.form";
 
+interface Gender{
+  value: string,
+  label: string
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,17 +18,26 @@ export class RegisterComponent {
 
   form: FormGroup;
 
+  genderOptions: Gender[] = []
+
   constructor(
     builder: FormBuilder,
     private readonly _auth: AuthService,
     private readonly _router: Router
   ) {
     this.form = builder.group(REGISTER_FORM)
+
+    this.genderOptions = [
+      {value: 'MALE', label: 'profile.male'},
+      {value: 'FEMALE', label: 'profile.female'},
+      {value: 'OTHER', label: 'profile.other'}
+    ]
+
   }
 
   onSubmit(){
     this._auth.register( this.form.value ).subscribe({
-      next: (auth) => {
+      next: () => {
         console.log(this._auth.currentUser)
         this._router.navigate(['home']);
       },
