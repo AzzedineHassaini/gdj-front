@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {AuthService} from "../../../../shared/services/auth.service";
-import {Router} from "@angular/router";
-import {MessageService} from "primeng/api";
-import {LOGIN_FORM} from "../../form/login.form";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { AuthService } from "../../../../shared/services/auth.service";
+import { Router } from "@angular/router";
+import { MessageService } from "primeng/api";
+import { LOGIN_FORM } from "../../form/login.form";
 
 @Component({
   selector: 'app-login',
@@ -26,19 +26,16 @@ export class LoginComponent {
 
   onSubmit(){
     this._auth.login( this.form.value ).subscribe({
-      next: () => {
+      next: (auth) => {
         console.log(this._auth.currentUser)
-        this._router.navigate(['home'])
+       
+        this._router.navigate(['home']),
+
+        console.log("test")
       },
       error: (error) => {
         console.log(error)
-        // setTimeout(() => {
-          this._message.add({
-            severity: 'error',
-            summary: 'Auth failed',
-            detail: error.error
-          });
-        // }, 1000);
+
       },
       complete: () => {
 

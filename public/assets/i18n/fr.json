@@ -36,6 +36,8 @@
       "passwordConfirm": "Confirmez le mot de passe",
       "login": "Se connecter",
       "logout": "Se déconnecter",
-      "register": "S'enregistrer"
+      "register": "S'enregistrer",
+      "successfullylogged": "Connecter avec succès",
+      "errorlogged": "Connexion échouée"
     }
 }

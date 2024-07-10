@@ -36,6 +36,8 @@
       "passwordConfirm": "Confirm password",
       "login": "Login",
       "logout": "Logout",
-      "register": "Register"
+      "register": "Register",
+      "successfullylogged": "You are successfully logged",
+      "errorlogged": "Login failed. Please check your credentials and try again."
     }
 }

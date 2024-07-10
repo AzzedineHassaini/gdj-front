@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {IAuth} from "../../features/auth/models/auth.model";
-import {BehaviorSubject, map, Observable, tap} from "rxjs";
+import {BehaviorSubject, catchError, map, Observable, of, tap} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {CookieService} from "ngx-cookie-service";
 import {ILoginForm} from "../../features/auth/form/login.form";
@@ -48,21 +48,26 @@ export class AuthService {
   }
 
   // - se connecter
-  login(form: ILoginForm){
-
+  login(form: ILoginForm) {
     return this._client.post<IAuth>(env.baseUrl + 'auth/login', form).pipe(
-      tap((auth) =>
-      {
-        this.currentUser = auth
+      tap((auth) => {
+        this.currentUser = auth;
         this._message.add({
           severity: 'success',
           summary: 'Auth success',
-          detail: 'You are successfully logged in'
+          detail: '{{successfullylogged}}'
         });
+      }),
+      catchError((error) => {
+        this._message.add({
+          severity: 'error',
+          summary: 'Auth failed',
+          detail: '{{errorlogged}}'
+        });
+        return of(null);
       })
     );
   }
-
   // - s'enregistrer
   register(form: IRegisterForm){
 
