@@ -1,7 +1,7 @@
 import {Component, effect, signal} from '@angular/core';
 import {TranslateService } from "@ngx-translate/core";
 import {toSignal} from "@angular/core/rxjs-interop";
-import {AuthService} from "../../../shared/services/auth.service";
+import { AuthService } from '../../../features/auth/services/auth.service';
 import {MenuItem} from "primeng/api";
 import {IAuth, UserRole} from "../../../features/auth/models/auth.model";
 
