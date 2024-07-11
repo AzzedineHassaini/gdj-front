@@ -68,7 +68,7 @@ export class AuthService {
           detail: this._translate.instant('auth.successfullylogged')
         });
       }),
-      catchError((error) => {
+      catchError(() => {
         this._message.add({
           severity: 'error',
           summary: this._translate.instant('auth.titleloggederror'),
@@ -79,12 +79,14 @@ export class AuthService {
     );
   }
   // - s'enregistrer
-  register(form: IRegisterForm, role: RegisterRole){
+  register(form: IRegisterForm, role: string, login: boolean = true){
 
     return this._client.post<IAuth>(env.baseUrl + 'auth/register/' + role, form).pipe(
       tap((auth) =>
       {
-        this.currentUser = auth
+        if (login) {
+          this.currentUser = auth
+        }
       })
     )
 

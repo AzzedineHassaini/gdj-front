@@ -1,12 +1,11 @@
-import {Component, effect, signal} from '@angular/core';
-import { RouterLink } from '@angular/router';
-import {TranslateService } from "@ngx-translate/core";
+import {Component, effect, EventEmitter, Output, signal} from '@angular/core';
+import {Router} from '@angular/router';
+import {TranslateService} from "@ngx-translate/core";
 import {toSignal} from "@angular/core/rxjs-interop";
-import {AuthService} from "../../../shared/services/auth.service";
+import {AuthService, RegisterRole} from "../../../shared/services/auth.service";
 import {MenuItem} from "primeng/api";
 import {IAuth, UserRole} from "../../../features/auth/models/auth.model";
-import { ThemeService } from '../../services/theme.service';
-
+import {ThemeService} from '../../services/theme.service';
 
 
 @Component({
@@ -25,6 +24,8 @@ export class HeaderComponent {
 
   menuItems: MenuItem[] = [];
 
+  @Output() messageEvent = new EventEmitter<RegisterRole>();
+
   selectedOption = signal<'fr' | 'en'>('fr')
   dropdownOptions = ['en','fr']
 
@@ -35,6 +36,7 @@ export class HeaderComponent {
     private readonly $auth: AuthService,
     private readonly $translate: TranslateService,
     private readonly $theme: ThemeService,
+    private readonly $router: Router,
   ) {
 
     this.$translate.onLangChange.subscribe(() => {
@@ -51,6 +53,7 @@ export class HeaderComponent {
 
   handleLogout(): void {
     this.$auth.logout()
+    this.$router.navigate(['home'])
   }
 
   selectEffect = effect(() => {
@@ -96,11 +99,11 @@ export class HeaderComponent {
       },
       {
         label: this.$translate.instant('header.admin.registerAgent'),
-        routerLink: '/auth/register'
+        routerLink: '/auth/register/agent'
       },
       {
         label: this.$translate.instant('header.admin.registerAdmin'),
-        routerLink: '/auth/register'
+        routerLink: '/auth/register/admin',
       }
     ]
   }

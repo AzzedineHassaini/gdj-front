@@ -13,7 +13,7 @@ import { RegisterComponent } from './components/register/register.component';
 import {InputMaskModule} from "primeng/inputmask";
 import {CalendarModule} from "primeng/calendar";
 import {DropdownModule} from "primeng/dropdown";
-import {FileUploadModule} from "primeng/fileupload";CommonModule
+import {FileUploadModule} from "primeng/fileupload";
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';

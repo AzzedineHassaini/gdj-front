@@ -1,12 +1,7 @@
-import {Validators} from "@angular/forms";
 
 export interface IRegisterForm {
-  mail: string;
-  password: string;
-  person: IPersonForm
-}
-
-export interface IPersonForm {
+  mail: string,
+  password: string,
   nationalRegisterNumber: string,
   firstName: string,
   lastName: string,

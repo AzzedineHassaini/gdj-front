@@ -16,6 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ThemeService } from './services/theme.service';
 import { Button, ButtonDirective } from "primeng/button";
 import { ToastModule } from "primeng/toast";
+import {Ripple} from "primeng/ripple";
 
 
 @NgModule({
@@ -25,21 +26,22 @@ import { ToastModule } from "primeng/toast";
     FooterComponent,
     HomeComponent
   ],
-  imports: [
-    CommonModule,
-    CoreRoutingModule,
-    MenubarModule,
-    DropdownModule,
-    FormsModule,
-    TranslateModule,
-    AvatarModule,
-    BadgeModule,
-    DialogModule,
-    ButtonModule,
-    ButtonDirective,
-    Button,
-    ToastModule
-  ],
+    imports: [
+        CommonModule,
+        CoreRoutingModule,
+        MenubarModule,
+        DropdownModule,
+        FormsModule,
+        TranslateModule,
+        AvatarModule,
+        BadgeModule,
+        DialogModule,
+        ButtonModule,
+        ButtonDirective,
+        Button,
+        ToastModule,
+        Ripple
+    ],
   providers: [
     ThemeService
   ]

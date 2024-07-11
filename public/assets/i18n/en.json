@@ -31,7 +31,6 @@
       "close" : "Close",
       "titlemodalprofil" : " Edit your Profile",
       "majprofile" : "Update your profile",
-      "profile": "Profile",
       "admin": {
         "registerAgent": "Register an agent",
         "registerAdmin": "Register an admin"
@@ -51,6 +50,8 @@
       "login": "Login",
       "logout": "Logout",
       "register": "Register",
+      "registerCitizen": "Register as Citizen",
+      "registerLawyer": "Register as Lawyer",
       "successfullylogged": "You are successfully logged",
       "errorlogged": "Login failed. Please check your credentials and try again.",
       "titleloggedsuccess": "Authentification succes",

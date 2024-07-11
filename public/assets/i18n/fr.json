@@ -31,7 +31,6 @@
         "close" : "Fermer",
         "titlemodalprofil" : "Gestion de votre profil",
         "majprofile" : "Mise à jour de votre profil",
-        "profile": "Profil",
         "admin": {
           "registerAgent": "Enregistrer un agent",
           "registerAdmin": "Enregistrer un admin"
@@ -51,6 +50,8 @@
       "login": "Se connecter",
       "logout": "Se déconnecter",
       "register": "S'enregistrer",
+      "registerCitizen": "S'enregistrer en tant que Citoyen",
+      "registerLawyer": "S'enregistrer en tant qu'Avocat",
       "titleloggedsuccess": "Authentification réussie",
       "titleloggederror": "Authentification échouée",
       "successfullylogged": "Connecter avec succès",
