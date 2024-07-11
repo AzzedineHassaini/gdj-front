@@ -7,6 +7,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAddress } from '../../models/profile.models';
 import { IPhone } from '../../models/profile.models';
 
+
 @Component({
   selector: 'app-profile-detail',
   templateUrl: './profile-detail.component.html',
@@ -16,6 +17,10 @@ export class ProfileDetailComponent implements OnInit {
 
   formPerson: FormGroup;
   person$: Observable<IPersonDetails>
+  selectedFile: File | null = null;
+  imageUrl: string | undefined;
+  imageName: string | undefined;
+  uploadedFile: File | null = null;
 
   genderOptions = [
     {value: 'MALE', label: 'profile.male'},
@@ -41,38 +46,33 @@ export class ProfileDetailComponent implements OnInit {
       gender: ['', Validators.required],
       addresses: this.fb.array([]),
       phones: this.fb.array([]),
-      /*deathDate: ['', Validators.required],
+      //deathDate: ['', Validators.required],
       picture: ['', Validators.required],
-      imprint: ['', Validators.required],
-      lawyer: ['', Validators.required],
-
-      lawyer: ['', Validators.required],*/
+      //imprint: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
    this.person$.subscribe((person) => {
-    this.formPerson.patchValue({
-      id: person.id,
-      lastName: person.lastName,
-      firstName: person.firstName,
-      nationalRegister: person.nationalRegister,
-      birthDate: person.birthDate,
-      birthPlace: person.birthPlace,
-      gender: person.gender,
-
-      /*deathDate: person.deathDate,
-      picture: person.picture,
-      imprint: person.imprint,
-      lawyer: person.lawyer*/
-    });
-    this.setAddresses(person.addresses);
-    this.setPhones(person.phones);
-
-
+      this.formPerson.patchValue({
+        id: person.id,
+        lastName: person.lastName,
+        firstName: person.firstName,
+        nationalRegister: person.nationalRegister,
+        birthDate: person.birthDate,
+        birthPlace: person.birthPlace,
+        gender: person.gender,
+        //deathDate: person.deathDate,
+        picture: person.picture,
+        /*imprint: person.imprint,
+        lawyer: person.lawyer*/
+      });
+      this.setAddresses(person.addresses);
+      this.setPhones(person.phones);
    });
-
   }
+
+
 
   get addresses(): FormArray {
     return this.formPerson.get('addresses') as FormArray;
@@ -107,11 +107,32 @@ export class ProfileDetailComponent implements OnInit {
     this.formPerson.setControl('phones', phoneFormArray);
   }
 
+  onUpload(event: any) {
+    if (event.files.length > 0) {
+      this.uploadedFile  = event.files[0];
+    }
+  }
+
   onSubmit() {
     if (this.formPerson.valid) {
       const personData: IPersonDetails = this.formPerson.value;
-      // console.log("PERSONDATA : ", personData);
-      this.profileService.updateProfile(personData).subscribe({
+      console.log("PERSONDATA : ", personData);
+
+      if (this.uploadedFile) {
+        this.profileService.uploadFile(this.uploadedFile).subscribe({
+          next: (fileName: string) => {
+            personData.picture = fileName;
+            this.submitProfileData(personData);
+          },
+          error: (error) => {
+            console.log('Erreur lors du téléchargement du fichier', error);
+          }
+        });
+      } else {
+        this.submitProfileData(personData);
+      }
+
+      /*this.profileService.updateProfile(personData).subscribe({
         next: (response) => {
           console.log('Profil mis à jour avec succès', response);
 
@@ -126,11 +147,12 @@ export class ProfileDetailComponent implements OnInit {
               console.log("Erreur lors de la mise à jour des adresses", error);
             }
           });
+
         },
         error: (error) => {
           console.log('Erreur lors de la mise à jour du profil', error);
         }
-      });
+      });*/
     } else {
       console.log('Formulaire invalide');
       Object.keys(this.formPerson.controls).forEach(key => {
@@ -142,7 +164,29 @@ export class ProfileDetailComponent implements OnInit {
     }
   }
 
+  submitProfileData(personData: IPersonDetails) {
+    this.profileService.updateProfile(personData).subscribe({
+      next: (response) => {
+        console.log('Profil mis à jour avec succès', response);
 
+        const addressData: IAddress[] = personData.addresses;
+        const updateAddressRequest = addressData.map(address => this.profileService.updateAddress(address));
+
+        forkJoin(updateAddressRequest).subscribe({
+          next: (response) => {
+            console.log("Toutes les adresses ont été mises à jour avec succès", response);
+          },
+          error: (error) => {
+            console.log("Erreur lors de la mise à jour des adresses", error);
+          }
+        });
+
+      },
+      error: (error) => {
+        console.log('Erreur lors de la mise à jour du profil', error);
+      }
+    });
+  }
 }
 
 

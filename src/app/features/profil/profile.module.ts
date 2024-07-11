@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { FileUploadModule } from 'primeng/fileupload';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule,
     ProfileRoutingModule,
+    FileUploadModule,
     ReactiveFormsModule,
     TranslateModule
   ]
