@@ -1,14 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { env } from "../../../../env/env";
-import { IPersonDetails } from "../models/person.models";
-import { HttpClient } from "@angular/common/http";
-import { IAddress } from "../models/address.models";
+import { IPersonDetails } from "../models/profile.models";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { IAddress } from "../models/profile.models";
 
 @Injectable({
     providedIn: 'root'
 })
-
 
 export class ProfileService {
 
@@ -19,7 +18,7 @@ export class ProfileService {
             throw new Error("Id is undefined");
         }
 
-        return this._client.get<IPersonDetails>(env.baseUrl + 'person/' + id + '/details')
+        return this._client.get<IPersonDetails>(env.baseUrl + 'person/' + id + '/details');
     }
 
     getCurrentPerson(){
@@ -27,10 +26,21 @@ export class ProfileService {
     }
 
     updateProfile(profileData: IPersonDetails): Observable<any> {
-        return this._client.put(env.baseUrl + 'person/' + profileData.id, profileData)
+        return this._client.put(env.baseUrl + 'person/' + profileData.id, profileData);
     }
 
     updateAddress(address: IAddress): Observable<any> {
-        return this._client.put(env.baseUrl + 'address/' + address.id, address)
+        return this._client.put(env.baseUrl + 'address/' + address.id, address);
+    }
+
+    uploadFile(file: File): Observable<void> {
+        const formData: FormData = new FormData();
+        formData.append('file', file, file.name);
+
+        return this._client.post<void>(env.baseUrl + 'image', formData, {
+            headers: new HttpHeaders({
+                'Accept': 'application/json'
+            })
+        });
     }
 }

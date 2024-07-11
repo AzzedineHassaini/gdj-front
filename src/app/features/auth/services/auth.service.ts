@@ -21,8 +21,6 @@ export enum RegisterRole{
 })
 export class AuthService {
 
-
-
   private _currentUser$ = new BehaviorSubject<IAuth | undefined>(undefined);
 
   set currentUser(value: IAuth | undefined) {
@@ -78,6 +76,7 @@ export class AuthService {
       })
     );
   }
+
   // - s'enregistrer
   register(form: IRegisterForm, role: string, login: boolean = true){
 

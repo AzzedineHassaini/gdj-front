@@ -1,5 +1,3 @@
-import { IPersonDetails } from "../../profil/models/person.models"
-
 export interface IAuth {
   id: number,
   email: string,

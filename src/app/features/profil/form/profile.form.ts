@@ -1,10 +1,9 @@
 import { Gender } from '../models/gender.enum';
 import { IAddress } from '../models/address.models';
 import { IPhone } from '../models/phone.models';
-import { IPersonDetails } from '../models/person.models';
-import {Validators} from "@angular/forms";
+import { IPersonDetails } from '../models/profile.models';
 
-export interface IProfilForm {
+export interface IProfileForm {
     id: number;
     lastName: string;
     firstName: string;

@@ -18,7 +18,7 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        loadChildren: () => import ('../features/profil/profil.module').then(m => m.ProfilModule),
+        loadChildren: () => import ('../features/profil/profile.module').then(m => m.ProfileModule),
       },
       {
         path: 'complaint',

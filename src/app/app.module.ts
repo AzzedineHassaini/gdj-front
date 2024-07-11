@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClient, withInterceptors, provideHttpClient} from "@angular/common/http";
+import {withInterceptors, HttpClient, provideHttpClient} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import {TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
@@ -34,7 +34,6 @@ import {MessageService} from "primeng/api";
   ],
   providers: [
     MessageService,
-    provideHttpClient(),
     provideHttpClient( withInterceptors([
       authInterceptor
     ])),

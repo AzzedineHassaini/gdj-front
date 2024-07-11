@@ -1,7 +1,3 @@
-import { Gender } from './gender.enum';
-import { IAddress } from './address.models';
-import { IPhone } from './phone.models';
-
 export interface IPersonDetails {
     id: number;
     lastName: string;
@@ -13,7 +9,6 @@ export interface IPersonDetails {
     deathDate?: Date;
     picture?: string;
     imprint?: string;
-    lawyer?: IPersonDetails;
     addresses: IAddress[];
     phones: IPhone[];
 }
@@ -23,4 +18,26 @@ export interface IPersonList {
     lastName: string;
     firstName: string;
     nationalRegister: string;
+}
+
+export interface IPhone {
+    id: number;
+    number: String;
+    label: String;
+}
+
+export enum Gender {
+    MALE = "MALE",
+    FEMALE = "FEMALE",
+    OTHER = "OTHER"
+}
+
+export interface IAddress {
+    id: number;
+    street: String;
+    number: String;
+    city: String;
+    postCode: String;
+    country: String;
+    label: String;
 }
