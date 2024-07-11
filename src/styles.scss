@@ -1,18 +1,4 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
-:root {
-  --primary: #643b53;
-  --primary-light: #a18796;
-  --primary-dark: #4D243D;
-  --secondary: #D0A98F;
-  --secondary-light: #eadcd3;
-  --secondary-dark: #ad7956;
-}
-
-body {
-  margin: 0;
-  padding-bottom: 60px;
-  min-height: 100vh;
-  position: relative;
-  background-color: var(--secondary-light);
-}

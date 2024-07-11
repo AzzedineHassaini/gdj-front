@@ -1,7 +1,44 @@
-:host {
-  .p-menubar.p-component{
-    border-radius: 0;
-    border: none;
-    border-bottom: 1px solid var(--secondary-dark);
-  }
+:host ::ng-deep {
+
+    .p-dropdown {
+        height: 2rem;
+    }
+    .p-dropdown-label {
+        margin: 0.4rem;
+        padding: 0rem;
+        text-align: center;
+    }
+
+    .header-right{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+
+    p-menubar{
+        display: flex;
+        justify-content: center;
+    }
+    .p-menubar{
+        border-radius: 3rem !important;
+        min-width: 900px !important;
+        padding-inline-end: 25px;
+    }
+
+    @media (max-width: 768px) {
+        .p-menubar {
+          width: 100%;
+        }
+    }
+
+    // .floating-bottom {
+    //     position: fixed;
+    //     bottom: 0;
+    //     left: 50%;
+    //     transform: translateX(-90%);
+    //     z-index: 1000;
+    //     margin-bottom: 25px;
+    //     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    //   }
 }

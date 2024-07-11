@@ -1,17 +1,27 @@
 import { Injectable } from '@angular/core';
-import {IAuth} from "../../features/auth/models/auth.model";
-import {BehaviorSubject, map, Observable, tap} from "rxjs";
-import {HttpClient} from "@angular/common/http";
-import {CookieService} from "ngx-cookie-service";
-import {ILoginForm} from "../../features/auth/form/login.form";
+import { IAuth } from "../../features/auth/models/auth.model";
+import { BehaviorSubject, catchError, map, Observable, of, tap } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { CookieService } from "ngx-cookie-service";
+import { ILoginForm } from "../../features/auth/form/login.form";
 import { env } from '../../../env/env';
-import {IRegisterForm} from "../../features/auth/form/register.form";
+import { IRegisterForm } from "../../features/auth/form/register.form";
+import { MessageService } from "primeng/api";
+import { TranslateService } from "@ngx-translate/core";
 
+export enum RegisterRole{
+  CITIZEN='citizen',
+  AGENT='agent',
+  ADMIN='admin',
+  LAWYER='lawyer'
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+
 
   private _currentUser$ = new BehaviorSubject<IAuth | undefined>(undefined);
 
@@ -40,29 +50,43 @@ export class AuthService {
 
   constructor(
     private readonly _cookie: CookieService,
-    private readonly _client: HttpClient
+    private readonly _client: HttpClient,
+    private readonly _message: MessageService,
+    private readonly _translate: TranslateService
   ) {
     this.loadUser()
   }
 
   // - se connecter
-  login(form: ILoginForm){
-
+  login(form: ILoginForm) {
     return this._client.post<IAuth>(env.baseUrl + 'auth/login', form).pipe(
-      tap((auth) =>
-      {
-        this.currentUser = auth
+      tap((auth) => {
+        this.currentUser = auth;
+        this._message.add({
+          severity: 'success',
+          summary: this._translate.instant('auth.titleloggedsuccess'),
+          detail: this._translate.instant('auth.successfullylogged')
+        });
+      }),
+      catchError(() => {
+        this._message.add({
+          severity: 'error',
+          summary: this._translate.instant('auth.titleloggederror'),
+          detail: this._translate.instant('auth.errorlogged')
+        });
+        return of(null);
       })
     );
   }
-
   // - s'enregistrer
-  register(form: IRegisterForm){
+  register(form: IRegisterForm, role: string, login: boolean = true){
 
-    return this._client.post<IAuth>(env.baseUrl + 'auth/register', form).pipe(
+    return this._client.post<IAuth>(env.baseUrl + 'auth/register/' + role, form).pipe(
       tap((auth) =>
       {
-        this.currentUser = auth
+        if (login) {
+          this.currentUser = auth
+        }
       })
     )
 
