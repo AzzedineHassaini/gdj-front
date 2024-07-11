@@ -6,7 +6,18 @@
         <p-dropdown [options]="dropdownOptions"
                     [(ngModel)]="selectedOption"
         ></p-dropdown>
+        @if (isConnected()){
+          <div>
+            <p-button (click)="handleLogout()" [link]="true">{{ 'auth.logout' | translate }}</p-button>
+          </div>
+        } @else {
+          <div>
+            <p-button routerLink="/auth/login" [link]="true">{{ 'auth.login' | translate }}</p-button>
+            <p-button routerLink="/auth/register" [link]="true">{{ 'auth.register' | translate }}</p-button>
+          </div>
+        }
       </div>
     </ng-template>
+
   </p-menubar>
 </header>

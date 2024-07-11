@@ -1,0 +1,47 @@
+{
+    "profileTitle": "Profile",
+    "profile": {
+        "lastName" : "Last name : ",
+        "firstName": "First name : ",
+        "nationalRegister": "National register : ",
+        "birthdate": "Birthdate : ",
+        "deathdate": "Deathdate : ",
+        "birthplace": "Birthplace : ",
+        "gender": "Your gender : ",
+        "male": "Male",
+        "female": "Female",
+        "other": "Other",
+        "phoneNumber": "Phone number : ",
+        "street": "Street : ",
+        "number": "Number : ",
+        "city": "City : ",
+        "postcode": "Postcode : ",
+        "country": "Country : ",
+        "label": "Label : ",
+        "address": "Address ",
+        "phone": "Phone ",
+        "imgProfile": "Image profile : ",
+        "imprint": "Imprint : ",
+        "submit": "Submit"
+    },
+    "header" : {
+      "home" : "Home",
+      "complaints" : "Complaints",
+      "profile": "Profile"
+    },
+    "auth": {
+      "email": "Email",
+      "password": "Password",
+      "passwordConfirm": "Confirm password",
+      "nationalRegister": "National register",
+      "lastName": "Last name",
+      "firstName": "First name",
+      "birthdate": "Birthdate",
+      "birthplace": "Birthplace",
+      "gender": "Select your gender",
+      "profilePicture": "Browse",
+      "login": "Login",
+      "logout": "Logout",
+      "register": "Register"
+    }
+}

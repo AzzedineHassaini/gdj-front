@@ -1,0 +1,59 @@
+<div class="card flex  mt-4">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <p-inputGroup class="mb-3">
+      <input pInputText placeholder="{{'auth.email' | translate}}" type="email" id="in-email" formControlName="mail"/>
+    </p-inputGroup>
+    <p-inputGroup class="mb-3">
+      <input type="password" pPassword id="in-password" formControlName="password" placeholder="{{'auth.password' | translate}}">
+    </p-inputGroup>
+    <p-inputGroup class="mb-3">
+      <input type="password" pPassword id="in-passwordConfirm" placeholder="{{'auth.passwordConfirm' | translate}}">
+    </p-inputGroup>
+      <p-inputMask class="mb-3"
+        mask="99.99.99-999.99"
+        formControlName="nationalRegisterNumber"
+        placeholder="{{'auth.nationalRegister' | translate}}" />
+    <p-inputGroup class="mb-3 mt-3">
+      <input pInputText placeholder="{{'auth.firstName' | translate}}" type="text" id="in-firstname" formControlName="firstName"/>
+    </p-inputGroup>
+    <p-inputGroup class="mb-3">
+      <input pInputText placeholder="{{'auth.lastName' | translate}}" type="text" id="in-lastName" formControlName="lastName"/>
+    </p-inputGroup>
+    <p-inputGroup class="mb-3">
+      <p-calendar
+        formControlName="birthDate"
+        [iconDisplay]="'input'"
+        [showIcon]="true"
+        inputId="in-birthdate"
+        placeholder="{{'auth.birthdate' | translate}}" />
+    </p-inputGroup>
+    <p-inputGroup class="mb-3">
+      <input pInputText placeholder="{{'auth.birthplace' | translate}}" type="text" id="in-birthplace" formControlName="birthPlace"/>
+    </p-inputGroup>
+    <p-dropdown class="mb-3"
+      formControlName="gender"
+      [options]="genderOptions"
+      optionLabel="label"
+      optionValue="value"
+      placeholder="{{'auth.gender' | translate}}">
+      <ng-template pTemplate="item" let-item>
+        {{item.label | translate}}
+      </ng-template>
+      <ng-template pTemplate="selectedItem" let-selectedItem>
+        {{selectedItem.label | translate}}
+      </ng-template>
+    </p-dropdown>
+    <p-fileUpload class="mb-3"
+      name="profilePicture"
+      url="http://localhost:8080/upload"
+      accept="image/*"
+      maxFileSize="1000000">
+    </p-fileUpload>
+
+    <div>
+      <p-button icon="pi pi-check" type="submit"  label="{{'auth.register' | translate}}" class="mt-3" />
+    </div>
+  </form>
+
+</div>

@@ -1,0 +1,216 @@
+<!--<div style="text-align: center;">
+    <h2>{{'profilTitle' | translate}}</h2>
+
+    @if (person$ | async; as person) {
+        <form>
+            <label for="firstName">{{'profil.firstName' | translate}}</label>
+            <input text="text" id="firstName" name="firstName" value="{{person.firstName}}">
+    
+            <br>
+            <br>
+    
+            <label for="lastName">{{'profil.name' | translate}}</label>
+            <input text="text" id="lastName" name="lastName" value="{{person.lastName}}">
+    
+            <br>
+            <br>
+    
+            <label for="nationalRegister">{{'profil.nationalRegister' | translate}}</label>
+            <input text="text" id="nationalRegister" name="nationalRegister" value="{{person.nationalRegister}}">
+    
+            <br>
+            <br>
+    
+            <label for="birthdate">{{'profil.birthdate' | translate}}</label>
+            <input type="date" id="birthdate" name="birthdate" min="01-01-1900" max="2024-07-01" value="{{person.birthDate | date:'yyyy-MM-dd'}}"/>
+    
+            <br>
+            <br>
+            
+            <label for="birthplace">{{'profil.birthplace' | translate}}</label>
+            <input text="text" id="birthplace" name="birthplace" value="{{person.birthPlace}}">
+    
+            <br>
+            <br>
+    
+            <label for="gender-select">{{'profil.gender' | translate}}</label>
+            <select name="gender" id="gender-select">                
+                @for (gender of genders; track $index) {
+                    @if (person.gender === gender) {
+                        <option value="{{gender}}" selected>{{'profil.chooseGender' | translate}}</option>
+                    } @else {
+                        <option value="{{gender}}">{{'profil.chooseGender' | translate}}</option>
+                    }
+                }
+            </select>
+    
+            <br>
+            <br>
+    
+            <label for="phoneNumber">{{'profil.phoneNumber' | translate}}</label>
+            <input text="text" id="phoneNumber" name="phoneNumber">
+    
+            <br>
+            <br>
+    
+            <label for="street">{{'profil.street' | translate}}</label>
+            <input text="text" id="street" name="street">
+    
+            <br>
+            <br>
+    
+            <label for="number">{{'profil.number' | translate}}</label>
+            <input text="text" id="number" name="number">
+    
+            <br>
+            <br>
+    
+            <label for="city">{{'profil.city' | translate}}</label>
+            <input text="text" id="city" name="city">
+    
+            <br>
+            <br>
+    
+            <label for="postCode">{{'profil.postcode' | translate}}</label>
+            <input text="text" id="postCode" name="postCode">
+    
+            <br>
+            <br>
+    
+            <label for="country">{{'profil.country' | translate}}</label>
+            <input text="text" id="country" name="country">
+    
+            <br>
+            <br>
+
+            <input type="submit" value="{{'profil.submit' | translate}}">
+
+        </form>
+    }-->
+    
+
+        <!--<div>
+            <label for="porfileImage">{{'profil.imgProfile' | translate}}</label>
+            <input type="file" id="profileImage" (change)="onFileSelected($event, 'profile')">
+        </div>
+        <div *ngIf="imgPreviews['profile']">
+            <img [src]="imgPreviews['profile']" width="200">
+        </div>
+
+        <br>
+        <br>
+
+        <div>
+            <label for="imprint">{{'profil.imprint' | translate}}</label>
+            <input type="file" id="imprint" (change)="onFileSelected($event, 'imprint')">
+        </div>
+        <div *ngIf="imgPreviews['imprint']">
+            <img [src]="imgPreviews['imprint']" width="200">
+        </div>-->     
+
+<!--<h2>TEST</h2>
+@if (person$ | async; as person) {
+    <div>
+        <p>
+            <span>national register:</span>
+            <span>{{person.name}}</span>
+            
+        </p>
+    </div>
+}-->
+
+<div style="text-align: center;">
+    <h2>{{'profilTitle' | translate}}</h2>
+
+    <form [formGroup]="formPerson" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="lastName">{{'profile.lastName' | translate}}</label>
+            <input id="lastName" formControlName="lastName" type="text">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="firstName">{{'profile.firstName' | translate}}</label>
+            <input id="firstName" formControlName="firstName" type="text">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="nationalRegister">{{'profile.nationalRegister' | translate}}</label>
+            <input id="nationalRegister" formControlName="nationalRegister" type="text">
+        </div>
+
+        <br>
+
+        <div>
+            <label for="birthDate">{{'profile.birthdate' | translate}}</label>
+            <input type="date" id="birthDate" name="birthDate" formControlName="birthDate"/>
+        </div>
+    
+        <br>
+
+        <div>
+            <label for="birthplace">{{'profile.birthplace' | translate}}</label>
+            <input text="text" id="birthplace" name="birthplace" formControlName="birthPlace">
+        </div>
+
+        <br>
+        <div>
+            <label for="gender-select">{{'profile.gender' | translate}}</label>
+            <select id="gender" formControlName="gender">
+                @for (gender of genderOptions; track $index) {
+                    <option value="{{gender.value}}">{{gender.label | translate}}</option>
+                }
+            </select>  
+        </div>
+        <br>
+
+        <div formArrayName="addresses">
+            <div *ngFor="let address of addresses.controls; let i = index" [formGroupName]="i">
+
+                <h5>{{'profile.address' | translate}} {{i+1}}</h5>
+                <div>
+                    <label for="street">{{'profile.street' | translate}}</label>
+                    <input id="street" formControlName="street">
+                    <br>
+                    <br>
+                    <label for="city">{{'profile.city' | translate}}</label>
+                    <input id="city" formControlName="city">
+                    <br>
+                    <br>
+                    <label for="postcode">{{'profile.postCode' | translate}}</label>
+                    <input id="postcode" formControlName="postCode">
+                    <br>
+                    <br>
+                    <label for="country">{{'profile.country' | translate}}</label>
+                    <input id="country" formControlName="country">
+                    <br>
+                    <br>
+                    <label for="label">{{'profile.label' | translate}}</label>
+                    <input id="label" formControlName="label">
+                </div>
+            </div>
+        </div>
+
+        <div formArrayName="phones">
+            <div *ngFor="let phone of phones.controls; let i = index" [formGroupName]="i">
+
+                <h5>{{'profile.phone' | translate}} {{i+1}}</h5>
+                <div>
+                    <label for="number">{{'profile.number' | translate}}</label>
+                    <input id="number" formControlName="number">
+                    <br>
+                    <br>
+                    <label for="label">{{'profile.label' | translate}}</label>
+                    <input id="label" formControlName="label">
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" value="{{'profile.submit' | translate}}">
+    </form>
+
+</div>
+
