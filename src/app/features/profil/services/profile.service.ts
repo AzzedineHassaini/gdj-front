@@ -12,13 +12,17 @@ import { IAddress } from "../models/profile.models";
 export class ProfileService {
 
     constructor(private readonly _client: HttpClient) {}
-    
+
     getPersonById(id: number | undefined) {
         if (id === undefined) {
             throw new Error("Id is undefined");
         }
 
         return this._client.get<IPersonDetails>(env.baseUrl + 'person/' + id + '/details');
+    }
+
+    getCurrentPerson(){
+      return this._client.get<IPersonDetails>(env.baseUrl + 'person/details')
     }
 
     updateProfile(profileData: IPersonDetails): Observable<any> {
@@ -28,15 +32,4 @@ export class ProfileService {
     updateAddress(address: IAddress): Observable<any> {
         return this._client.put(env.baseUrl + 'address/' + address.id, address);
     }
-
-    getFile(fileName: string): Observable<Blob> {
-        return this._client.get(env.baseUrl + 'image/' + fileName, { responseType: 'blob' });
-    }
-
-    uploadFile(file: File): Observable<any> {
-        const formData: FormData = new FormData();
-        formData.append('file', file, file.name);
-        return this._client.post(env.baseUrl + '/image', formData);
-    }
-
 }

@@ -33,7 +33,7 @@ export class ProfileDetailComponent implements OnInit {
     private fb: FormBuilder,
     private profileService: ProfileService
   ) {
-    
+
     this.person$ = _route.data.pipe( map( resolveList => resolveList[0] ));
 
     this.formPerson = this.fb.group({

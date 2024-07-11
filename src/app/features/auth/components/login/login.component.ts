@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {AuthService} from "../../../../shared/services/auth.service";
+import { AuthService } from '../../services/auth.service';
 import {Router} from "@angular/router";
 import {LOGIN_FORM} from "../../form/login.form";
 
@@ -24,7 +24,7 @@ export class LoginComponent {
   onSubmit(){
     this._auth.login( this.form.value ).subscribe({
       next: (auth) => {
-        console.log(this._auth.currentUser)
+        // console.log(this._auth.currentUser)
         this._router.navigate(['home']);
       },
       error: (error) => {

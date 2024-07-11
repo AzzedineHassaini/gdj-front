@@ -1,7 +1,7 @@
 import {Component, effect, signal} from '@angular/core';
 import {TranslateService } from "@ngx-translate/core";
 import {toSignal} from "@angular/core/rxjs-interop";
-import {AuthService} from "../../../shared/services/auth.service";
+import { AuthService } from '../../../features/auth/services/auth.service';
 import {MenuItem} from "primeng/api";
 import {IAuth, UserRole} from "../../../features/auth/models/auth.model";
 
@@ -37,8 +37,8 @@ export class HeaderComponent {
     })
 
     this.$auth.currentUser$.subscribe((data) => {
-        console.log("CURRENT USER CHANGE")
-        console.log(data)
+        // console.log("CURRENT USER CHANGE")
+        // console.log(data)
         this.currentUser = data;
         this.menuItems = this.getMenu(this.currentUser);
       });
@@ -55,14 +55,14 @@ export class HeaderComponent {
 
   getMenu(currentUser: IAuth | undefined): MenuItem[] {
     if (currentUser) {
-      console.log("connected user, role = " + (currentUser.role));
-      console.log("Comparing with UserRole.AGENT: ", currentUser.role as UserRole === UserRole.AGENT);
-      console.log("UserRole.AGENT value: ", UserRole.AGENT as UserRole);
+      // console.log("connected user, role = " + (currentUser.role));
+      // console.log("Comparing with UserRole.AGENT: ", currentUser.role as UserRole === UserRole.AGENT);
+      // console.log("UserRole.AGENT value: ", UserRole.AGENT as UserRole);
       switch (currentUser.role){
         case UserRole.ADMIN:
           return this.getAdminMenu()
         case UserRole.AGENT:
-          console.log ("returning agent menu")
+          // console.log ("returning agent menu")
           return this.getAgentMenu()
         case UserRole.CITIZEN:
           return this.getCitizenMenu()

@@ -8,5 +8,6 @@ export const profileResolverFn: ResolveFn<IPersonDetails> = (route, state) => {
     const profils = inject(ProfileService);
     const authService = inject(AuthService);
 
-    return profils.getPersonById(authService.currentUser?.personId);
+    // return profils.getPersonById(authService.currentUser?.personId);
+    return profils.getCurrentPerson();
 }

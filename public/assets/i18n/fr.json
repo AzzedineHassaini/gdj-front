@@ -34,6 +34,13 @@
       "email": "Mail",
       "password": "Mot de passe",
       "passwordConfirm": "Confirmez le mot de passe",
+      "nationalRegister": "Registre national",
+      "lastName": "Nom",
+      "firstName": "Prénom",
+      "birthdate": "Date de naissance",
+      "birthplace": "Lieu de naissance",
+      "gender": "Genre",
+      "profilePicture": "Sélectionner",
       "login": "Se connecter",
       "logout": "Se déconnecter",
       "register": "S'enregistrer"
