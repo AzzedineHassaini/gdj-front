@@ -1,14 +1,17 @@
 import {Component, effect, signal} from '@angular/core';
-import {TranslateService } from "@ngx-translate/core";
+import {Router} from '@angular/router';
+import {TranslateService} from "@ngx-translate/core";
 import {toSignal} from "@angular/core/rxjs-interop";
 import { AuthService } from '../../../features/auth/services/auth.service';
 import {MenuItem} from "primeng/api";
 import {IAuth, UserRole} from "../../../features/auth/models/auth.model";
+import {ThemeService} from '../../services/theme.service';
+
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 
 export class HeaderComponent {
@@ -28,8 +31,10 @@ export class HeaderComponent {
   isConnected = toSignal(this.$auth.isConnected$)
 
   constructor(
-    readonly $auth: AuthService,
-    readonly $translate: TranslateService,
+    private readonly $auth: AuthService,
+    private readonly $translate: TranslateService,
+    private readonly $theme: ThemeService,
+    private readonly $router: Router,
   ) {
 
     this.$translate.onLangChange.subscribe(() => {
@@ -46,6 +51,7 @@ export class HeaderComponent {
 
   handleLogout(): void {
     this.$auth.logout()
+    this.$router.navigate(['home'])
   }
 
   selectEffect = effect(() => {
@@ -88,6 +94,14 @@ export class HeaderComponent {
       {
         label: this.$translate.instant('header.home'),
         routerLink: '/home'
+      },
+      {
+        label: this.$translate.instant('header.admin.registerAgent'),
+        routerLink: '/auth/register/agent'
+      },
+      {
+        label: this.$translate.instant('header.admin.registerAdmin'),
+        routerLink: '/auth/register/admin',
       }
     ]
   }
@@ -133,6 +147,27 @@ export class HeaderComponent {
         routerLink: '/profile'
       }
     ]
+  }
+
+  displayModal: boolean = false;
+
+  showModal() {
+    this.displayModal = true;
+  }
+
+  openProfil(){
+    RouterLink: '/profil'
+  }
+
+  toggleDark(){
+    this.$theme.toggleDarkTheme()
+  }
+
+  currentIcon = "pi pi-sun";
+  newIcon ="pi pi-moon";
+
+  toggleIcon(){
+    this.currentIcon = this.currentIcon === "pi pi-sun" ? this.newIcon : "pi pi-sun";
   }
 
 }

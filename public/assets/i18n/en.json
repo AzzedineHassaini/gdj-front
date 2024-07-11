@@ -28,7 +28,14 @@
     "header" : {
       "home" : "Home",
       "complaints" : "Complaints",
-      "profile": "Profile"
+      "profile": "Profile",
+      "close" : "Close",
+      "titlemodalprofil" : " Edit your Profile",
+      "majprofile" : "Update your profile",
+      "admin": {
+        "registerAgent": "Register an agent",
+        "registerAdmin": "Register an admin"
+      }
     },
     "auth": {
       "email": "Email",
@@ -43,6 +50,12 @@
       "profilePicture": "Browse",
       "login": "Login",
       "logout": "Logout",
-      "register": "Register"
+      "register": "Register",
+      "registerCitizen": "Register as Citizen",
+      "registerLawyer": "Register as Lawyer",
+      "successfullylogged": "You are successfully logged",
+      "errorlogged": "Login failed. Please check your credentials and try again.",
+      "titleloggedsuccess": "Authentification succes",
+      "titleloggederror": "Authentification fail"
     }
 }

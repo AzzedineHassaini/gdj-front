@@ -1,0 +1,68 @@
+@import "primeng/resources/themes/bootstrap4-dark-purple/theme.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
+
+
+body {
+    background-color: rgb(17, 3, 20);
+    color: white;
+}
+
+.p-component {
+    background-color: rgb(84, 43, 94);
+    border-color: rgb(84, 43, 94);
+    color: white;
+}
+.p-menuitem-content{
+    background-color: rgb(84, 43, 94);
+}
+.p-menuitem-text {
+    color: white;
+}
+.p-menuitem-link {
+    background-color: rgb(84, 43, 94);
+    color: white;
+}
+.p-menuitem-link:hover {
+    background-color: rgb(106, 61, 117);
+    border-radius: 8px;
+    color: white;
+}
+.p-inputtext {
+    background-color: rgb(84, 43, 94);
+    border-radius: 0px !important;
+    color: white;
+}
+.p-dropdown-trigger-icon {
+    color: white;
+}
+.p-dropdown-item {
+    color: white;
+    background-color: rgb(76, 34, 85);
+}
+.p-dropdown-item:hover {
+    background-color: rgb(84, 43, 94);
+    color: white;
+    border-radius: 5px;
+}
+
+.p-dialog-header {
+    background-color: rgb(89, 43, 100);
+    color: white;
+}
+.p-dialog-content {
+    background-color: rgb(89, 43, 100);
+    color: white;
+    a{
+        color: white;
+        text-decoration: none;
+    }
+}
+.ng-tns-c662934324-0{
+    color: white;
+    text-decoration: none;
+}
+.p-dialog-footer {
+    background-color: rgb(89, 43, 100);
+    color: white;;
+}
