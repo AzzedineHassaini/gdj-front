@@ -27,6 +27,13 @@
             <label for="birthDate">{{'profile.birthdate' | translate}}</label>
             <input type="date" id="birthDate" name="birthDate" formControlName="birthDate"/>
         </div>
+        
+        <br>
+
+        <!--<div>
+            <label for="deathDate">{{'profile.deathdate' | translate}}</label>
+            <input type="date" id="deathDate" name="deathDate" formControlName="deathDate"/>
+        </div>-->
     
         <br>
 
@@ -44,6 +51,7 @@
                 }
             </select>  
         </div>
+
         <br>
 
         <div formArrayName="addresses">
@@ -86,6 +94,17 @@
                     <input id="label" formControlName="label">
                 </div>
             </div>
+        </div>
+
+        <br>
+
+        <div>
+            <p-fileUpload 
+            name="file" 
+            accept="image/*"
+            maxFileSize="1000000" 
+            (onSelect)="onUpload($event)">
+          </p-fileUpload>
         </div>
 
         <!--<div>

@@ -18,14 +18,25 @@ export class ProfileService {
             throw new Error("Id is undefined");
         }
 
-        return this._client.get<IPersonDetails>(env.baseUrl + 'person/' + id + '/details')
+        return this._client.get<IPersonDetails>(env.baseUrl + 'person/' + id + '/details');
     }
 
     updateProfile(profileData: IPersonDetails): Observable<any> {
-        return this._client.put(env.baseUrl + 'person/' + profileData.id, profileData)
+        return this._client.put(env.baseUrl + 'person/' + profileData.id, profileData);
     }
 
     updateAddress(address: IAddress): Observable<any> {
-        return this._client.put(env.baseUrl + 'address/' + address.id, address)
+        return this._client.put(env.baseUrl + 'address/' + address.id, address);
     }
+
+    getFile(fileName: string): Observable<Blob> {
+        return this._client.get(env.baseUrl + 'image/' + fileName, { responseType: 'blob' });
+    }
+
+    uploadFile(file: File): Observable<any> {
+        const formData: FormData = new FormData();
+        formData.append('file', file, file.name);
+        return this._client.post(env.baseUrl + '/image', formData);
+    }
+
 }
