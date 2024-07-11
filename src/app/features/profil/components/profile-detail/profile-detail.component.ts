@@ -189,6 +189,13 @@ export class ProfileDetailComponent implements OnInit {
   }
 }
 
+
+
+
+
+
+
+
   /*selectedFiles: { [key: string]: File | null } = { profile: null, imprint: null };
   imgPreviews: { [key: string]: string | ArrayBuffer | null } = { profile: null, imprint: null };
   uploadedimgUrl: { [key: string]: string | null } = { profile: null, imprint: null };
