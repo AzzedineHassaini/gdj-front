@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { IAuth } from "../../features/auth/models/auth.model";
+import { IAuth } from '../models/auth.model';
 import { BehaviorSubject, catchError, map, Observable, of, tap } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { CookieService } from "ngx-cookie-service";
-import { ILoginForm } from "../../features/auth/form/login.form";
-import { env } from '../../../env/env';
-import { IRegisterForm } from "../../features/auth/form/register.form";
+import { ILoginForm } from '../form/login.form';
+import { env } from '../../../../env/env';
+import { IRegisterForm } from '../form/register.form';
 import { MessageService } from "primeng/api";
 import { TranslateService } from "@ngx-translate/core";
 

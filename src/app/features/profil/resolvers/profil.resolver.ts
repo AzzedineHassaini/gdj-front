@@ -2,7 +2,7 @@ import { inject } from "@angular/core";
 import { IPersonDetails } from "../models/person.models";
 import {ResolveFn} from "@angular/router";
 import { ProfileService } from "../services/profile.service";
-import { AuthService } from "../../../shared/services/auth.service";
+import { AuthService } from "../../auth/services/auth.service";
 
 export const profilResolverFn: ResolveFn<IPersonDetails> = (route, state) => {
     const profils = inject(ProfileService);
