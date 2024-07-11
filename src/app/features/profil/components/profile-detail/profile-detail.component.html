@@ -30,10 +30,12 @@
         
         <br>
 
-        <!--<div>
-            <label for="deathDate">{{'profile.deathdate' | translate}}</label>
-            <input type="date" id="deathDate" name="deathDate" formControlName="deathDate"/>
-        </div>-->
+        <div>
+            @if (userRole == 'AGENT') {
+                <label for="deathDate">{{'profile.deathdate' | translate}}</label>
+                <input type="date" id="deathDate" name="deathDate" formControlName="deathDate"/>
+            }
+        </div>
     
         <br>
 
@@ -51,7 +53,7 @@
                 }
             </select>  
         </div>
-
+        
         <br>
 
         <div formArrayName="addresses">
@@ -99,32 +101,26 @@
         <br>
 
         <div>
+            <label for="picture">{{'profile.imgProfile' | translate}}</label>
             <p-fileUpload 
-            name="file" 
-            accept="image/*"
-            maxFileSize="1000000" 
-            (onSelect)="onUpload($event)">
-          </p-fileUpload>
+                name="file" 
+                accept="image/*"
+                maxFileSize="1000000" 
+                (onSelect)="onUploadPicture($event)">
+            </p-fileUpload>
         </div>
-
-        <!--<div>
-            <label for="porfileImage">{{'profil.imgProfile' | translate}}</label>
-            <input type="file" id="profileImage" (change)="onFileSelected($event, 'profile')">
-        </div>
-        <div *ngIf="imgPreviews['profile']">
-            <img [src]="imgPreviews['profile']" width="200">
-        </div>
-
-        <br>
-        <br>
 
         <div>
-            <label for="imprint">{{'profil.imprint' | translate}}</label>
-            <input type="file" id="imprint" (change)="onFileSelected($event, 'imprint')">
+            @if (userRole == 'AGENT') {
+                <label for="imprint">{{'profile.imprint' | translate}}</label>
+                <p-fileUpload 
+                    name="file" 
+                    accept="image/*"
+                    maxFileSize="1000000" 
+                    (onSelect)="onUploadImprint($event)">
+                </p-fileUpload>
+            }
         </div>
-        <div *ngIf="imgPreviews['imprint']">
-            <img [src]="imgPreviews['imprint']" width="200">
-        </div>-->
 
         <input type="submit" value="{{'profile.submit' | translate}}">
     </form>

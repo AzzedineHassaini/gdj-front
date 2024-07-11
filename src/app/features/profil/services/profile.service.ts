@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { env } from "../../../../env/env";
 import { IPersonDetails } from "../models/profile.models";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { IAddress } from "../models/profile.models";
 
 @Injectable({
@@ -31,5 +31,16 @@ export class ProfileService {
 
     updateAddress(address: IAddress): Observable<any> {
         return this._client.put(env.baseUrl + 'address/' + address.id, address);
+    }
+
+    uploadFile(file: File): Observable<void> {
+        const formData: FormData = new FormData();
+        formData.append('file', file, file.name);
+
+        return this._client.post<void>(env.baseUrl + 'image', formData, {
+            headers: new HttpHeaders({
+                'Accept': 'application/json'
+            })
+        });
     }
 }

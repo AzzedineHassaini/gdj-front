@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAddress } from '../../models/profile.models';
 import { IPhone } from '../../models/profile.models';
+import { AuthService } from '../../../auth/services/auth.service';
 
 
 @Component({
@@ -20,7 +21,9 @@ export class ProfileDetailComponent implements OnInit {
   selectedFile: File | null = null;
   imageUrl: string | undefined;
   imageName: string | undefined;
-  uploadedFile: File | null = null;
+  pictureFile: File | null = null;
+  imprintFile: File | null = null;
+  userRole: string | undefined;
 
   genderOptions = [
     {value: 'MALE', label: 'profile.male'},
@@ -31,28 +34,31 @@ export class ProfileDetailComponent implements OnInit {
   constructor(
     private readonly _route: ActivatedRoute,
     private fb: FormBuilder,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private authService: AuthService
   ) {
 
     this.person$ = _route.data.pipe( map( resolveList => resolveList[0] ));
 
     this.formPerson = this.fb.group({
-      id: ['', Validators.required],
-      lastName: ['', Validators.required],
-      firstName: ['', Validators.required],
-      nationalRegister: ['', Validators.required],
-      birthDate: ['', Validators.required],
-      birthPlace: ['', Validators.required],
-      gender: ['', Validators.required],
+      id: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      nationalRegister: ['', [Validators.required]],
+      birthDate: ['', [Validators.required]],
+      birthPlace: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
       addresses: this.fb.array([]),
       phones: this.fb.array([]),
-      //deathDate: ['', Validators.required],
-      picture: ['', Validators.required],
-      //imprint: ['', Validators.required],
+      deathDate: [''],
+      picture: ['', [Validators.required]],
+      imprint: ['', [Validators.required]],
     });
+    
   }
 
   ngOnInit(): void {
+
    this.person$.subscribe((person) => {
       this.formPerson.patchValue({
         id: person.id,
@@ -62,14 +68,16 @@ export class ProfileDetailComponent implements OnInit {
         birthDate: person.birthDate,
         birthPlace: person.birthPlace,
         gender: person.gender,
-        //deathDate: person.deathDate,
+        deathDate: person.deathDate,
         picture: person.picture,
-        /*imprint: person.imprint,
-        lawyer: person.lawyer*/
+        imprint: person.imprint,
       });
       this.setAddresses(person.addresses);
       this.setPhones(person.phones);
    });
+
+   this.userRole = this.authService.currentUser?.role;
+   
   }
 
 
@@ -80,14 +88,16 @@ export class ProfileDetailComponent implements OnInit {
 
   setAddresses(addresses: IAddress[]): void {
     const addressFGs = addresses.map(address => this.fb.group({
-      id: [address.id, Validators.required],
-      street: [address.street, Validators.required],
-      number: [address.number, Validators.required],
-      city: [address.city, Validators.required],
-      postCode: [address.postCode, Validators.required],
-      country: [address.country, Validators.required],
-      label: [address.label, Validators.required]
+      id: [address.id, [Validators.required]],
+      street: [address.street, [Validators.required]],
+      number: [address.number, [Validators.required]],
+      city: [address.city, [Validators.required]],
+      postCode: [address.postCode, [Validators.required]],
+      country: [address.country, [Validators.required]],
+      label: [address.label, [Validators.required]]
     }));
+
+    
 
     const addressFormArray = this.fb.array(addressFGs);
     this.formPerson.setControl('addresses', addressFormArray);
@@ -99,40 +109,63 @@ export class ProfileDetailComponent implements OnInit {
 
   setPhones(phones: IPhone[]): void {
     const phoneFGs = phones.map(phone => this.fb.group({
-      number: [phone.number, Validators.required],
-      label: [phone.label, Validators.required]
+      number: [phone.number, [Validators.required]],
+      label: [phone.label, [Validators.required]]
     }));
 
     const phoneFormArray = this.fb.array(phoneFGs);
     this.formPerson.setControl('phones', phoneFormArray);
   }
 
-  onUpload(event: any) {
+  onUploadPicture(event: any) {
     if (event.files.length > 0) {
-      this.uploadedFile  = event.files[0];
+      this.pictureFile  = event.files[0];
+    }
+  }
+
+  onUploadImprint(event: any) {
+    if (event.files.length > 0) {
+      this.imprintFile  = event.files[0];
     }
   }
 
   onSubmit() {
+    console.log(this.pictureFile?.name);
+    console.log(this.imprintFile?.name);
+    console.log(this.formPerson.value)
     if (this.formPerson.valid) {
       const personData: IPersonDetails = this.formPerson.value;
+      personData.picture = this.pictureFile?.name;
+      personData.imprint = this.imprintFile?.name;
       console.log("PERSONDATA : ", personData);
 
-      if (this.uploadedFile) {
-        this.profileService.uploadFile(this.uploadedFile).subscribe({
-          next: (fileName: string) => {
-            personData.picture = fileName;
-            this.submitProfileData(personData);
+      if (this.pictureFile) {
+        this.profileService.uploadFile(this.pictureFile).subscribe(
+          () => {
+            console.log('Fichier picture uploadé avec succès');
           },
-          error: (error) => {
-            console.log('Erreur lors du téléchargement du fichier', error);
+          (error) => {
+            console.error('Erreur lors de l\'upload du fichier picture', error);
           }
-        });
+        );
       } else {
-        this.submitProfileData(personData);
+        console.log('Aucun fichier picture sélectionné');
       }
 
-      /*this.profileService.updateProfile(personData).subscribe({
+      if (this.imprintFile) {
+        this.profileService.uploadFile(this.imprintFile).subscribe(
+          () => {
+            console.log('Fichier imprint uploadé avec succès');
+          },
+          (error) => {
+            console.error('Erreur lors de l\'upload du fichier imprint', error);
+          }
+        );
+      } else {
+        console.log('Aucun fichier imprint sélectionné');
+      }
+
+      this.profileService.updateProfile(personData).subscribe({
         next: (response) => {
           console.log('Profil mis à jour avec succès', response);
 
@@ -152,7 +185,7 @@ export class ProfileDetailComponent implements OnInit {
         error: (error) => {
           console.log('Erreur lors de la mise à jour du profil', error);
         }
-      });*/
+      });
     } else {
       console.log('Formulaire invalide');
       Object.keys(this.formPerson.controls).forEach(key => {
@@ -164,66 +197,24 @@ export class ProfileDetailComponent implements OnInit {
     }
   }
 
-  submitProfileData(personData: IPersonDetails) {
-    this.profileService.updateProfile(personData).subscribe({
-      next: (response) => {
-        console.log('Profil mis à jour avec succès', response);
 
-        const addressData: IAddress[] = personData.addresses;
-        const updateAddressRequest = addressData.map(address => this.profileService.updateAddress(address));
 
-        forkJoin(updateAddressRequest).subscribe({
-          next: (response) => {
-            console.log("Toutes les adresses ont été mises à jour avec succès", response);
-          },
-          error: (error) => {
-            console.log("Erreur lors de la mise à jour des adresses", error);
-          }
-        });
 
-      },
-      error: (error) => {
-        console.log('Erreur lors de la mise à jour du profil', error);
-      }
-    });
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
-
-  /*selectedFiles: { [key: string]: File | null } = { profile: null, imprint: null };
-  imgPreviews: { [key: string]: string | ArrayBuffer | null } = { profile: null, imprint: null };
-  uploadedimgUrl: { [key: string]: string | null } = { profile: null, imprint: null };
-
-  constructor(private http: HttpClient) {}
-
-  onFileSelected(event: Event, type: string): void {
-    const fileInput = event.target as HTMLInputElement;
-
-    if (fileInput.files && fileInput.files.length > 0) {
-      this.selectedFiles[type] = fileInput.files[0];
-
-      const reader = new FileReader();
-      reader.onload = () => {
-          this.imgPreviews[type] = reader.result;
-      };
-
-      const selectedFile = this.selectedFiles[type];
-      if (selectedFile) {
-        reader.readAsDataURL(selectedFile);
-      }
-    }
-  }
-
-  onSubmit(): void {
-    for (const type in this.selectedFiles) {
-      const selectedFile = this.selectedFiles[type];
-
-      if (selectedFile) {
-        const formData = new FormData();
-        formData.append('file', selectedFile);
-
-        this.http.post<{imageUrl: string}>('http://localhost:8080/upload', formData).subscribe(response => {
-          this.uploadedimgUrl[type] = response.imageUrl;
-        })
-      }
-    }
-  }*/

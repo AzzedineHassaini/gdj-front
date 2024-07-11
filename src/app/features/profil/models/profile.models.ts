@@ -9,7 +9,6 @@ export interface IPersonDetails {
     deathDate?: Date;
     picture?: string;
     imprint?: string;
-    lawyer?: IPersonDetails;
     addresses: IAddress[];
     phones: IPhone[];
 }
