@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {AuthService} from "../../../../shared/services/auth.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import { AuthService } from '../../services/auth.service';
 import {REGISTER_FORM} from "../../form/register.form";
 
 interface Gender{

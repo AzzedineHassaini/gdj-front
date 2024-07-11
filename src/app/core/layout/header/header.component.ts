@@ -1,8 +1,8 @@
-import {Component, effect, EventEmitter, Output, signal} from '@angular/core';
+import {Component, effect, signal} from '@angular/core';
 import {Router} from '@angular/router';
 import {TranslateService} from "@ngx-translate/core";
 import {toSignal} from "@angular/core/rxjs-interop";
-import {AuthService, RegisterRole} from "../../../shared/services/auth.service";
+import { AuthService } from '../../../features/auth/services/auth.service';
 import {MenuItem} from "primeng/api";
 import {IAuth, UserRole} from "../../../features/auth/models/auth.model";
 import {ThemeService} from '../../services/theme.service';
@@ -23,8 +23,6 @@ export class HeaderComponent {
   adminMenu: MenuItem[] = []
 
   menuItems: MenuItem[] = [];
-
-  @Output() messageEvent = new EventEmitter<RegisterRole>();
 
   selectedOption = signal<'fr' | 'en'>('fr')
   dropdownOptions = ['en','fr']
