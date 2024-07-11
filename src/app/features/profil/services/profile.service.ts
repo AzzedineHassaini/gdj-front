@@ -18,7 +18,7 @@ export class ProfileService {
             throw new Error("Id is undefined");
         }
 
-        return this._client.get<IPersonDetails>(env.baseUrl + 'person/' + id + '/details')
+        return this._client.get<IPersonDetails>(env.baseUrl + 'person/' + id + '/details');
     }
 
     getCurrentPerson(){
@@ -26,10 +26,10 @@ export class ProfileService {
     }
 
     updateProfile(profileData: IPersonDetails): Observable<any> {
-        return this._client.put(env.baseUrl + 'person/' + profileData.id, profileData)
+        return this._client.put(env.baseUrl + 'person/' + profileData.id, profileData);
     }
 
     updateAddress(address: IAddress): Observable<any> {
-        return this._client.put(env.baseUrl + 'address/' + address.id, address)
+        return this._client.put(env.baseUrl + 'address/' + address.id, address);
     }
 }

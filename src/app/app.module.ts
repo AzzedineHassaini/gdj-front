@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClient, provideHttpClient, withInterceptors} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, provideHttpClient} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import {TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 function httpTranslationLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
