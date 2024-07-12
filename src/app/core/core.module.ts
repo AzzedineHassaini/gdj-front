@@ -17,6 +17,7 @@ import { ThemeService } from './services/theme.service';
 import { Button, ButtonDirective } from "primeng/button";
 import { ToastModule } from "primeng/toast";
 import {Ripple} from "primeng/ripple";
+import {MenuModule} from "primeng/menu";
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {Ripple} from "primeng/ripple";
         ButtonDirective,
         Button,
         ToastModule,
-        Ripple
+        Ripple,
+        MenuModule
     ],
   providers: [
     ThemeService
