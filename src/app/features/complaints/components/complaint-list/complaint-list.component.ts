@@ -2,6 +2,7 @@ import {Component, computed, inject} from '@angular/core';
 import {ComplaintService} from "../../services/complaint.service";
 import {toSignal} from "@angular/core/rxjs-interop";
 import {delay} from "rxjs";
+import { Complaint, ComplaintParams } from '../../models/complaint-model';
 
 @Component({
   selector: 'app-complaint-list',
@@ -10,14 +11,45 @@ import {delay} from "rxjs";
 })
 export class ComplaintListComponent {
 
+  complaints: Complaint[] = [];
+  totalRecords!: number;
+  first: number = 0;
+  page: number = 0;
+  rows: number = 0;
+  totalPages!: number;
+  params!: ComplaintParams;
+  loading: boolean = false;
 
-  private readonly $complaints = inject( ComplaintService )
+  constructor(private _complaintService: ComplaintService) {}
 
-  complaints = toSignal( this.$complaints.getComplaints().pipe(delay(2000)) )
+  ngOnInit() {
+    this.loading = true;
+  }
 
-  loading = computed(() => {
-    const complaints = this.complaints()
-    return !complaints
-  })
+  loadComplaints() {
+    this.loading = true;
+
+    setTimeout(() => {
+      this._complaintService.getAll(this.params, this.page, this.rows).subscribe({
+        next: (res) => {
+          this.complaints = res.content
+          this.totalPages = res.totalPages
+          this.totalRecords = res.totalElements
+          this.loading = false;
+        },
+        error: (error) => {
+          console.log(error)
+        },
+        complete: () => {}
+      })
+    }, 1000);
+  }
+
+  pageChange(event: any) {
+    this.rows = event.rows;
+    this.first = event.first;
+    this.page = event.first / event.rows;
+    this.loadComplaints();
+  }
 
 }

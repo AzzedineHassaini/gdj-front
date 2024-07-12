@@ -1,40 +1,39 @@
-<h2> Complaints </h2>
+<p-table
+  [value]="complaints"
+  [lazy]="true"
+  (onLazyLoad)="loadComplaints()"
+  dataKey="id"
+  [first]="first"
+  [rows]="rows"
+  [tableStyle]="{ 'min-width': '75rem' }"
+  [paginator]="true"
+  [totalRecords]="totalRecords"
+  [loading]="loading"
+  (onPage)="pageChange($event)"
+  [rowsPerPageOptions]="[5, 10, 20]"
+>
 
-@if( loading() ){
-  <div class="flex m-6 justify-content-center">
-    <div>
-      <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
-    </div>
-  </div>
-}
-@else {
-  <div>
-    @if (complaints(); as complaints){
-      <p-table [value]="complaints">
-
-        <ng-template pTemplate="header">
-          <tr>
-            <th>n° dossier</th>
-            <th>status</th>
-            <th>date</th>
-            <th>complainant</th>
-            <th>agent</th>
-          </tr>
-        </ng-template>
-
-        <ng-template pTemplate="body" let-complaint>
-          <tr>
-            <td>{{complaint.fileNumber}}</td>
-            <td>{{complaint.status}}</td>
-            <td>{{complaint.date}}</td>
-            <td>{{complaint.complainant}}</td>
-            <td>{{complaint.agent}}</td>
-          </tr>
-        </ng-template>
-
-      </p-table>
-    }
-  </div>
-}
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 4rem"></th>
+      <th>
+        fileNumber
+      </th>
+      <th>
+        Date
+      </th>
+    </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-complaint>
+      <tr>
+        <td>
+          <p-tableCheckbox [value]="complaint"></p-tableCheckbox>
+        </td>
+        <td>{{ complaint.fileNumber }}</td>
+        <td>{{ complaint.date }}</td>
+      </tr>
+    </ng-template>
 
 
+
+</p-table>
