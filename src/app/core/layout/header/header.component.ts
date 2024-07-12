@@ -1,5 +1,5 @@
 import {Component, effect, signal} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {TranslateService} from "@ngx-translate/core";
 import {toSignal} from "@angular/core/rxjs-interop";
 import { AuthService } from '../../../features/auth/services/auth.service';
@@ -23,9 +23,11 @@ export class HeaderComponent {
   adminMenu: MenuItem[] = []
 
   menuItems: MenuItem[] = [];
+  items: MenuItem[] = [];
 
   selectedOption = signal<'fr' | 'en'>('fr')
   dropdownOptions = ['en','fr']
+
 
   currentUser: IAuth | undefined;
   isConnected = toSignal(this.$auth.isConnected$)
@@ -113,10 +115,6 @@ export class HeaderComponent {
         routerLink: '/home'
       },
       {
-        label: this.$translate.instant('header.profile'),
-        routerLink: '/profile'
-      },
-      {
         label: this.$translate.instant('header.complaints'),
         routerLink: '/complaints'
       }
@@ -129,10 +127,6 @@ export class HeaderComponent {
         label: this.$translate.instant('header.home'),
         routerLink: '/home'
       },
-      {
-        label: this.$translate.instant('header.profile'),
-        routerLink: '/profile'
-      }
     ]
   }
 
@@ -142,10 +136,6 @@ export class HeaderComponent {
         label: this.$translate.instant('header.home'),
         routerLink: '/home'
       },
-      {
-        label: this.$translate.instant('header.profile'),
-        routerLink: '/profile'
-      }
     ]
   }
 
@@ -156,7 +146,8 @@ export class HeaderComponent {
   }
 
   openProfil(){
-    RouterLink: '/profil'
+    RouterLink: "/profile";
+    this.displayModal = false;
   }
 
   toggleDark(){
@@ -170,4 +161,17 @@ export class HeaderComponent {
     this.currentIcon = this.currentIcon === "pi pi-sun" ? this.newIcon : "pi pi-sun";
   }
 
+
+  ngOnInit() {
+    this.items = [
+      {
+        label: 'Inscription',
+        items: [
+          {label: 'Citoyen', routerLink: "/auth/register/citizen"},
+          {label: 'Avocat', routerLink:('/auth/register/lawyer')}
+        ]
+      }
+    ];
+  }
 }
+

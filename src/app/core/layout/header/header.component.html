@@ -33,8 +33,8 @@
                       [(visible)]="displayModal"
                       [modal]="true"
                       [style]="{width: '400px'}">
-              <a routerLink="profile"
-                (click)="displayModal=false">{{'header.majprofile' | translate}}</a>
+              <a routerLink="/profile"
+                (click)="openProfil()">{{'header.majprofile' | translate}}</a>
               <ng-template pTemplate="footer">
                 <p-button [rounded]="true"
                           [outlined]="true"
@@ -51,14 +51,10 @@
                       [outlined]="true"
                       styleClass="smol-btn2"
                       label="{{ 'auth.login' | translate }}"></p-button>
-            <p-button routerLink="/auth/register/citizen"
-                      [outlined]="true"
-                      styleClass="smol-btn2"
-                      label="{{ 'auth.registerCitizen' | translate }}"></p-button>
-            <p-button routerLink="/auth/register/lawyer"
-                      [outlined]="true"
-                      styleClass="smol-btn2"
-                      label="{{ 'auth.registerLawyer' | translate }}"></p-button>
+
+              <div>
+                <p-menu [model]="items"></p-menu>
+              </div>
           </div>
         }
 
