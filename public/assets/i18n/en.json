@@ -28,6 +28,7 @@
     "header" : {
       "home" : "Home",
       "complaints" : "Complaints",
+      "citizens" : "Citizens",
       "profile": "Profile",
       "close" : "Close",
       "titlemodalprofil" : " Edit your Profile",
@@ -46,7 +47,8 @@
       "firstName": "First name",
       "birthdate": "Birthdate",
       "birthplace": "Birthplace",
-      "gender": "Select your gender",
+      "genderSelect": "Select your gender",
+      "gender": "Gender",
       "profilePicture": "Browse",
       "login": "Login",
       "logout": "Logout",

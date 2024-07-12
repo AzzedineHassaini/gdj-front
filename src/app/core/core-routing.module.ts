@@ -23,6 +23,10 @@ const routes: Routes = [
       {
         path: 'complaint',
         loadChildren: () => import ('../features/complaints/complaints.module').then(m => m.ComplaintsModule),
+      },
+      {
+        path: 'persons',
+        loadChildren: () => import ('../features/persons/persons.module').then(m => m.PersonsModule),
       }
     ]
   }
