@@ -8,7 +8,7 @@ export interface IRegisterForm {
   birthDate: Date,
   birthPlace: string,
   gender: string,
-  picture: string
+  picture?: string
 }
 
 export const REGISTER_FORM = {

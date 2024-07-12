@@ -45,10 +45,11 @@
       </ng-template>
     </p-dropdown>
     <p-fileUpload class="mb-3"
-      name="profilePicture"
-      url="http://localhost:8080/upload"
+      name="file" 
       accept="image/*"
-      maxFileSize="1000000">
+      [showUploadButton]="false"
+      maxFileSize="1000000" 
+      (onSelect)="onUploadPicture($event)">
     </p-fileUpload>
 
     <div>
