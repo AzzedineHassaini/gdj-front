@@ -119,6 +119,10 @@ export class HeaderComponent {
       {
         label: this.$translate.instant('header.complaints'),
         routerLink: '/complaints'
+      },
+      {
+        label: this.$translate.instant('header.citizens'),
+        routerLink: '/persons'
       }
     ]
   }

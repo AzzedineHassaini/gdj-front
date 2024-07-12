@@ -28,6 +28,7 @@
     "header" : {
         "home" : "Accueil",
         "complaints" : "Plaintes",
+        "citizens" : "Citoyens",
         "profile": "Profil",
         "close" : "Fermer",
         "titlemodalprofil" : "Gestion de votre profil",
@@ -46,6 +47,7 @@
       "firstName": "Prénom",
       "birthdate": "Date de naissance",
       "birthplace": "Lieu de naissance",
+      "genderSelect": "Genre",
       "gender": "Genre",
       "profilePicture": "Sélectionner",
       "login": "Se connecter",
