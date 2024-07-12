@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IAuth } from '../models/auth.model';
 import { BehaviorSubject, catchError, map, Observable, of, tap } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { CookieService } from "ngx-cookie-service";
 import { ILoginForm } from '../form/login.form';
 import { env } from '../../../../env/env';
@@ -106,6 +106,17 @@ export class AuthService {
     if( userCookie ){
       this.currentUser = JSON.parse( atob(userCookie) )
     }
+  }
+
+  uploadFile(file: File): Observable<void> {
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+
+    return this._client.post<void>(env.baseUrl + 'image', formData, {
+        headers: new HttpHeaders({
+            'Accept': 'application/json'
+        })
+    });
   }
 
 }
