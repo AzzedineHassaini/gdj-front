@@ -11,11 +11,14 @@ import {PaginatorModule} from "primeng/paginator";
 import {ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {InputMaskModule} from "primeng/inputmask";
+import {ComplaintsModule} from "../complaints/complaints.module";
+import { PersonDetailComponent } from './components/person-detail/person-detail.component';
 
 
 @NgModule({
   declarations: [
-    PersonListComponent
+    PersonListComponent,
+    PersonDetailComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,8 @@ import {InputMaskModule} from "primeng/inputmask";
     PaginatorModule,
     ReactiveFormsModule,
     InputTextModule,
-    InputMaskModule
+    InputMaskModule,
+    ComplaintsModule
   ]
 })
 export class PersonsModule { }

@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {PersonService} from "../../services/person.service";
-import {Person, PersonParams} from "../../models/person.model";
+import {PagedPersons, Person, PersonParams} from "../../models/person.model";
 import {Gender} from "../../../profil/models/profile.models";
+import {Router} from "@angular/router";
+import {AuthService} from "../../../auth/services/auth.service";
+import {UserRole} from "../../../auth/models/auth.model";
+import {Observable} from "rxjs";
 
 
 interface GenderLabel{
@@ -36,7 +40,9 @@ export class PersonListComponent implements OnInit {
 
   loading: boolean = false;
 
-  constructor(private _personService: PersonService) {}
+  constructor(private _personService: PersonService,
+              private _authService: AuthService,
+              private _router: Router) {}
 
   ngOnInit() {
     this.loading = true;
@@ -62,7 +68,17 @@ export class PersonListComponent implements OnInit {
     console.log('load persons')
 
     setTimeout(() => {
-      this._personService.getAll(this.params, this.page, this.rows).subscribe({
+      let func: () => Observable<PagedPersons>
+      if (this._authService.currentUser?.role === UserRole.AGENT) {
+        func = () => this._personService.getAll(this.params, this.page, this.rows)
+      } else if (this._authService.currentUser?.role === UserRole.LAWYER) {
+        const lawyerId: number = this._authService.currentUser?.personId || 0
+        func = () => this._personService.getLawyerClients(lawyerId, this.params, this.page, this.rows)
+      } else {
+        console.log("Role is not Agent or Lawyer")
+        return
+      }
+      func().subscribe({
           next: (res) => {
             this.persons = res.content
             this.totalPages = res.totalPages
@@ -85,6 +101,10 @@ export class PersonListComponent implements OnInit {
     this.first = event.first
     this.page = event.first / event.rows
     this.loadPersons()
+  }
+
+  viewDetails(id: number) {
+    this._router.navigate(['/persons', id])
   }
 
 }
