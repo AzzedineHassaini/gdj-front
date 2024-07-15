@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+  background-color: whitesmoke;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -46,11 +46,13 @@ p-inputGroupAddon {
 }
 
 input[pInputText], input[pPassword] {
-  width: calc(100% - 40px); /* Ajuster pour inclure l'add-on */
+  width: calc(100% - 40px);
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  background-color: white;
+  color: black;
 }
 
 p-button {
