@@ -105,6 +105,7 @@
             <p-fileUpload 
                 name="file" 
                 accept="image/*"
+                [showUploadButton]="false"
                 maxFileSize="1000000" 
                 (onSelect)="onUploadPicture($event)">
             </p-fileUpload>
@@ -116,6 +117,7 @@
                 <p-fileUpload 
                     name="file" 
                     accept="image/*"
+                    [showUploadButton]="false"
                     maxFileSize="1000000" 
                     (onSelect)="onUploadImprint($event)">
                 </p-fileUpload>
