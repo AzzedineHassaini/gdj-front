@@ -67,11 +67,12 @@
             {{ 'auth.gender' | translate }}
           </th>
           <th>
-            {{ 'auth.birthplace' | translate }}
-          </th>
-          <th>
             {{ 'auth.birthdate' | translate }}
           </th>
+          <th>
+            {{ 'auth.birthplace' | translate }}
+          </th>
+          <th></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-person>
@@ -80,8 +81,9 @@
           <td>{{ person.firstname }}</td>
           <td>{{ person.nationalRegister }}</td>
           <td>{{ translateGender(person.gender) | translate }}</td>
-          <td>{{ person.birthDate }}</td>
+          <td>{{ person.birthDate | customDateFormat }}</td>
           <td>{{ person.birthPlace }}</td>
+          <td><p-button (onClick)="viewDetails(person.id)" >{{ 'complaint.viewDetails' | translate }}</p-button></td>
         </tr>
       </ng-template>
     </p-table>
