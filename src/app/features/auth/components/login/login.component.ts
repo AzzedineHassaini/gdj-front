@@ -29,7 +29,7 @@ export class LoginComponent {
       next: (auth) => {
         console.log(this._auth.currentUser)
 
-        this._router.navigate(['home']),
+        this._router.navigate(['home'])
 
         console.log("test")
       },

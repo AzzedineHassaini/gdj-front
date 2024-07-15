@@ -14,6 +14,9 @@ import { ButtonModule } from 'primeng/button';
     ComplaintListComponent,
     CustomDateFormatPipe
   ],
+  exports: [
+    CustomDateFormatPipe
+  ],
   imports: [
     CommonModule,
     ButtonModule,
