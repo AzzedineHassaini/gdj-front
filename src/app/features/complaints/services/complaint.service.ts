@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ComplaintParams, PagedComplaints } from '../models/complaint-model';
+import { ComplaintDetail, ComplaintParams, PagedComplaints } from '../models/complaint-model';
 import { env } from '../../../../env/env';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -26,5 +27,9 @@ export class ComplaintService {
     }
 
     return this._client.get<PagedComplaints>(`${env.baseUrl}complaint`, { params : params })
+  }
+
+  getComplaint(id: number): Observable<ComplaintDetail> {
+    return this._client.get<ComplaintDetail>(`${env.baseUrl}complaint/${id}`);
   }
 }

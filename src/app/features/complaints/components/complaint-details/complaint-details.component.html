@@ -1,0 +1,19 @@
+<h2>Détails de la plainte n°{{ id }}</h2>
+<div>
+    <p><strong>Numéro de dossier : </strong>{{ complaint?.fileNumber }}</p>
+</div>
+<div>
+    <p><strong>Date : </strong>{{ complaint?.date }}</p>
+</div>
+<div>
+    <p><strong>Plaignant : </strong>{{ complaint?.complainant?.firstname }} {{ complaint?.complainant?.name }}</p>
+</div>
+<div>
+    <p><strong>Agent : </strong>{{ complaint?.agent?.firstname }} {{ complaint?.agent?.name }}</p>
+</div>
+<div>
+    <p><strong>Personne concernée : </strong></p>
+    <div *ngFor="let person of complaint?.personConcerned; let i = index">
+        <p>{{ person.firstname }} {{ person.name }}</p>
+    </div>
+</div>
