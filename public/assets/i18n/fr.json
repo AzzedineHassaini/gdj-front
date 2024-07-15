@@ -62,5 +62,18 @@
       "titleloggederror": "Authentification échouée",
       "successfullylogged": "Connecter avec succès",
       "errorlogged": "Connexion échouée"
+    },
+    "complaint": {
+      "fileNumber": "Numéro de dossier",
+      "status": "Statut",
+      "date": "Date",
+      "complaint": "Plaignant",
+      "agent": "Agent",
+      "viewDetails" : "Voir détails",
+      "statusType": {
+        "registered": "Enregistrée",
+        "in_progress": "En cours",
+        "closed": "Fermée"
+      }
     }
 }

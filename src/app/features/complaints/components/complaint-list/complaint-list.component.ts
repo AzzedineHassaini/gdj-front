@@ -1,7 +1,7 @@
 import {Component, computed, inject} from '@angular/core';
 import {ComplaintService} from "../../services/complaint.service";
-import {toSignal} from "@angular/core/rxjs-interop";
-import {delay} from "rxjs";
+import { Complaint, ComplaintParams } from '../../models/complaint-model';
+import { Status } from '../../models/complaint-model';
 
 @Component({
   selector: 'app-complaint-list',
@@ -10,14 +10,56 @@ import {delay} from "rxjs";
 })
 export class ComplaintListComponent {
 
+  complaints: Complaint[] = [];
+  totalRecords!: number;
+  first: number = 0;
+  page: number = 0;
+  rows: number = 5;
+  totalPages!: number;
+  params!: ComplaintParams;
+  loading: boolean = false;
 
-  private readonly $complaints = inject( ComplaintService )
+  statusTranslations = {
+    [Status.REGISTERED]: "complaint.statusType.registered",
+    [Status.IN_PROGRESS]: "complaint.statusType.in_progress",
+    [Status.CLOSED]: "complaint.statusType.closed",
+  }
 
-  complaints = toSignal( this.$complaints.getComplaints().pipe(delay(2000)) )
+  constructor(private _complaintService: ComplaintService) {}
 
-  loading = computed(() => {
-    const complaints = this.complaints()
-    return !complaints
-  })
+  ngOnInit() {
+    this.loading = true;
+  }
+
+  loadComplaints() {
+    this.loading = true;
+
+    setTimeout(() => {
+      this._complaintService.getAll(this.params, this.page, this.rows).subscribe({
+        next: (res) => {
+          this.complaints = res.content
+          console.log("COMPLAINT : ", this.complaints)
+          this.totalPages = res.totalPages
+          this.totalRecords = res.totalElements
+          this.loading = false;
+        },
+        error: (error) => {
+          console.log(error)
+        },
+        complete: () => {}
+      })
+    }, 1000);
+  }
+
+  pageChange(event: any) {
+    this.rows = event.rows;
+    this.first = event.first;
+    this.page = event.first / event.rows;
+    this.loadComplaints();
+  }
+
+  translateStatus(status: Status): string {
+    return this.statusTranslations[status] || status;
+  }
 
 }
