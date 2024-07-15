@@ -15,25 +15,32 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th style="width: 4rem"></th>
       <th>
-        fileNumber
+        {{ 'complaint.fileNumber' | translate }}
       </th>
       <th>
-        Date
+        {{ 'complaint.status' | translate }}
       </th>
+      <th>
+        {{ 'complaint.date' | translate }}
+      </th>
+      <th>
+        {{ 'complaint.complaint' | translate }}
+      </th>
+      <th>
+        {{ 'complaint.agent' | translate }}
+      </th>
+      <th></th>
     </tr>
     </ng-template>
     <ng-template pTemplate="body" let-complaint>
       <tr>
-        <td>
-          <p-tableCheckbox [value]="complaint"></p-tableCheckbox>
-        </td>
         <td>{{ complaint.fileNumber }}</td>
-        <td>{{ complaint.date }}</td>
+        <td>{{ translateStatus(complaint.status) | translate }}</td>
+        <td>{{ complaint.date | customDateFormat }}</td>
+        <td>{{ complaint.complaint.firstname }} {{ complaint.complaint.name }}</td>
+        <td>{{ complaint.agent.firstname }} {{ complaint.agent.name }}</td>
+        <td><p-button label="{{'complaint.viewDetails' | translate}}"></p-button></td>
       </tr>
     </ng-template>
-
-
-
 </p-table>

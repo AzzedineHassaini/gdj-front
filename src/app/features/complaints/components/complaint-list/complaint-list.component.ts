@@ -1,8 +1,7 @@
 import {Component, computed, inject} from '@angular/core';
 import {ComplaintService} from "../../services/complaint.service";
-import {toSignal} from "@angular/core/rxjs-interop";
-import {delay} from "rxjs";
 import { Complaint, ComplaintParams } from '../../models/complaint-model';
+import { Status } from '../../models/complaint-model';
 
 @Component({
   selector: 'app-complaint-list',
@@ -15,10 +14,16 @@ export class ComplaintListComponent {
   totalRecords!: number;
   first: number = 0;
   page: number = 0;
-  rows: number = 0;
+  rows: number = 5;
   totalPages!: number;
   params!: ComplaintParams;
   loading: boolean = false;
+
+  statusTranslations = {
+    [Status.REGISTERED]: "complaint.statusType.registered",
+    [Status.IN_PROGRESS]: "complaint.statusType.in_progress",
+    [Status.CLOSED]: "complaint.statusType.closed",
+  }
 
   constructor(private _complaintService: ComplaintService) {}
 
@@ -33,6 +38,7 @@ export class ComplaintListComponent {
       this._complaintService.getAll(this.params, this.page, this.rows).subscribe({
         next: (res) => {
           this.complaints = res.content
+          console.log("COMPLAINT : ", this.complaints)
           this.totalPages = res.totalPages
           this.totalRecords = res.totalElements
           this.loading = false;
@@ -50,6 +56,10 @@ export class ComplaintListComponent {
     this.first = event.first;
     this.page = event.first / event.rows;
     this.loadComplaints();
+  }
+
+  translateStatus(status: Status): string {
+    return this.statusTranslations[status] || status;
   }
 
 }

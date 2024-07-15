@@ -59,5 +59,18 @@
       "errorlogged": "Login failed. Please check your credentials and try again.",
       "titleloggedsuccess": "Authentification succes",
       "titleloggederror": "Authentification fail"
+    },
+    "complaint": {
+      "fileNumber": "File number",
+      "status": "Status",
+      "date": "Date",
+      "complaint": "Complaint",
+      "agent": "Agent",
+      "viewDetails" : "View details",
+      "statusType": {
+        "registered": "Registered",
+        "in_progress": "In progress",
+        "closed": "Closed"
+      }
     }
 }
