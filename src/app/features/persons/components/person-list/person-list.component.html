@@ -1,74 +1,88 @@
-<p-table
-  [value]="persons"
-  [lazy]="true"
-  (onLazyLoad)="loadPersons()"
-  dataKey="id"
-  [first]="first"
-  [rows]="rows"
-  [tableStyle]="{ 'min-width': '75rem' }"
-  [paginator]="true"
-  [totalRecords]="totalRecords"
-  [loading]="loading"
-  (onPage)="pageChange($event)"
-  [rowsPerPageOptions]="[5, 10, 20]"
->
-  <ng-template pTemplate="header">
-    <tr>
-      <th style="width: 4rem"></th>
-      <th>
-        {{ 'auth.lastName' | translate }}
-      </th>
-      <th>
-        {{ 'auth.firstName' | translate }}
-      </th>
-      <th>
-        {{ 'auth.nationalRegister' | translate }}
-      </th>
-      <th>
-        {{ 'auth.gender' | translate }}
-      </th>
-      <th>
-        {{ 'auth.birthplace' | translate }}
-      </th>
-      <th>
-        {{ 'auth.birthdate' | translate }}
-      </th>
-    </tr>
-<!--    <tr>-->
-<!--      <th style="width: 4rem">-->
-<!--        <p-tableHeaderCheckbox />-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="name" />-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="firstName" />-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="nationalRegister" />-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="gender" />-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="birthplace" />-->
-<!--      </th>-->
-<!--      <th>-->
-<!--        <p-columnFilter type="text" field="birthdate" />-->
-<!--      </th>-->
-<!--    </tr>-->
-  </ng-template>
-  <ng-template pTemplate="body" let-person>
-    <tr>
-      <td>
-        <p-tableCheckbox [value]="person"></p-tableCheckbox>
-      </td>
-      <td>{{ person.name }}</td>
-      <td>{{ person.firstname }}</td>
-      <td>{{ person.nationalRegister }}</td>
-      <td>{{ person.gender }}</td>
-      <td>{{ person.birthDate }}</td>
-      <td>{{ person.birthPlace }}</td>
-    </tr>
-  </ng-template>
-</p-table>
+  <div>
+    <input pInputText type="text" id="in-name" [(ngModel)]="params.name" placeholder="{{ 'profile.lastName' | translate }}"/>
+    <input pInputText type="text" id="in-firstname" [(ngModel)]="params.firstname" placeholder="{{ 'profile.firstName' | translate }}"/>
+    <input pInputText type="text" id="in-nationalRegister" [(ngModel)]="params.nationalRegister" placeholder="{{ 'profile.nationalRegister' | translate }}"/>
+    <p-dropdown class="mb-3"
+                [options]="genderOptions"
+                [(ngModel)]="params.gender"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="{{'auth.gender' | translate}}">
+      <ng-template pTemplate="item" let-item>
+        {{item.label | translate}}
+      </ng-template>
+      <ng-template pTemplate="selectedItem" let-selectedItem>
+        {{selectedItem.label | translate}}
+      </ng-template>
+    </p-dropdown>
+    <input pInputText type="text" id="in-birthplace" [(ngModel)]="params.birthPlace" placeholder="{{ 'profile.birthplace' | translate }}"/>
+    <div class="flex flex-column gap-2">
+      <label for="in-birthdateLower">{{ 'profile.bornBetween' | translate }}</label>
+      <p-inputGroup class="mb-3">
+        <p-calendar
+          [iconDisplay]="'input'"
+          [showIcon]="true"
+          inputId="in-birthdateLower"
+          [(ngModel)]="params.birthDateLowerBound"/>
+      </p-inputGroup>
+      <label for="in-birthdateUpper">{{ 'profile.and' | translate }}</label>
+      <p-inputGroup class="mb-3">
+        <p-calendar
+          [iconDisplay]="'input'"
+          [showIcon]="true"
+          inputId="in-birthdateUpper"
+          [(ngModel)]="params.birthDateUpperBound"/>
+      </p-inputGroup>
+    </div>
+    <p-button (onClick)="loadPersons()">{{ 'filter' | translate}}</p-button>
+  </div>
+
+  <div>
+    <p-table
+      [value]="persons"
+      [lazy]="true"
+      (onLazyLoad)="loadPersons()"
+      dataKey="id"
+      [first]="first"
+      [rows]="rows"
+      [tableStyle]="{ 'min-width': '75rem' }"
+      [paginator]="true"
+      [totalRecords]="totalRecords"
+      [loading]="loading"
+      (onPage)="pageChange($event)"
+      [rowsPerPageOptions]="[5, 10, 20]"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>
+            {{ 'auth.lastName' | translate }}
+          </th>
+          <th>
+            {{ 'auth.firstName' | translate }}
+          </th>
+          <th>
+            {{ 'auth.nationalRegister' | translate }}
+          </th>
+          <th>
+            {{ 'auth.gender' | translate }}
+          </th>
+          <th>
+            {{ 'auth.birthplace' | translate }}
+          </th>
+          <th>
+            {{ 'auth.birthdate' | translate }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-person>
+        <tr>
+          <td>{{ person.name }}</td>
+          <td>{{ person.firstname }}</td>
+          <td>{{ person.nationalRegister }}</td>
+          <td>{{ translateGender(person.gender) | translate }}</td>
+          <td>{{ person.birthDate }}</td>
+          <td>{{ person.birthPlace }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>

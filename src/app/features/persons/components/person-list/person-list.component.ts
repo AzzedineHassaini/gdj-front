@@ -1,6 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {PersonService} from "../../services/person.service";
 import {Person, PersonParams} from "../../models/person.model";
+import {Gender} from "../../../profil/models/profile.models";
+
+
+interface GenderLabel{
+  value: string,
+  label: string
+}
 
 @Component({
   selector: 'app-person-list',
@@ -10,13 +17,22 @@ import {Person, PersonParams} from "../../models/person.model";
 export class PersonListComponent implements OnInit {
 
   persons: Person[] = [];
-
-  totalRecords!: number;
+  totalRecords: number = 0;
   page: number = 0;
-  first: number = 0
+  first: number = 0;
   rows: number = 5;
   totalPages!: number;
-  params!: PersonParams;
+  params: PersonParams = {
+    birthDateLowerBound: undefined,
+    birthDateUpperBound: undefined,
+    name: '',
+    firstname: '',
+    nationalRegister: '',
+    birthPlace: '',
+    gender: ''
+  };
+
+  genderOptions: GenderLabel[] = []
 
   loading: boolean = false;
 
@@ -24,21 +40,35 @@ export class PersonListComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
+    this.genderOptions = [
+      {value: 'MALE', label: 'profile.male'},
+      {value: 'FEMALE', label: 'profile.female'},
+      {value: 'OTHER', label: 'profile.other'}
+    ]
+  }
+
+  genderTranslations = {
+    [Gender.MALE]: "profile.male",
+    [Gender.FEMALE]: "profile.female",
+    [Gender.OTHER]: "profile.other",
+  }
+
+  translateGender(gender: Gender): string {
+    return this.genderTranslations[gender] || gender;
   }
 
   loadPersons() {
     this.loading = true;
+    console.log('load persons')
 
     setTimeout(() => {
-      console.log("call for page : "+this.page);
-      console.log("call ROWS : "+this.rows);
       this._personService.getAll(this.params, this.page, this.rows).subscribe({
           next: (res) => {
-            console.log(res);
             this.persons = res.content
             this.totalPages = res.totalPages
             this.totalRecords = res.totalElements
             this.loading = false;
+            console.log('loaded')
           },
           error: (error) => {
             console.log(error)
