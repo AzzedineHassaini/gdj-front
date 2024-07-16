@@ -100,3 +100,31 @@ form div[formArrayName="addresses"] div input,
 form div[formArrayName="phones"] div input {
   margin-bottom: 10px;
 }
+
+p-fileUpload {
+  width: 100%;
+}
+
+form div[formArrayName="addresses"],
+form div[formArrayName="phones"] {
+  grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  input[type="submit"] {
+    grid-column: span 1;
+  }
+
+  form h5 {
+    grid-column: span 1;
+  }
+
+  form div[formArrayName="addresses"] div,
+  form div[formArrayName="phones"] div {
+    grid-column: span 1;
+  }
+}

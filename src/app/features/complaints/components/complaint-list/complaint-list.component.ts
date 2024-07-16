@@ -2,6 +2,7 @@ import {Component, computed, inject} from '@angular/core';
 import {ComplaintService} from "../../services/complaint.service";
 import { Complaint, ComplaintParams } from '../../models/complaint-model';
 import { Status } from '../../models/complaint-model';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-complaint-list',
@@ -25,7 +26,10 @@ export class ComplaintListComponent {
     [Status.CLOSED]: "complaint.statusType.closed",
   }
 
-  constructor(private _complaintService: ComplaintService) {}
+  constructor(
+    private _complaintService: ComplaintService,
+    private readonly _router: Router
+  ) {}
 
   ngOnInit() {
     this.loading = true;
@@ -60,6 +64,10 @@ export class ComplaintListComponent {
 
   translateStatus(status: Status): string {
     return this.statusTranslations[status] || status;
+  }
+
+  viewDetails(id: string): void {
+    this._router.navigate(['/complaints', id]);
   }
 
 }

@@ -7,12 +7,14 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {TableModule} from "primeng/table";
 import { CustomDateFormatPipe } from './pipes/custom-date-format.pipe';
 import { ButtonModule } from 'primeng/button';
+import { ComplaintDetailsComponent } from './components/complaint-details/complaint-details.component';
 
 
 @NgModule({
   declarations: [
     ComplaintListComponent,
-    CustomDateFormatPipe
+    CustomDateFormatPipe,
+    ComplaintDetailsComponent
   ],
   exports: [
     CustomDateFormatPipe

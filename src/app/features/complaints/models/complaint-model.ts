@@ -16,6 +16,16 @@ export interface Complaint {
   personConcerned: Person[]
 }
 
+export interface ComplaintDetail {
+  id: number,
+  fileNumber: string,
+  status: string,
+  date: Date,
+  complainant: Person,
+  agent: Person,
+  personConcerned: Person[]
+}
+
 export interface ComplaintParams {
   fileNumber: string,
   dateLowerBound: Date,
