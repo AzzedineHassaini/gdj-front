@@ -153,12 +153,6 @@ export class HeaderComponent {
     ]
   }
 
-  displayModal: boolean = false;
-
-  // showModal() {
-  //   this.displayModal = true;
-  // }
-
   openProfile(){
     this.$router.navigate(['profile'])
   }
