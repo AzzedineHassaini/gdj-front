@@ -1,23 +1,30 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {env} from "../../../../env/env";
-import {IComplaintDetail, IComplaintList} from "../models/complaint-model";
+import { ComplaintParams, PagedComplaints } from '../models/complaint-model';
+import { env } from '../../../../env/env';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComplaintService {
 
-  constructor(
-    private readonly _client: HttpClient,
-  ) { }
+  constructor(private readonly _client: HttpClient) {}
 
-  getComplaints(): Observable<IComplaintList[]> {
-    return this._client.get<IComplaintList[]>(env.baseUrl+'complaint')
-  }
+  getAll(filters: ComplaintParams, page: number, pageSize: number) {
 
-  getComplaintById(id: number) {
-    return this._client.get<IComplaintDetail>(env.baseUrl+'complaint/'+id)
+    let params = new HttpParams();
+    params = params.append('page', page);
+    params = params.append('pageSize', pageSize);
+
+    if (filters !== undefined) {
+      params = (filters.dateLowerBound === undefined) ? params : params.append('dateLowerBound', filters.dateLowerBound.toDateString());
+      params = (filters.dateUpperBound === undefined) ? params : params.append('dateUpperBound', filters.dateUpperBound.toDateString());
+      params = (filters.fileNumber === null) ? params : params.append('fileNumber', filters.fileNumber);
+      params = (filters.status === null) ? params : params.append('status', filters.status);
+      params = (filters.type === null) ? params : params.append('type', filters.type);
+    }
+
+    return this._client.get<PagedComplaints>(`${env.baseUrl}complaint`, { params : params })
   }
 }

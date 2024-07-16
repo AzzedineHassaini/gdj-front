@@ -21,7 +21,7 @@ const routes: Routes = [
         loadChildren: () => import ('../features/profil/profile.module').then(m => m.ProfileModule),
       },
       {
-        path: 'complaint',
+        path: 'complaints',
         loadChildren: () => import ('../features/complaints/complaints.module').then(m => m.ComplaintsModule),
       },
       {

@@ -1,29 +1,32 @@
 {
+    "filter": "Filtrer",
     "profileTitle": "Profil",
     "profile": {
-        "lastName" : "Nom : ",
-        "firstName": "Prénom : ",
-        "nationalRegister": "Registre national : ",
-        "birthdate": "Date de naissance : ",
-        "deathdate": "Date décès : ",
-        "birthplace": "Lieu de naissance : ",
-        "gender": "Votre genre : ",
+        "lastName" : "Nom",
+        "firstName": "Prénom",
+        "nationalRegister": "Registre national",
+        "birthdate": "Date de naissance",
+        "deathdate": "Date décès",
+        "birthplace": "Lieu de naissance",
+        "gender": "Votre genre",
         "male": "Homme",
         "female": "Femme",
         "other": "Autre",
-        "phoneNumber": "Numéro de téléphone : ",
-        "street": "Rue : ",
-        "number": "Numéro : ",
-        "city": "Ville : ",
-        "postCode": "Code postal : ",
-        "country": "Pays : ",
-        "label": "Type : ",
-        "address": "Adresse ",
-        "phone": "Téléphone ",
-        "imgProfile": "Image de profil : ",
-        "imprint": "Image d'empreinte : ",
-        "lawyer": "Avocat : ",
-        "submit": "Envoyer"
+        "phoneNumber": "Numéro de téléphone",
+        "street": "Rue",
+        "number": "Numéro",
+        "city": "Ville",
+        "postCode": "Code postal",
+        "country": "Pays",
+        "label": "Type",
+        "address": "Adresse",
+        "phone": "Téléphone",
+        "imgProfile": "Image de profil",
+        "imprint": "Image d'empreinte",
+        "lawyer": "Avocat",
+        "submit": "Envoyer",
+        "bornBetween": "Né entre",
+        "and": "et"
     },
     "header" : {
         "home" : "Accueil",
@@ -59,5 +62,18 @@
       "titleloggederror": "Authentification échouée",
       "successfullylogged": "Connecter avec succès",
       "errorlogged": "Connexion échouée"
+    },
+    "complaint": {
+      "fileNumber": "Numéro de dossier",
+      "status": "Statut",
+      "date": "Date",
+      "complaint": "Plaignant",
+      "agent": "Agent",
+      "viewDetails" : "Voir détails",
+      "statusType": {
+        "registered": "Enregistrée",
+        "in_progress": "En cours",
+        "closed": "Fermée"
+      }
     }
 }
