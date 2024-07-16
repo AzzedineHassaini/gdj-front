@@ -1,0 +1,66 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #0056b3;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: black;
+}
+
+.card {
+  background-color: #c6b7ae;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  color: black;
+}
+
+input[pInputText], input[pPassword], p-inputMask, p-calendar, p-dropdown, p-fileUpload {
+  width: 10%;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin: 10px;
+  background-color: white;
+  color: black;
+}
+
+p-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+p-button:hover {
+  background-color: #0056b3;
+}
+
+p-inputGroup {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  width: 15%;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555555;
+}
