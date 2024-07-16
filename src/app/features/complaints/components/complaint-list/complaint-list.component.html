@@ -1,40 +1,78 @@
-<p-table
-  [value]="complaints"
-  [lazy]="true"
-  (onLazyLoad)="loadComplaints()"
-  dataKey="id"
-  [first]="first"
-  [rows]="rows"
-  [tableStyle]="{ 'min-width': '75rem' }"
-  [paginator]="true"
-  [totalRecords]="totalRecords"
-  [loading]="loading"
-  (onPage)="pageChange($event)"
-  [rowsPerPageOptions]="[5, 10, 20]"
->
+<input pInputText type="text" id="in-fileNumber" [(ngModel)]="params.fileNumber" placeholder="{{ 'complaint.fileNumber' | translate }}"/>
 
-  <ng-template pTemplate="header">
-    <tr>
-      <th>
-        ID
-      </th>
-      <th>
-        {{ 'complaint.fileNumber' | translate }}
-      </th>
-      <th>
-        {{ 'complaint.status' | translate }}
-      </th>
-      <th>
-        {{ 'complaint.date' | translate }}
-      </th>
-      <th>
-        {{ 'complaint.complaint' | translate }}
-      </th>
-      <th>
-        {{ 'complaint.agent' | translate }}
-      </th>
-      <th></th>
-    </tr>
+<p-dropdown class="mb-3"
+            [options]="complaintStatus"
+            [(ngModel)]="params.status"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Status">
+  <ng-template pTemplate="item" let-item>
+    {{item.label | translate}}
+  </ng-template>
+  <ng-template pTemplate="selectedItem" let-selectedItem>
+    {{selectedItem.label | translate}}
+  </ng-template>
+</p-dropdown>
+
+<div>
+  <label>Crée entre le </label>
+  <p-inputGroup class="mb-3">
+    <p-calendar
+      [iconDisplay]="'input'"
+      [showIcon]="true"
+      inputId="in-dateLower"
+      [(ngModel)]="params.dateLowerBound"/>
+  </p-inputGroup>
+  <label>et </label>
+  <p-inputGroup class="mb-3">
+    <p-calendar
+      [iconDisplay]="'input'"
+      [showIcon]="true"
+      inputId="in-birthdateUpper"
+      [(ngModel)]="params.dateUpperBound"/>
+  </p-inputGroup>
+</div>
+
+<p-button (onClick)="loadComplaints()">filter</p-button>
+
+<div>
+  <p-table
+    [value]="complaints"
+    [lazy]="true"
+    (onLazyLoad)="loadComplaints()"
+    dataKey="id"
+    [first]="first"
+    [rows]="rows"
+    [tableStyle]="{ 'min-width': '75rem' }"
+    [paginator]="true"
+    [totalRecords]="totalRecords"
+    [loading]="loading"
+    (onPage)="pageChange($event)"
+    [rowsPerPageOptions]="[5, 10, 20]"
+  >
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          ID
+        </th>
+        <th>
+          {{ 'complaint.fileNumber' | translate }}
+        </th>
+        <th>
+          {{ 'complaint.status' | translate }}
+        </th>
+        <th>
+          {{ 'complaint.date' | translate }}
+        </th>
+        <th>
+          {{ 'complaint.complaint' | translate }}
+        </th>
+        <th>
+          {{ 'complaint.agent' | translate }}
+        </th>
+        <th></th>
+      </tr>
     </ng-template>
     <ng-template pTemplate="body" let-complaint>
       <tr>
@@ -47,4 +85,5 @@
         <td><p-button (click)="viewDetails(complaint.id)" label="{{'complaint.viewDetails' | translate}}"></p-button></td>
       </tr>
     </ng-template>
-</p-table>
+  </p-table>
+</div>
