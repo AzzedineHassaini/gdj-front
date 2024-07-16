@@ -17,3 +17,6 @@
         <p>{{ person.firstname }} {{ person.name }}</p>
     </div>
 </div>
+<div>
+  <p-button icon="pi pi-print" severity="secondary" [outlined]="true" (onClick)="printPDF(id, complaint?.fileNumber)"/>
+</div>
