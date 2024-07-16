@@ -27,7 +27,7 @@
             {{ complaint.date | customDateFormat }}
           </div>
           <span>
-              <p-button icon="pi pi-print" severity="secondary" [outlined]="true" (onClick)="printPDF(complaint.id)"/>
+              <p-button icon="pi pi-print" severity="secondary" [outlined]="true" (onClick)="printPDF(complaint.id, complaint.fileNumber)"/>
               <p-button icon="pi pi-info" styleClass="ml-2" (onClick)="viewDetails(complaint.id)"/>
           </span>
         </div>
