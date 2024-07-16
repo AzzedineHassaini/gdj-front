@@ -8,6 +8,11 @@ import {TableModule} from "primeng/table";
 import { CustomDateFormatPipe } from './pipes/custom-date-format.pipe';
 import { ButtonModule } from 'primeng/button';
 import { ComplaintDetailsComponent } from './components/complaint-details/complaint-details.component';
+import {InputTextModule} from "primeng/inputtext";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {DropdownModule} from "primeng/dropdown";
+import {CalendarModule} from "primeng/calendar";
+import {InputGroupModule} from "primeng/inputgroup";
 
 
 @NgModule({
@@ -22,7 +27,14 @@ import { ComplaintDetailsComponent } from './components/complaint-details/compla
     ComplaintsRoutingModule,
     ProgressSpinnerModule,
     TableModule,
-    TranslateModule
+    TranslateModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    FormsModule,
+    DropdownModule,
+    CalendarModule,
+    InputGroupModule
   ]
 })
 export class ComplaintsModule { }
