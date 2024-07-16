@@ -13,6 +13,8 @@ import {InputTextModule} from "primeng/inputtext";
 import {InputMaskModule} from "primeng/inputmask";
 import {ComplaintsModule} from "../complaints/complaints.module";
 import { PersonDetailComponent } from './components/person-detail/person-detail.component';
+import {CarouselModule} from "primeng/carousel";
+import {TagModule} from "primeng/tag";
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { PersonDetailComponent } from './components/person-detail/person-detail.
     ReactiveFormsModule,
     InputTextModule,
     InputMaskModule,
-    ComplaintsModule
+    ComplaintsModule,
+    CarouselModule,
+    TagModule
   ]
 })
 export class PersonsModule { }

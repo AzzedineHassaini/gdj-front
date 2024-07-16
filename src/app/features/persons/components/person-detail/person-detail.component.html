@@ -1,0 +1,38 @@
+<div style="text-align: center;">
+
+  <h2>{{ person.lastName | uppercase}} {{ person.firstName | titlecase}}</h2>
+
+  <p-carousel
+    [value]="complaints"
+    [numVisible]="3"
+    [numScroll]="3"
+    [circular]="false"
+    [responsiveOptions]="responsiveOptions">
+    <ng-template let-complaint pTemplate="item">
+      <div class="border-1 surface-border border-round m-2 p-3">
+        <div class="mb-3">
+          <div class="relative mx-auto">
+            <p-tag
+              [value]="complaint.status"
+              [severity]="getSeverity(complaint.status)"
+              class="absolute"
+              [ngStyle]="{ 'left.px': 5, 'top.px': 5 }" />
+          </div>
+        </div>
+        <div class="mb-3 font-medium">
+          {{ complaint.fileNumber }}
+        </div>
+        <div class="flex justify-content-between align-items-center">
+          <div class="mt-0 font-semibold text-xl">
+            {{ complaint.date | customDateFormat }}
+          </div>
+          <span>
+              <p-button icon="pi pi-print" severity="secondary" [outlined]="true" (onClick)="printPDF(complaint.id)"/>
+              <p-button icon="pi pi-info" styleClass="ml-2" (onClick)="viewDetails(complaint.id)"/>
+          </span>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+
+</div>

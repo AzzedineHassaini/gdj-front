@@ -23,7 +23,7 @@ export interface ComplaintDetail {
   date: Date,
   complainant: Person,
   agent: Person,
-  personConcerned: Person[]
+  personConcerned: Person[],
 }
 
 export interface ComplaintParams {

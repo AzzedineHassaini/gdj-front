@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {PagedPersons, Person, PersonParams} from "../models/person.model";
-import {IAuth} from "../../auth/models/auth.model";
 import {env} from "../../../../env/env";
-import {catchError, of, tap} from "rxjs";
+import {IPersonDetails} from "../../profil/models/profile.models";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +17,10 @@ export class PersonService {
 
   getLawyerClients(lawyerId: number, filters: PersonParams, page: number, pageSize: number) {
     return this._client.get<PagedPersons>(`${env.baseUrl}person/lawyer/${lawyerId}`,  { params: this.getParams(filters, page, pageSize) })
+  }
+
+  getPersonDetail(personId: number) {
+    return this._client.get<IPersonDetails>(`${env.baseUrl}person/details/${personId}`)
   }
 
   getParams(filters: PersonParams, page: number, pageSize: number) {
