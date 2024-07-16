@@ -61,14 +61,10 @@ export class HeaderComponent {
 
   getMenu(currentUser: IAuth | undefined): MenuItem[] {
     if (currentUser) {
-      // console.log("connected user, role = " + (currentUser.role));
-      // console.log("Comparing with UserRole.AGENT: ", currentUser.role as UserRole === UserRole.AGENT);
-      // console.log("UserRole.AGENT value: ", UserRole.AGENT as UserRole);
       switch (currentUser.role){
         case UserRole.ADMIN:
           return this.getAdminMenu()
         case UserRole.AGENT:
-          // console.log ("returning agent menu")
           return this.getAgentMenu()
         case UserRole.CITIZEN:
           return this.getCitizenMenu()
@@ -112,10 +108,10 @@ export class HeaderComponent {
         label: this.$translate.instant('header.home'),
         routerLink: '/home'
       },
-      {
-        label: this.$translate.instant('header.profile'),
-        routerLink: '/profile'
-      },
+      // {
+      //   label: this.$translate.instant('header.profile'),
+      //   routerLink: '/profile'
+      // },
       {
         label: this.$translate.instant('header.complaints'),
         routerLink: '/complaints'
@@ -133,10 +129,10 @@ export class HeaderComponent {
         label: this.$translate.instant('header.home'),
         routerLink: '/home'
       },
-      {
-        label: this.$translate.instant('header.profile'),
-        routerLink: '/profile'
-      }
+      // {
+      //   label: this.$translate.instant('header.profile'),
+      //   routerLink: '/profile'
+      // }
     ]
   }
 
@@ -147,20 +143,24 @@ export class HeaderComponent {
         routerLink: '/home'
       },
       {
-        label: this.$translate.instant('header.profile'),
-        routerLink: '/profile'
+        label: this.$translate.instant('header.citizens'),
+        routerLink: '/persons'
       }
+      // {
+      //   label: this.$translate.instant('header.profile'),
+      //   routerLink: '/profile'
+      // }
     ]
   }
 
   displayModal: boolean = false;
 
-  showModal() {
-    this.displayModal = true;
-  }
+  // showModal() {
+  //   this.displayModal = true;
+  // }
 
-  openProfil(){
-    RouterLink: '/profil'
+  openProfile(){
+    this.$router.navigate(['profile'])
   }
 
   toggleDark(){

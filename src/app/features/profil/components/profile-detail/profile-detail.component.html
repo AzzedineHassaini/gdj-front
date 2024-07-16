@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-    <h2>{{'profilTitle' | translate}}</h2>
+    <h2>{{'profileTitle' | translate}}</h2>
 
     <form [formGroup]="formPerson" (ngSubmit)="onSubmit()">
         <div>
@@ -27,7 +27,7 @@
             <label for="birthDate">{{'profile.birthdate' | translate}}</label>
             <input type="date" id="birthDate" name="birthDate" formControlName="birthDate"/>
         </div>
-        
+
         <br>
 
         <div>
@@ -36,7 +36,7 @@
                 <input type="date" id="deathDate" name="deathDate" formControlName="deathDate"/>
             }
         </div>
-    
+
         <br>
 
         <div>
@@ -51,9 +51,9 @@
                 @for (gender of genderOptions; track $index) {
                     <option value="{{gender.value}}">{{gender.label | translate}}</option>
                 }
-            </select>  
+            </select>
         </div>
-        
+
         <br>
 
         <div formArrayName="addresses">
@@ -102,11 +102,11 @@
 
         <div>
             <label for="picture">{{'profile.imgProfile' | translate}}</label>
-            <p-fileUpload 
-                name="file" 
+            <p-fileUpload
+                name="file"
                 accept="image/*"
                 [showUploadButton]="false"
-                maxFileSize="1000000" 
+                maxFileSize="1000000"
                 (onSelect)="onUploadPicture($event)">
             </p-fileUpload>
         </div>
@@ -114,11 +114,11 @@
         <div>
             @if (userRole == 'AGENT') {
                 <label for="imprint">{{'profile.imprint' | translate}}</label>
-                <p-fileUpload 
-                    name="file" 
+                <p-fileUpload
+                    name="file"
                     accept="image/*"
                     [showUploadButton]="false"
-                    maxFileSize="1000000" 
+                    maxFileSize="1000000"
                     (onSelect)="onUploadImprint($event)">
                 </p-fileUpload>
             }

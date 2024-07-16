@@ -25,25 +25,25 @@
             <p-button pRipple
                       icon="pi pi-user"
                       [outlined]="true"
-                      (click)="showModal()"
+                      (click)="openProfile()"
                       styleClass="smol-btn2">
             </p-button>
-            <p-dialog class="modalConnect"
-                      header="{{'header.titlemodalprofil' | translate }}"
-                      [(visible)]="displayModal"
-                      [modal]="true"
-                      [style]="{width: '400px'}">
-              <a routerLink="profile"
-                (click)="displayModal=false">{{'header.majprofile' | translate}}</a>
-              <ng-template pTemplate="footer">
-                <p-button [rounded]="true"
-                          [outlined]="true"
-                          label="{{ 'header.close' | translate }}"
-                          size="small"
-                          (click)="displayModal=false">
-                </p-button>
-              </ng-template>
-            </p-dialog>
+<!--            <p-dialog class="modalConnect"-->
+<!--                      header="{{'header.titlemodalprofil' | translate }}"-->
+<!--                      [(visible)]="displayModal"-->
+<!--                      [modal]="true"-->
+<!--                      [style]="{width: '400px'}">-->
+<!--              <a routerLink="profile"-->
+<!--                (click)="displayModal=false">{{'header.majprofile' | translate}}</a>-->
+<!--              <ng-template pTemplate="footer">-->
+<!--                <p-button [rounded]="true"-->
+<!--                          [outlined]="true"-->
+<!--                          label="{{ 'header.close' | translate }}"-->
+<!--                          size="small"-->
+<!--                          (click)="displayModal=false">-->
+<!--                </p-button>-->
+<!--              </ng-template>-->
+<!--            </p-dialog>-->
           </li>
         } @else {
           <div>
