@@ -28,7 +28,7 @@ export class PersonDetailComponent implements OnInit {
     private readonly _route: ActivatedRoute,
     private readonly _personService: PersonService,
     private readonly _complaintService: ComplaintService,
-    // private readonly _pdfService: PDFService
+    private readonly _pdfService: PDFService
   ) { }
 
 
@@ -110,18 +110,19 @@ export class PersonDetailComponent implements OnInit {
     }
   }
 
-  printPDF(complaintId: number){
-    // this._pdfService.getComplaintPDF(complaintId).subscribe((data) => {
-    //
-    //   console.log(data)
-    //   // // this.blob = new Blob([data], {type: 'application/pdf'});
-    //   // var downloadURL = window.URL.createObjectURL(data);
-    //   // var link = document.createElement('a');
-    //   // link.href = downloadURL;
-    //   // link.download = "help.pdf";
-    //   // link.click();
-    //
-    // });
+  printPDF(complaintId: number, fileNumber: string){
+    this._pdfService.getComplaintPDF(complaintId).subscribe((data) => {
+
+      console.log(data)
+      let blob = new Blob([data], {type: 'application/pdf'});
+
+      var downloadURL = window.URL.createObjectURL(data);
+      var link = document.createElement('a');
+      link.href = downloadURL;
+      link.download = fileNumber+".pdf";
+      link.click();
+
+    });
   }
 
   viewDetails(complaintId: number){
