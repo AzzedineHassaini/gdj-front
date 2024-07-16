@@ -27,9 +27,9 @@ export interface ComplaintDetail {
 }
 
 export interface ComplaintParams {
-  fileNumber: string,
-  dateLowerBound: Date,
-  dateUpperBound: Date,
+  fileNumber: string;
+  dateLowerBound: Date | undefined;
+  dateUpperBound: Date | undefined;
   type: Type,
   status: Status
 }

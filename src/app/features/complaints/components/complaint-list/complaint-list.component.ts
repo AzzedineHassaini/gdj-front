@@ -1,8 +1,13 @@
-import {Component, computed, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {ComplaintService} from "../../services/complaint.service";
 import { Complaint, ComplaintParams } from '../../models/complaint-model';
 import { Status } from '../../models/complaint-model';
 import { Router } from "@angular/router";
+
+interface complaintLabel{
+  value: string,
+  label: string
+}
 
 @Component({
   selector: 'app-complaint-list',
@@ -11,14 +16,20 @@ import { Router } from "@angular/router";
 })
 export class ComplaintListComponent {
 
+  complaintStatus: complaintLabel[] = [];
   complaints: Complaint[] = [];
   totalRecords!: number;
   first: number = 0;
   page: number = 0;
   rows: number = 5;
   totalPages!: number;
-  params!: ComplaintParams;
   loading: boolean = false;
+  params: ComplaintParams = {
+    fileNumber: '',
+    dateLowerBound: undefined,
+    dateUpperBound: undefined,
+    status: '',
+  }
 
   statusTranslations = {
     [Status.REGISTERED]: "complaint.statusType.registered",
@@ -33,10 +44,16 @@ export class ComplaintListComponent {
 
   ngOnInit() {
     this.loading = true;
+    this.complaintStatus = [
+      {value: 'REGISTERED', label: 'complaint.statusType.registered'},
+      {value: 'IN_PROGRESS', label: 'complaint.statusType.in_progress'},
+      {value: 'CLOSED', label: 'complaint.statusType.closed'}
+    ]
   }
 
   loadComplaints() {
     this.loading = true;
+    console.log(this.params)
 
     setTimeout(() => {
       this._complaintService.getAll(this.params, this.page, this.rows).subscribe({
