@@ -16,8 +16,8 @@ export interface Person {
 }
 
 export interface PersonParams {
-  birthDateLowerBound: Date
-  birthDateUpperBound: Date
+  birthDateLowerBound: Date | undefined;
+  birthDateUpperBound: Date | undefined;
   name: string
   firstname: string
   nationalRegister: string
