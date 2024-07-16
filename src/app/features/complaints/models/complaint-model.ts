@@ -30,8 +30,8 @@ export interface ComplaintParams {
   fileNumber: string;
   dateLowerBound: Date | undefined;
   dateUpperBound: Date | undefined;
-  type: Type,
-  status: Status
+  type: string,
+  status: string,
 }
 
 export enum Type {

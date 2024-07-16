@@ -28,7 +28,8 @@ export class ComplaintListComponent {
     fileNumber: '',
     dateLowerBound: undefined,
     dateUpperBound: undefined,
-    status: '',
+    type: '',
+    status: ''
   }
 
   statusTranslations = {

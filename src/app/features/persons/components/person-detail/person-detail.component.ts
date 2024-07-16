@@ -44,17 +44,17 @@ export class PersonDetailComponent implements OnInit {
     this.responsiveOptions = [
       {
         breakpoint: '1199px',
-        numVisible: 3,
+        numVisible: 5,
         numScroll: 1
       },
       {
         breakpoint: '991px',
-        numVisible: 2,
+        numVisible: 3,
         numScroll: 1
       },
       {
         breakpoint: '767px',
-        numVisible: 1,
+        numVisible: 2,
         numScroll: 1
       }
     ];
@@ -80,7 +80,7 @@ export class PersonDetailComponent implements OnInit {
 
   getComplaints() {
     setTimeout(() => {
-      this._complaintService.getForCitizen(this.id, this.params, 0, 5).subscribe({
+      this._complaintService.getForCitizen(this.id, this.params, 0, 10).subscribe({
           next: (res) => {
             this.complaints = res.content
             this.loading = false;
