@@ -83,6 +83,7 @@
         <td>{{ complaint.complaint.firstname }} {{ complaint.complaint.name }}</td>
         <td>{{ complaint.agent.firstname }} {{ complaint.agent.name }}</td>
         <td><p-button (click)="viewDetails(complaint.id)" label="{{'complaint.viewDetails' | translate}}"></p-button></td>
+        <td><p-button icon="pi pi-print" severity="secondary" [outlined]="true" (onClick)="printPDF(complaint.id, complaint.fileNumber)"/></td>
       </tr>
     </ng-template>
   </p-table>

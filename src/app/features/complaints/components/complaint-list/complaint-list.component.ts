@@ -3,6 +3,7 @@ import {ComplaintService} from "../../services/complaint.service";
 import { Complaint, ComplaintParams } from '../../models/complaint-model';
 import { Status } from '../../models/complaint-model';
 import { Router } from "@angular/router";
+import {PDFService} from "../../../../shared/services/pdf.service";
 
 interface complaintLabel{
   value: string,
@@ -40,6 +41,7 @@ export class ComplaintListComponent {
 
   constructor(
     private _complaintService: ComplaintService,
+    private _pdfService: PDFService,
     private readonly _router: Router
   ) {}
 
@@ -86,6 +88,17 @@ export class ComplaintListComponent {
 
   viewDetails(id: string): void {
     this._router.navigate(['/complaints', id]);
+  }
+
+  printPDF(complaintId: number, fileNumber: string) {
+    this._pdfService.getComplaintPDF(complaintId).subscribe((data) => {
+      let blob = new Blob([data], {type: 'application/pdf'});
+      var dowloadURL = window.URL.createObjectURL(data);
+      var link = document.createElement('a');
+      link.href = dowloadURL;
+      link.download = fileNumber+".pdf";
+      link.click();
+    })
   }
 
 }
