@@ -21,6 +21,9 @@ import {InputGroupModule} from "primeng/inputgroup";
     CustomDateFormatPipe,
     ComplaintDetailsComponent
   ],
+  exports: [
+    CustomDateFormatPipe
+  ],
   imports: [
     CommonModule,
     ButtonModule,
